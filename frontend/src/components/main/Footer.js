@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/Footer.css';
 
 function Footer() {
     const date = new Date();
@@ -7,9 +8,7 @@ function Footer() {
     return (
         <div className="footer">
             <footer className="py-2 bg-dark">
-                <div className="container">
-                    <p className="m-0 text-center text-white">Copyright &copy; { year } Soli</p>
-                </div>
+                <p className="m-0 text-white">Copyright &copy; { year } Soli</p>
             </footer>
         </div>
     );
