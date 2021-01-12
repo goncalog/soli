@@ -1,0 +1,18 @@
+{
+  "name": "fully-electric-rental",
+  "version": "0.0.0",
+  "engines": {
+    "node": "14.7.0"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node ./backend/bin/www",
+    "heroku-postbuild": "cd backend && npm install && cd .. && cd frontend && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "backend/node_modules",
+    "frontend/node_modules"
+  ],
+  "dependencies": {
+  }
+}
