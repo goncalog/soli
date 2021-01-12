@@ -18,11 +18,11 @@ export default function Home(props) {
         (props.loggedIn) ? history.push(`/owner/${props.userId}/evs`) : history.push('/owner/signup');
     }
     
-    const driverCallToActionText = 'Let\'s DRIVE!';
+    const driverCallToActionText = 'Let\'s JOIN!';
     const headlineProps = {
         backgroundImagePath: backgroundHeadlineContainer,
-        mainHeadline: 'Rent an electric car to drive for Uber, Ola & Bolt', // Electric car and EV have more Google searches than electric vehicle and EVs
-        secondaryHeadline: 'We aggregate the best deals from all PCO rental companies',
+        mainHeadline: 'Make money from solar panels',
+        secondaryHeadline: 'Whether you own a roof or not',
         callToActionText: driverCallToActionText,
         onButtonClick: onEvsButtonClick,
     }
@@ -30,16 +30,16 @@ export default function Home(props) {
     const benefitsProps = {
         benefits: [
             { 
-                title: 'Best Price',
-                text: 'Find the best rental deals available online',
+                title: 'Huge Savings',
+                text: 'Get up to 25% discount on your electricity price',
             },
             { 
-                title: 'Most Efficient',
-                text: 'An electric car will save you thousands in fuel costs!', // Electric car and EV have more Google searches than electric vehicle and EVs
+                title: 'Great Returns',
+                text: 'Earn up to 10% return on solar panels!',
             },
             { 
-                title: 'Great Quality',
-                text: 'Rent only from the PCO car hire companies with the best ratings',
+                title: 'Max Convenience',
+                text: 'We take care of everything - just enjoy and relax while you earn from the energy produced',
             },
         ],
         callToActionText: driverCallToActionText,
@@ -48,9 +48,9 @@ export default function Home(props) {
 
     const ownerProps = {
         backgroundImagePath: backgroundOwnerContainer,
-        mainHeadline: 'Rent more cars, faster',
-        secondaryHeadline: 'We help PCO rental companies find the best drivers for their EV fleet', // Electric car and EV have more Google searches than electric vehicle and EVs
-        callToActionText: 'Let\'s SELL!',
+        mainHeadline: 'Rent your roof',
+        secondaryHeadline: 'Find solar panels owners interested in renting your roof and producing energy',
+        callToActionText: 'Let\'s JOIN!',
         onButtonClick: onSellButtonClick,
     }
 
