@@ -57,7 +57,7 @@ export default class Auth extends React.Component {
                 password: this.state.password,
             };
         } else {
-            // Log in
+            // Login
             data = { 
                 username: this.state.email,
                 password: this.state.password,
@@ -97,7 +97,7 @@ export default class Auth extends React.Component {
     }
 
     render() {
-        const action = this.props.match.url === '/owner/signup' ? 'Sign up' : 'Log in';
+        const action = this.props.match.url === '/owner/signup' ? 'Sign up' : 'Login';
 
         return (
             <div className="auth">

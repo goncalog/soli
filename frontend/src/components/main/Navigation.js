@@ -96,7 +96,7 @@ function Navigation(props) {
                                         to="/owner/logout" 
                                         onClick={() => setExpanded(false)}
                                     >
-                                        Log out
+                                        Logout
                                     </Link>
                                 </Nav.Item>
                             ) : (
@@ -110,7 +110,7 @@ function Navigation(props) {
                                         to="/owner/login" 
                                         onClick={() => setExpanded(false)}
                                     >
-                                        Log in
+                                        Login
                                     </Link>
                                 </Nav.Item>
                             )}
