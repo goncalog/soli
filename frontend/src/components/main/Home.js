@@ -31,11 +31,11 @@ export default function Home(props) {
         benefits: [
             { 
                 title: 'Huge Savings',
-                text: 'Get up to 25% discount on your electricity price',
+                text: 'Get a 10-25% discount on your electricity price',
             },
             { 
                 title: 'Great Returns',
-                text: 'Earn up to 10% return on solar panels!',
+                text: 'Earn a 5-10% return on solar panels',
             },
             { 
                 title: 'Max Convenience',
