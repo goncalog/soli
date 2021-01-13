@@ -3,6 +3,7 @@ import HeadlineContainer from '../support/HeadlineContainer';
 import BenefitsContainer from '../support/BenefitsContainer';
 import OwnerContainer from '../support/OwnerContainer';
 import MainHeadline from '../support/MainHeadline';
+import SecondaryHeadline from '../support/SecondaryHeadline';
 import CallToActionButton from '../support/CallToActionButton';
 import backgroundHeadlineContainer from '../../media/headline-background.jpg';
 import backgroundOwnerContainer from '../../media/owner-container-background.jpg';
@@ -33,25 +34,24 @@ export default function Home(props) {
     }
 
     const howitworksProps = [
-        {
-            mainHeadline: 'Roof owners',
-            listItems: [
-                'List your roof on Soli',
-                'Find people interested in paying for solar panels to be installed on your roof',
-                `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
-            ],
-            secondaryHeadline: 'Ideal for roof owners who\'d like to benefit from cheaper and more sustainable electricity but don\'t want to make the full upfront investment in solar panels',
-        },
-        
-        {
-            mainHeadline: 'Solar panel owners',
-            listItems: [
-                'Find a roof where you can install solar panels',
-                'Buy the solar panels - we\'ll install them for you',
-                `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
-            ],
-            secondaryHeadline: 'Perfect for those that don\'t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings',
-        },
+        [
+            <MainHeadline mainHeadline="Roof owners" />,
+            // listItems: [
+            //     'List your roof on Soli',
+            //     'Find people interested in paying for solar panels to be installed on your roof',
+            //     `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
+            // ],
+            <SecondaryHeadline secondaryHeadline="Ideal for roof owners who\'d like to benefit from cheaper and more sustainable electricity but don\'t want to make the full upfront investment in solar panels" />,
+        ],        
+        [
+            <MainHeadline mainHeadline="Solar panel owners" />,
+            // listItems: [
+            //     'Find a roof where you can install solar panels',
+            //     'Buy the solar panels - we\'ll install them for you',
+            //     `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
+            // ],
+            <SecondaryHeadline secondaryHeadline="Perfect for those that don\'t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings" />,
+        ],
     ]
 
     const benefitsProps = {
