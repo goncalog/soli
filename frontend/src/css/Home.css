@@ -1,7 +1,7 @@
 .headline-container {
     height: 750px;
     width: 100%;
-    padding: 13% 45% 0 10%;
+    padding: 175px 45% 0 10%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -15,10 +15,6 @@
 .main-headline {
     font-size: 48px;
     font-weight: 900;
-}
-
-.secondary-headline {
-    padding-right: 28%;
 }
 
 .benefits-container {
@@ -68,15 +64,15 @@
 /* Responsive layout - when the screen is less than 1250px wide */
 @media screen and (max-width: 1250px) {    
     .headline-container {
-        padding: 5% 26% 0 10%;
+        padding: 200px 45% 0 10%;
     }
 
     .main-headline {
-        font-size: 44px;
+        font-size: 42px;
     }
-    
+
     .secondary-headline {
-        padding-right: 35%;
+        font-size: 24px;
     }
     
     .benefits {
@@ -102,17 +98,12 @@
 
 /* Responsive layout - when the screen is less than 1000px wide */
 @media screen and (max-width: 1000px) {    
-    .headline-container {
-        padding: 6% 15% 0 10%;
-    }
-
     .main-headline {
-        font-size: 42px;
+        font-size: 34px;
     }
     
     .secondary-headline {
-        font-size: 24px;
-        padding-right: 32%;
+        font-size: 20px;
     }
     
     .benefits {
@@ -143,8 +134,8 @@
 /* Responsive layout - when the screen is less than 800px wide (tablet portrait) */
 @media screen and (max-width: 800px) {    
     .headline-container {
-        height: 400px;
-        padding: 10% 10% 0 10%;
+        height: 600px;
+        padding: 150px 45% 0 10%;
     }
 
     .main-headline {
@@ -152,8 +143,7 @@
     }
     
     .secondary-headline {
-        font-size: 20px;
-        padding-right: 34%;
+        font-size: 18px;
     }
     
     .benefits {
@@ -189,17 +179,18 @@
 /* Responsive layout - when the screen is less than 600px wide (mobile) */
 @media screen and (max-width: 600px) {    
     .headline-container {
-        height: 300px;
+        height: 500px;
+        padding-top: 115px;
+        padding-right: 30%;
     }
 
     .main-headline {
-        font-size: 28px;
-        padding-bottom: 10px;
+        font-size: 20px;
     }
     
     .secondary-headline {
-        font-size: 16px;
-        padding-right: 14%;
+        font-size: 14px;
+        padding-right: 40%;
     }
 
     .benefits-container {
