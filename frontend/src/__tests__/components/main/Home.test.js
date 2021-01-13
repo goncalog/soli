@@ -93,9 +93,9 @@ describe('Home', () => {
         const shallowWrapper = home().find(OwnerContainer);
         expect(shallowWrapper.length).toEqual(1);
         expect(shallowWrapper.prop('backgroundImagePath')).toBe('owner-container-background.jpg');
-        expect(shallowWrapper.prop('mainHeadline')).toBe('Rent your roof');
+        expect(shallowWrapper.prop('mainHeadline')).toBe('Monetise your roof');
         expect(shallowWrapper.prop('secondaryHeadline'))
-                .toBe('Find solar panel owners interested in renting your roof to produce energy');
+                .toBe('Find solar panel owners interested in using your roof to produce energy');
         expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s JOIN!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
