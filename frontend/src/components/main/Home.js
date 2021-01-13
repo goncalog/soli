@@ -35,11 +35,11 @@ export default function Home(props) {
             },
             { 
                 title: 'Great Returns',
-                text: 'Earn a 5-10% return on solar panels',
+                text: 'Earn a 5-10% annual return on solar panels',
             },
             { 
                 title: 'Max Convenience',
-                text: 'We take care of everything - just enjoy and relax while you earn from the energy produced',
+                text: 'We take care of everything - just enjoy and relax while you profit from the energy produced',
             },
         ],
         callToActionText: driverCallToActionText,
