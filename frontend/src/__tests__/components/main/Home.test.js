@@ -35,10 +35,10 @@ describe('Home', () => {
     test('renders HeadlineContainer with passed properties', () => {
         const shallowWrapper = home().find(HeadlineContainer);
         expect(shallowWrapper.prop('backgroundImagePath')).toBe('headline-background.jpg');
-        expect(shallowWrapper.prop('mainHeadline')).toBe('Rent an electric car to drive for Uber, Ola & Bolt');
+        expect(shallowWrapper.prop('mainHeadline')).toBe('Make money from solar panels');
         expect(shallowWrapper.prop('secondaryHeadline'))
-                .toBe('We aggregate the best deals from all PCO rental companies');
-        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s DRIVE!');
+                .toBe('Whether you own a roof or not');
+        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s JOIN!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
 
@@ -49,7 +49,7 @@ describe('Home', () => {
     test('renders BenefitsContainer with passed properties', () => {
         const shallowWrapper = home().find(BenefitsContainer);
         expect(shallowWrapper.prop('benefits').length).toEqual(3);
-        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s DRIVE!');
+        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s JOIN!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
 
@@ -61,10 +61,10 @@ describe('Home', () => {
         const shallowWrapper = home().find(OwnerContainer);
         expect(shallowWrapper.length).toEqual(1);
         expect(shallowWrapper.prop('backgroundImagePath')).toBe('owner-container-background.jpg');
-        expect(shallowWrapper.prop('mainHeadline')).toBe('Rent more cars, faster');
+        expect(shallowWrapper.prop('mainHeadline')).toBe('Rent your roof');
         expect(shallowWrapper.prop('secondaryHeadline'))
-                .toBe('We help PCO rental companies find the best drivers for their EV fleet');
-        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s SELL!');
+                .toBe('Find solar panel owners interested in renting your roof to produce energy');
+        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s JOIN!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
 });
