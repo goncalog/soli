@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '../../../components/support/Grid';
 import MainHeadline from '../../../components/support/MainHeadline';
 import SecondaryHeadline from '../../../components/support/SecondaryHeadline';
+import OrderedList from '../../../components/support/OrderedList';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -25,29 +26,32 @@ describe('Grid', () => {
             content: [
                 [
                     <MainHeadline mainHeadline="Test 1" />,
-                    // listItems: [
-                    //     'List your roof on Soli',
-                    //     'Find people interested in paying for solar panels to be installed on your roof',
-                    //     `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
-                    // ],
+                    <OrderedList listItems={
+                        [
+                            'Test 1',
+                            'Test 1',
+                        ]}  
+                    />,
                     <SecondaryHeadline secondaryHeadline="Test 1" />,
                 ],        
                 [
                     <MainHeadline mainHeadline="Test 2" />,
-                    // listItems: [
-                    //     'Find a roof where you can install solar panels',
-                    //     'Buy the solar panels - we\'ll install them for you',
-                    //     `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
-                    // ],
+                    <OrderedList listItems={
+                        [
+                            'Test 2',
+                            'Test 2',
+                        ]}  
+                    />,
                     <SecondaryHeadline secondaryHeadline="Test 2" />,
                 ],
                 [
                     <MainHeadline mainHeadline="Test 3" />,
-                    // listItems: [
-                    //     'Find a roof where you can install solar panels',
-                    //     'Buy the solar panels - we\'ll install them for you',
-                    //     `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
-                    // ],
+                    <OrderedList listItems={
+                        [
+                            'Test 3',
+                            'Test 3',
+                        ]}  
+                    />,
                     <SecondaryHeadline secondaryHeadline="Test 3" />,
                 ],
             ],
@@ -65,6 +69,15 @@ describe('Grid', () => {
 
         shallowWrapper.forEach((item, i) => {
             expect(item.prop('mainHeadline')).toBe(`Test ${i+1}`);
+        });
+    });
+
+    test('has 3 OrderedList components rendered with passed properties', () => {
+        const shallowWrapper = grid().find(OrderedList);
+        expect(shallowWrapper.length).toEqual(3);
+
+        shallowWrapper.forEach((item, i) => {
+            expect(Object.keys(item.props())).toContain('listItems');
         });
     });
 
