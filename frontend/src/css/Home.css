@@ -36,15 +36,16 @@
 }
 
 .owner-container {
-    padding: 5% 40% 5% 10%;
+    padding: 5% 0% 5% 10%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    color: white;
+    color: black;
 }
 
 .owner-container .secondary-headline {
-    padding-right: 15%;
+    padding-right: 56%;
+    font-size: 24px;
 }
 
 .callToActionButton {
@@ -86,13 +87,9 @@
     .benefit-text {
         font-size: 15px;
     }
-    
-    .owner-container {
-        padding: 5% 27% 5% 10%;
-    }
 
     .owner-container .secondary-headline {
-        padding-right: 25%;
+        padding-right: 50%;
     }
 }
 
@@ -117,17 +114,10 @@
     .benefit-text {
         font-size: 14px;
     }
-    
-    .owner-container {
-        padding: 5% 10% 5% 10%;
-    }
 
     .owner-container .secondary-headline {
-        padding-right: 27%;
-    }
-
-    .owner-container .secondary-headline {
-        padding-right: 34%;
+        padding-right: 48%;
+        font-size: 20px;
     }
 }
 
@@ -161,18 +151,14 @@
         padding: 0 30%;
         font-size: 16px;
     }
-    
-    .owner-container {
-        padding: 10% 10%;
-    }
 
     .owner-container .main-headline {
-        font-size: 38px;
+        font-size: 32px;
     }
 
     .owner-container .secondary-headline {
-        padding-right: 24%;
-        font-size: 24px;
+        padding-right: 42%;
+        font-size: 18px;
     }
 }
 
@@ -213,11 +199,11 @@
     }
 
     .owner-container .main-headline {
-        font-size: 28px;
+        font-size: 20px;
     }
 
     .owner-container .secondary-headline {
-        padding-right: 20%;
-        font-size: 16px;
+        padding-right: 25%;
+        font-size: 14px;
     }
 }
