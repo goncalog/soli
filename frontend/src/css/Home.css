@@ -24,13 +24,15 @@
 }
 
 .howitworks-container .grid {
-    padding: 15px 0;
+    text-align: left;
+    padding: 40px 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 160px;
 }
 
 .grid .main-headline {
+    text-align: center;
     padding-bottom: 12px;
     font-weight: 600;
     font-size: 25px;
