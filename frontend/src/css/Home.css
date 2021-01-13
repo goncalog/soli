@@ -1,7 +1,7 @@
 .headline-container {
-    height: 600px;
+    height: 750px;
     width: 100%;
-    padding: 5% 33% 0 10%;
+    padding: 13% 45% 0 10%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -18,7 +18,7 @@
 }
 
 .secondary-headline {
-    padding-right: 39%;
+    padding-right: 28%;
 }
 
 .benefits-container {
