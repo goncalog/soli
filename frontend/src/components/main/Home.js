@@ -54,7 +54,7 @@ export default function Home(props) {
                     [
                         'Find a roof where you can install solar panels',
                         'Buy the solar panels - we\'ll install them for you',
-                        `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
+                        `Start earning a ${solarPanelsReturn} annual return on your solar panels - you'll be paid by the roof owner for the electricity produced`,
                     ]}  
                 />,
                 <SecondaryHeadline secondaryHeadline="Perfect for those who don&#39;t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings" />,
