@@ -101,6 +101,10 @@
     .secondary-headline {
         font-size: 24px;
     }
+
+    .grid .main-headline {
+        font-size: 23px;
+    }
     
     .benefits {
         column-gap: 7%;
@@ -127,6 +131,18 @@
     
     .secondary-headline {
         font-size: 20px;
+    }
+
+    .grid .main-headline {
+        font-size: 18px;
+    }
+
+    .grid ol {
+        font-size: 14px;
+    }
+    
+    .grid .secondary-headline {
+        font-size: 14px;
     }
     
     .benefits {
@@ -203,6 +219,26 @@
     .secondary-headline {
         font-size: 14px;
         padding-right: 40%;
+    }
+
+    .howitworks-container .grid {
+        padding: 30px 0;
+        grid-template-columns: 1fr;
+        row-gap: 25px;
+        column-gap: 0px;
+    }
+
+    .howitworks-container .main-headline {
+        font-size: 28px;
+    }
+
+    .grid .main-headline {
+        font-size: 18px;
+    }
+
+    .grid .secondary-headline {
+        padding-right: 0px;
+        text-align: center;
     }
 
     .benefits-container {
