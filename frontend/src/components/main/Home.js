@@ -83,8 +83,8 @@ export default function Home(props) {
 
     const ownerProps = {
         backgroundImagePath: backgroundOwnerContainer,
-        mainHeadline: 'Rent your roof',
-        secondaryHeadline: 'Find solar panel owners interested in renting your roof to produce energy',
+        mainHeadline: 'Monetise your roof',
+        secondaryHeadline: 'Find solar panel owners interested in using your roof to produce energy',
         callToActionText: 'Let\'s JOIN!',
         onButtonClick: onSellButtonClick,
     }
