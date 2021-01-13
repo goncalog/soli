@@ -13,7 +13,7 @@ it('renders one child', () => {
 
 it('renders Title link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const titleLink = getByText(/FullyElectric/);
+    const titleLink = getByText(/Soli/);
     expect(titleLink).toBeInTheDocument();
     expect(titleLink.getAttribute('href')).toBe('/');
 });
@@ -48,14 +48,14 @@ it('renders the Contact link correctly', () => {
 
 it('renders Log in link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const contactLink = getByText(/Log/);
+    const contactLink = getByText(/Login/);
     expect(contactLink).toBeInTheDocument();
     expect(contactLink.getAttribute('href')).toBe('/owner/login');
 });
 
 it('renders the logo correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const titleLink = getByText(/FullyElectric/);
+    const titleLink = getByText(/Soli/);
     expect(titleLink.firstChild.getAttribute('class')).toBe('App-logo');
     expect(titleLink.firstChild.getAttribute('src')).toBe('logo.svg');
 });
