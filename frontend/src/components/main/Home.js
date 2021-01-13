@@ -2,6 +2,8 @@ import React from 'react';
 import HeadlineContainer from '../support/HeadlineContainer';
 import BenefitsContainer from '../support/BenefitsContainer';
 import OwnerContainer from '../support/OwnerContainer';
+import MainHeadline from '../support/MainHeadline';
+import CallToActionButton from '../support/CallToActionButton';
 import backgroundHeadlineContainer from '../../media/headline-background.jpg';
 import backgroundOwnerContainer from '../../media/owner-container-background.jpg';
 import '../../css/Home.css';
@@ -19,6 +21,9 @@ export default function Home(props) {
     }
     
     const driverCallToActionText = 'Let\'s JOIN!';
+    const electricityDiscount = '10-25%';
+    const solarPanelsReturn = '5-10%';
+
     const headlineProps = {
         backgroundImagePath: backgroundHeadlineContainer,
         mainHeadline: 'Make money from solar panels',
@@ -27,15 +32,37 @@ export default function Home(props) {
         onButtonClick: onEvsButtonClick,
     }
 
+    const howitworksProps = [
+        {
+            mainHeadline: 'Roof owners',
+            listItems: [
+                'List your roof on Soli',
+                'Find people interested in paying for solar panels to be installed on your roof',
+                `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
+            ],
+            secondaryHeadline: 'Ideal for roof owners who\'d like to benefit from cheaper and more sustainable electricity but don\'t want to make the full upfront investment in solar panels',
+        },
+        
+        {
+            mainHeadline: 'Solar panel owners',
+            listItems: [
+                'Find a roof where you can install solar panels',
+                'Buy the solar panels - we\'ll install them for you',
+                `Start earning a ${solarPanelsReturn} annual return on your solar panels - you\'ll be paid by the roof owner for the electricity produced`,
+            ],
+            secondaryHeadline: 'Perfect for those that don\'t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings',
+        },
+    ]
+
     const benefitsProps = {
         benefits: [
             { 
                 title: 'Huge Savings',
-                text: 'Get a 10-25% discount on your electricity price',
+                text: `Get a ${electricityDiscount} discount on your electricity price`,
             },
             { 
                 title: 'Great Returns',
-                text: 'Earn a 5-10% annual return on solar panels',
+                text: `Earn a ${solarPanelsReturn} annual return on solar panels`,
             },
             { 
                 title: 'Max Convenience',
@@ -57,6 +84,11 @@ export default function Home(props) {
     return (
         <div className="home">
             <HeadlineContainer {...headlineProps}/>
+            <div className="howitworks-container">
+                <MainHeadline mainHeadline="How it works" />
+                {/* <Grid {...howitworksProps} /> */}
+                <CallToActionButton callToActionText={driverCallToActionText} onButtonClick={onEvsButtonClick}/>
+            </div>
             <BenefitsContainer {...benefitsProps} />
             <OwnerContainer {...ownerProps} />
         </div>

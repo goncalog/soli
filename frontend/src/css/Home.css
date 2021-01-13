@@ -17,6 +17,12 @@
     font-weight: 900;
 }
 
+.howitworks-container {
+    text-align: center;
+    background-color: ghostwhite;
+    padding: 60px 10%;
+}
+
 .benefits-container {
     text-align: center;
     padding: 60px 10%;
