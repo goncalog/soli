@@ -23,6 +23,24 @@
     padding: 60px 10%;
 }
 
+.howitworks-container .grid {
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 160px;
+}
+
+.grid .main-headline {
+    padding-bottom: 12px;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.grid .secondary-headline {
+    font-size: 15px;
+    line-height: 22.5px;
+}
+
 .benefits-container {
     text-align: center;
     padding: 60px 10%;
