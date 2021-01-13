@@ -97,7 +97,7 @@ export default class Auth extends React.Component {
     }
 
     render() {
-        const action = this.props.match.url === '/owner/signup' ? 'Sign up' : 'Login';
+        const action = this.props.match.url === '/owner/signup' ? 'Sign up' : 'Log in';
 
         return (
             <div className="auth">
