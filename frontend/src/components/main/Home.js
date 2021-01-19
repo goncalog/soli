@@ -23,7 +23,7 @@ export default function Home(props) {
         (props.loggedIn) ? history.push(`/owner/${props.userId}/evs`) : history.push('/owner/signup');
     }
     
-    const driverCallToActionText = 'Let\'s JOIN!';
+    const driverCallToActionText = 'Let\'s EARN!';
     const electricityDiscount = '10-25%';
     const solarPanelsReturn = '5-10%';
 
@@ -85,7 +85,7 @@ export default function Home(props) {
         backgroundImagePath: backgroundOwnerContainer,
         mainHeadline: 'Monetise your roof',
         secondaryHeadline: 'Find solar panel owners interested in using your roof to produce energy',
-        callToActionText: 'Let\'s JOIN!',
+        callToActionText: 'Let\'s EARN!',
         onButtonClick: onSellButtonClick,
     }
 
