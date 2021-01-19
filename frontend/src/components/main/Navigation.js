@@ -40,40 +40,9 @@ function Navigation(props) {
                                 <Link 
                                     className="nav-link" to="/evs" onClick={() => setExpanded(false)}
                                 >
-                                    Drivers
+                                    Projects
                                 </Link>
                             </Nav.Item>
-
-                            {props.loggedIn ? (
-                                <Nav.Item 
-                                    className={`${
-                                        props.location.pathname === `/owner/${props.userId}/evs` 
-                                            ? "active" : "" 
-                                    }`}
-                                >
-                                    <Link 
-                                        className="nav-link" 
-                                        to={`/owner/${props.userId}/evs`}
-                                        onClick={() => setExpanded(false)}
-                                    >
-                                        Owners
-                                    </Link>
-                                </Nav.Item>
-                            ) : (
-                                <Nav.Item 
-                                    className={`${
-                                        props.location.pathname === "/owner/signup" ? "active" : "" 
-                                    }`}
-                                >
-                                    <Link 
-                                        className="nav-link" 
-                                        to="/owner/signup" 
-                                        onClick={() => setExpanded(false)}
-                                    >
-                                        Owners
-                                    </Link>
-                                </Nav.Item>
-                            )}
 
                             <Nav.Item
                                 className={`${
