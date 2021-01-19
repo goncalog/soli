@@ -17,6 +17,32 @@
     font-weight: 900;
 }
 
+.howitworks-container {
+    text-align: center;
+    background-color: ghostwhite;
+    padding: 60px 10%;
+}
+
+.howitworks-container .grid {
+    text-align: left;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 160px;
+}
+
+.grid .main-headline {
+    text-align: center;
+    padding-bottom: 12px;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.grid .secondary-headline {
+    font-size: 15px;
+    line-height: 22.5px;
+}
+
 .benefits-container {
     text-align: center;
     padding: 60px 10%;
@@ -44,7 +70,7 @@
 }
 
 .owner-container .secondary-headline {
-    padding-right: 56%;
+    padding-right: 58%;
     font-size: 24px;
 }
 
@@ -75,6 +101,10 @@
     .secondary-headline {
         font-size: 24px;
     }
+
+    .grid .main-headline {
+        font-size: 23px;
+    }
     
     .benefits {
         column-gap: 7%;
@@ -101,6 +131,18 @@
     
     .secondary-headline {
         font-size: 20px;
+    }
+
+    .grid .main-headline {
+        font-size: 18px;
+    }
+
+    .grid ol {
+        font-size: 14px;
+    }
+    
+    .grid .secondary-headline {
+        font-size: 14px;
     }
     
     .benefits {
@@ -157,7 +199,7 @@
     }
 
     .owner-container .secondary-headline {
-        padding-right: 42%;
+        padding-right: 46%;
         font-size: 18px;
     }
 }
@@ -177,6 +219,26 @@
     .secondary-headline {
         font-size: 14px;
         padding-right: 40%;
+    }
+
+    .howitworks-container .grid {
+        padding: 30px 0;
+        grid-template-columns: 1fr;
+        row-gap: 25px;
+        column-gap: 0px;
+    }
+
+    .howitworks-container .main-headline {
+        font-size: 28px;
+    }
+
+    .grid .main-headline {
+        font-size: 18px;
+    }
+
+    .grid .secondary-headline {
+        padding-right: 0px;
+        text-align: center;
     }
 
     .benefits-container {
