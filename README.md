@@ -1,9 +1,9 @@
 # Soli
 
-Soli is a marketplace for solar energy where roof owners can rent their roofs to those who want to own solar panels - find more at [soli.herokuapp.com/](https://soli.herokuapp.com/)
+Soli is a marketplace for solar energy where roof owners can rent their roofs to those who want to own solar panels - find more at [getsoli.herokuapp.com/](https://getsoli.herokuapp.com/)
 
 ## Screenshots
-<img src='https://user-images.githubusercontent.com/5341829/95763108-862afa00-0ca6-11eb-90bc-ba1e9d3393eb.png' alt='screens'>
+<img src='https://user-images.githubusercontent.com/5341829/105068464-e0431480-5a78-11eb-84bb-f50db6340763.png' alt='screens'>
 
 ## Installation and getting it started
 To run the app please follow these instructions:
