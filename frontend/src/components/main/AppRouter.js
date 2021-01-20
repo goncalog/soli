@@ -46,9 +46,9 @@ function AppRouter() {
             });
       });
 
-      let evsUrl = (process.env.NODE_ENV === 'production')
-                ? '/content/evs'
-                : `${process.env.REACT_APP_SERVER_URL}/content/evs`;
+      let projectsUrl = (process.env.NODE_ENV === 'production')
+                ? '/content/projects'
+                : `${process.env.REACT_APP_SERVER_URL}/content/projects`;
 
     return (
         <Router>
@@ -61,9 +61,9 @@ function AppRouter() {
                 >
                 </Route>
                 <Route 
-                    path='/evs' 
+                    path='/projects' 
                     exact 
-                    render={(props) => (<Projects fetchUrl={evsUrl} {...props} />)}
+                    render={(props) => (<Projects fetchUrl={projectsUrl} {...props} />)}
                 >
                 </Route>
                 <Route path='/ev/:id' exact component={EV}></Route>
@@ -87,7 +87,7 @@ function AppRouter() {
                     render={(props) => (<LogOut onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
-                <Route path='/owner/:id/evs' component={withAuth(OwnerProjects)}></Route>
+                <Route path='/owner/:id/projects' component={withAuth(OwnerProjects)}></Route>
                 <Route path='/owner/:id/ev/create' component={withAuth(EVForm)}></Route>
                 <Route path='/owner/:id/ev/:id/update' component={withAuth(EVForm)}></Route>
                 <Route path='/owner/:id/ev/:id' component={withAuth(OwnerEV)}></Route>

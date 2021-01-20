@@ -38,31 +38,31 @@ describe('Routes testing', function () {
             .expect(200)
     });
 
-    it('all evs route works', () => {
+    it('all projects route works', () => {
         return request(app)
-            .get('/content/evs')
+            .get('/content/projects')
             .expect('Content-type', /json/)
             .expect(hasTitle)
-            .expect(hasEvs)
-            .expect(isEv)
+            .expect(hasProjects)
+            .expect(isProject)
             .expect(200)
         
         function hasTitle(res) {
-            if (!(res.body.title === 'List of all EVs')) {
+            if (!(res.body.title === 'List of all Projects')) {
                 throw new Error("Wrong title");  
             } 
         }
 
-        function hasEvs(res) {
-            if (!(Object.keys(res.body.evs).length === 12)) {
-                throw new Error("Doesn\'t have all the db evs");
+        function hasProjects(res) {
+            if (!(Object.keys(res.body.projects).length === 12)) {
+                throw new Error("Doesn\'t have all the db projects");
             }
         }
 
-        function isEv(res) {
-            for (let key in res.body.evs) {
-                if (!(Object.keys(res.body.evs[key]).length === 20)) {
-                    throw new Error("Not an instance of EV");
+        function isProject(res) {
+            for (let key in res.body.projects) {
+                if (!(Object.keys(res.body.projects[key]).length === 20)) {
+                    throw new Error("Not an instance of Project");
                 }
             }
         }
@@ -70,12 +70,12 @@ describe('Routes testing', function () {
 
     it('unique ev route works', () => {
         return request(app)
-            .get(`/content/evs`)
+            .get(`/content/projects`)
             .expect('Content-type', /json/)
             .expect(200)
             .then((res) => {
-                let keys = Object.keys(res.body.evs);
-                let id = res.body.evs[keys[0]]._id;
+                let keys = Object.keys(res.body.projects);
+                let id = res.body.projects[keys[0]]._id;
 
                 return request(app)
                 .get(`/content/ev/${id}`)
@@ -299,9 +299,9 @@ describe('Routes testing', function () {
             .expect(200)
     });
 
-    it('route for owner\'s evs works', () => {
+    it('route for owner\'s projects works', () => {
         return request(app)
-            .get('/content/owner/evs')
+            .get('/content/owner/projects')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)

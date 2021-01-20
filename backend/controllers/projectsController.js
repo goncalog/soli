@@ -5,18 +5,18 @@ exports.index = (req, res, next) => {
     res.json({ title: 'Fully Electric' });
 }
 
-// GET request for list of all evs
-exports.getEvs = (req, res, next) => {
+// GET request for list of all projects
+exports.getProjects = (req, res, next) => {
     EV.find({})
         .populate('location')
         .populate('make')
         .populate('model')
         .populate('owner')
-        .exec(function (err, evs) {
+        .exec(function (err, projects) {
             if (err) { return next(err); }
 
             // Successful, so send data
-            res.json({ title: 'List of all EVs', evs: evs });
+            res.json({ title: 'List of all Projects', projects: projects });
         });
 }
 

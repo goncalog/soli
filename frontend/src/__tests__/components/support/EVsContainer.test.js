@@ -22,7 +22,7 @@ describe('EVsContainer', () => {
     // if it calls evsContainer, a new EVsContainer will be created with the current props
     beforeEach(() => {
         props = {
-            evs: [
+            projects: [
                 {
                     imageUrls: ['/path/to/evOne/image1', '/path/to/evOne/image2'],
                     title: 'Text to test title property #1',
@@ -122,7 +122,7 @@ describe('EVsContainer', () => {
         expect(shallowWrapper.length).toEqual(4);
 
         shallowWrapper.forEach((link, i) => {
-            expect(link.prop('to')).toBe(`/ev/${props.evs[i].id}`);
+            expect(link.prop('to')).toBe(`/ev/${props.projects[i].id}`);
             expect(link.children().key()).toBe(i.toString());
         });
     });
@@ -132,12 +132,12 @@ describe('EVsContainer', () => {
         expect(shallowWrapper.length).toEqual(4);
 
         shallowWrapper.forEach((ev, i) => {
-            expect(ev.prop('imagePath')).toBe(props.evs[i].imageUrls[0]);
-            expect(ev.prop('title')).toBe(props.evs[i].title);
-            expect(ev.prop('price')).toBe(props.evs[i].price.toString());
+            expect(ev.prop('imagePath')).toBe(props.projects[i].imageUrls[0]);
+            expect(ev.prop('title')).toBe(props.projects[i].title);
+            expect(ev.prop('price')).toBe(props.projects[i].price.toString());
             ev.prop('evFeatures').forEach((feature, j) => {
-                expect(feature.name).toBe(props.evs[i].evFeatures[j].name);
-                expect(feature.value).toBe(props.evs[i].evFeatures[j].value.toString());
+                expect(feature.name).toBe(props.projects[i].evFeatures[j].name);
+                expect(feature.value).toBe(props.projects[i].evFeatures[j].value.toString());
             });
             expect(ev.key()).toBe(i.toString());
         });

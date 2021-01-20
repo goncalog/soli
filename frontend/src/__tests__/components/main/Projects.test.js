@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 describe('Projects', () => {
     let shallowProjects;
     let props;
-    const evs = () => {
+    const projects = () => {
         if (!shallowProjects) {
             shallowProjects = shallow(<Projects {...props}/>);
         }
@@ -19,7 +19,7 @@ describe('Projects', () => {
     // This reset the props and the shallowProjects variable before every test. 
     // Otherwise, state from one test would leak into another. 
     // By setting shallowProjects to undefined here, when the next test runs, 
-    // if it calls evs, a new Projects will be created
+    // if it calls projects, a new Projects will be created
     beforeEach(() => {
         props = {
             fetchUrl: 'Text to test the fetchUrl property',
@@ -40,11 +40,11 @@ describe('Projects', () => {
     });
 
     test('has 2 children', () => {
-        expect(evs().children().length).toEqual(2);
+        expect(projects().children().length).toEqual(2);
     });
 
     test('has one Filters component rendered with passed properties', () => {
-        const shallowWrapper = evs().find(Filters);
+        const shallowWrapper = projects().find(Filters);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('make');
         expect(Object.keys(shallowWrapper.props())).toContain('price');
@@ -58,8 +58,8 @@ describe('Projects', () => {
     });
 
     test('has one EVsContainer component rendered with passed properties', () => {
-        const shallowWrapper = evs().find(EVsContainer);
+        const shallowWrapper = projects().find(EVsContainer);
         expect(shallowWrapper.length).toEqual(1);
-        expect(Object.keys(shallowWrapper.props())).toContain('evs');
+        expect(Object.keys(shallowWrapper.props())).toContain('projects');
     });    
 });

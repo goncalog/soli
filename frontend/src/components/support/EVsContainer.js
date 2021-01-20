@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default function EVsContainer(props) {
     return (
-        <div className="evs-container">
-            {props.evs.map((ev, index) => {
+        <div className="projects-container">
+            {props.projects.map((ev, index) => {
                 const evFeatures = ev.evFeatures.map((item) => {
                     const feature = { name: item.name, value: item.value.toString() };
                     return feature;

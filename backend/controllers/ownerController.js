@@ -90,9 +90,9 @@ exports.logOut = (req, res, next) => {
     res.json({ title: `Owner logged out` });
 }
 
-// GET request for list of owner's evs
-exports.getEvs = (req, res, next) => {
-    res.json({ title: `List of ${req.name}'s EVs` });
+// GET request for list of owner's projects
+exports.getProjects = (req, res, next) => {
+    res.json({ title: `List of ${req.name}'s Projects` });
 }
 
 // GET request to check log in status

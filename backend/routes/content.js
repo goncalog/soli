@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const evController = require('../controllers/evController');
+const projectsController = require('../controllers/projectsController');
 const makeController = require('../controllers/makeController');
 const modelController = require('../controllers/modelController');
 const locationController = require('../controllers/locationController');
@@ -8,16 +8,16 @@ const ownerController = require('../controllers/ownerController');
 const withAuth = require('../auth/authMiddleware');
 
 // GET request for home page
-router.get('/', evController.index);
+router.get('/', projectsController.index);
 
-// GET request for list of all evs
-router.get('/evs', evController.getEvs);
+// GET request for list of all projects
+router.get('/projects', projectsController.getProjects);
 
 // GET request for data to create new ev
-router.get('/ev/create', evController.getCreateEv);
+router.get('/ev/create', projectsController.getCreateEv);
 
 // GET request for unique ev
-router.get('/ev/:id', evController.getUniqueEv);
+router.get('/ev/:id', projectsController.getUniqueEv);
 
 // GET request for make
 router.get('/make/:id', makeController.getMake);
@@ -46,8 +46,8 @@ router.post('/owner/login', ownerController.logIn);
 // POST request to log out owner
 router.post('/owner/logout', ownerController.logOut);
 
-// GET request to list of the owner's evs
-router.get('/owner/evs', withAuth, ownerController.getEvs);
+// GET request to list of the owner's projects
+router.get('/owner/projects', withAuth, ownerController.getProjects);
 
 // GET request to check log in status
 router.get('/owner/checkAuth', withAuth, ownerController.checkAuth);
@@ -71,8 +71,8 @@ router.delete('/owner/:id/ev/:id/delete', withAuth, ownerController.deleteEv);
 router.post('/owner/:id/contact', ownerController.postContactOwner);
 
 // Placeholder code for testing POST routes
-router.get('/test', evController.getTest);
+router.get('/test', projectsController.getTest);
 
-router.post('/test', evController.postTest);
+router.post('/test', projectsController.postTest);
 
 module.exports = router;

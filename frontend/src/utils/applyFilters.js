@@ -4,7 +4,7 @@ export default function applyFilters(state) {
         filteredMakes = state.make.options.slice().map((make) => make._id);
     }
 
-    let filteredEvs = state.evs.slice().filter((ev) => filteredMakes.includes(ev.make._id));
+    let filteredEvs = state.projects.slice().filter((ev) => filteredMakes.includes(ev.make._id));
 
     if (state.price.min !== "") {
         filteredEvs = filteredEvs.filter((ev) => (ev.price_per_day >= parseInt(state.price.min)));

@@ -13,7 +13,7 @@ export default class Projects extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            evs: [],
+            projects: [],
             filteredEvs: [],
             make: { property: 'make', title: 'Make', options: [], },
             price: { property: 'price', title: 'Price', min: "", max: "",},
@@ -76,7 +76,7 @@ export default class Projects extends React.Component {
         // Upload database data
         fetch(this.props.fetchUrl)
             .then(res => res.json())
-            .then((res) => { this.setState({ evs: res.evs, filteredEvs: applySort(res.evs, this.state.sort) }) })
+            .then((res) => { this.setState({ projects: res.projects, filteredEvs: applySort(res.projects, this.state.sort) }) })
 
         // Fetch makes
         if (this.state.make.options.length === 0) {
@@ -106,7 +106,7 @@ export default class Projects extends React.Component {
     }
 
     render() {
-        const evs = this.state.filteredEvs.map((item) => {
+        const projects = this.state.filteredEvs.map((item) => {
             let ev = {
                 imageUrls: item.image_urls,
                 title: getFullEvTitle(item),
@@ -131,7 +131,7 @@ export default class Projects extends React.Component {
         });
 
         return (
-            <div className="evs">
+            <div className="projects">
                 {!this.props.fetchUrl.split('/').includes('owner') && (
                     <Filters 
                     make={this.state.make}
@@ -145,7 +145,7 @@ export default class Projects extends React.Component {
                     onOptionChange={this.handleOptionChange}
                     />
                 )}
-                <EVsContainer evs={evs} {...this.props} />
+                <EVsContainer projects={projects} {...this.props} />
             </div>
         );
     }

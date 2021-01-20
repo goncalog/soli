@@ -1,7 +1,7 @@
 import applyFilters from '../../utils/applyFilters';
 
 const state = {
-    evs: [
+    projects: [
         { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
         { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
         { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
@@ -31,7 +31,7 @@ const filteredEvs =  [
 ];
 
 describe('applyFilters', () => {
-    it('returns filtered EVs correctly', () => {
+    it('returns filtered Projects correctly', () => {
         expect(applyFilters(state)).toEqual(filteredEvs);
     });
 });

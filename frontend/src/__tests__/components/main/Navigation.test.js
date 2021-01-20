@@ -27,9 +27,9 @@ it('renders Home link correctly', () => {
 
 it('renders the Drivers link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const evsLink = getByText(/Projects/);
-    expect(evsLink).toBeInTheDocument();
-    expect(evsLink.getAttribute('href')).toBe('/evs');
+    const projectsLink = getByText(/Projects/);
+    expect(projectsLink).toBeInTheDocument();
+    expect(projectsLink.getAttribute('href')).toBe('/projects');
 });
 
 it('renders the Contact link correctly', () => {
