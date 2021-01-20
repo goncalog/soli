@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import MainHeadline from '../support/MainHeadline';
 import CallToActionButton from '../support/CallToActionButton';
 import Projects from './Projects';
-import '../../css/OwnerEVs.css';
+import '../../css/OwnerProjects.css';
 
 export default function OwnerProjects(props) {
     function handleButtonClick() {
