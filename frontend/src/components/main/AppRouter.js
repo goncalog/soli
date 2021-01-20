@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import EVs from './EVs';
+import Projects from './Projects';
 import Contact from './Contact';
 import Auth from './Auth';
 import Navigation from './Navigation';
 import EV from './EV';
 import LogOut from './LogOut';
 import withAuth from '../support/withAuth';
-import OwnerEVs from './OwnerEVs';
+import OwnerProjects from './OwnerProjects';
 import OwnerEV from './OwnerEV';
 import EVForm from './EVForm';
 
@@ -63,7 +63,7 @@ function AppRouter() {
                 <Route 
                     path='/evs' 
                     exact 
-                    render={(props) => (<EVs fetchUrl={evsUrl} {...props} />)}
+                    render={(props) => (<Projects fetchUrl={evsUrl} {...props} />)}
                 >
                 </Route>
                 <Route path='/ev/:id' exact component={EV}></Route>
@@ -87,7 +87,7 @@ function AppRouter() {
                     render={(props) => (<LogOut onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
-                <Route path='/owner/:id/evs' component={withAuth(OwnerEVs)}></Route>
+                <Route path='/owner/:id/evs' component={withAuth(OwnerProjects)}></Route>
                 <Route path='/owner/:id/ev/create' component={withAuth(EVForm)}></Route>
                 <Route path='/owner/:id/ev/:id/update' component={withAuth(EVForm)}></Route>
                 <Route path='/owner/:id/ev/:id' component={withAuth(OwnerEV)}></Route>

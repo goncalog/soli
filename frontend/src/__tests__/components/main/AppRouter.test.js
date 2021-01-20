@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from '../../../components/main/Navigation';
 import AppRouter from '../../../components/main/AppRouter';
-import Home from '../../../components/main/Home';
 import EV from '../../../components/main/EV';
 import Contact from '../../../components/main/Contact';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
