@@ -16,11 +16,11 @@ export default function Home(props) {
     let history = useHistory();
 
     function onEvsButtonClick() {
-        history.push('/evs');
+        history.push('/projects');
     }
 
     function onSellButtonClick() {
-        (props.loggedIn) ? history.push(`/owner/${props.userId}/evs`) : history.push('/owner/signup');
+        (props.loggedIn) ? history.push(`/owner/${props.userId}/projects`) : history.push('/owner/signup');
     }
     
     const driverCallToActionText = 'Let\'s EARN!';
