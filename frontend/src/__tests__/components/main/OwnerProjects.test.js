@@ -1,33 +1,33 @@
 import React from 'react';
-import OwnerEVs from '../../../components/main/OwnerEVs';
+import OwnerProjects from '../../../components/main/OwnerProjects';
 import MainHeadline from '../../../components/support/MainHeadline';
 import CallToActionButton from '../../../components/support/CallToActionButton';
-import EVs from '../../../components/main/EVs';
+import Projects from '../../../components/main/Projects';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-describe('OwnerEVs', () => {
-    let shallowOwnerEVs;
+describe('OwnerProjects', () => {
+    let shallowOwnerProjects;
     let props;
-    const ownerEVs = () => {
-        if (!shallowOwnerEVs) {
-            shallowOwnerEVs = shallow(<OwnerEVs {...props}/>);
+    const ownerProjects = () => {
+        if (!shallowOwnerProjects) {
+            shallowOwnerProjects = shallow(<OwnerProjects {...props}/>);
         }
-        return shallowOwnerEVs;
+        return shallowOwnerProjects;
     }
 
-    // This resets the props and the shallowOwnerEVs variable before every test. 
+    // This resets the props and the shallowOwnerProjects variable before every test. 
     // Otherwise, state from one test would leak into another. 
-    // By setting shallowOwnerEVs to undefined here, when the next test runs, 
-    // if it calls ownerEVs, a new OwnerEV will be created.
+    // By setting shallowOwnerProjects to undefined here, when the next test runs, 
+    // if it calls ownerProjects, a new OwnerEV will be created.
     beforeEach(() => {
         props = {
             match: {
                 url: 'current/url',
             }
         }
-        shallowOwnerEVs = undefined;
+        shallowOwnerProjects = undefined;
     });
 
     // The default test environment for Jest is a browser-like environment provided by jsdom,
@@ -43,24 +43,24 @@ describe('OwnerEVs', () => {
     });
 
     test('has 3 children', () => {
-        expect(ownerEVs().children().length).toEqual(3);
+        expect(ownerProjects().children().length).toEqual(3);
     });
 
     test('has one MainHeadline rendered with passed properties', () => {
-        const shallowWrapper = ownerEVs().find(MainHeadline);
+        const shallowWrapper = ownerProjects().find(MainHeadline);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('mainHeadline');
     });
 
     test('has one CallToActionButton rendered with passed properties', () => {
-        const shallowWrapper = ownerEVs().find(CallToActionButton);
+        const shallowWrapper = ownerProjects().find(CallToActionButton);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('callToActionText');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
 
-    test('has one EVs component rendered with passed property', () => {
-        const shallowWrapper = ownerEVs().find(EVs);
+    test('has one Projects component rendered with passed property', () => {
+        const shallowWrapper = ownerProjects().find(Projects);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('fetchUrl');
     });    

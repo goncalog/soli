@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import MainHeadline from '../support/MainHeadline';
 import CallToActionButton from '../support/CallToActionButton';
-import EVs from './EVs';
+import Projects from './Projects';
 import '../../css/OwnerEVs.css';
 
-export default function OwnerEVs(props) {
+export default function OwnerProjects(props) {
     function handleButtonClick() {
         props.history.push(`/owner/${props.match.params.id}/ev/create`);
     }
@@ -21,7 +21,7 @@ export default function OwnerEVs(props) {
         <div className="owner-evs">
             <MainHeadline mainHeadline="Your EVs for rent" />
             <CallToActionButton callToActionText="Add EV" onButtonClick={handleButtonClick} />
-            <EVs fetchUrl={url} {...props} />         
+            <Projects fetchUrl={url} {...props} />   
         </div>
     );
 }
