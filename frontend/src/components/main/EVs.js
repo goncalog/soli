@@ -113,15 +113,15 @@ export default class EVs extends React.Component {
                 price: item.price_per_day,
                 evFeatures: [
                     { 
-                        name: 'Deposit',
+                        name: 'Status',
                         value: `£${formatNumber(item.deposit)}`,
                     },
                     { 
-                        name: 'Min Rental',
+                        name: 'Est. Return',
                         value: item.min_rental_period,
                     },
                     { 
-                        name: 'Range',
+                        name: 'Location',
                         value: formatMiles(item.model.charging.range_miles),
                     },
                 ],
