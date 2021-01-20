@@ -1,30 +1,30 @@
 import React from 'react';
-import EVs from '../../../components/main/EVs';
+import Projects from '../../../components/main/Projects';
 import Filters from '../../../components/support/Filters';
 import EVsContainer from '../../../components/support/EVsContainer';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-describe('EVs', () => {
-    let shallowEVs;
+describe('Projects', () => {
+    let shallowProjects;
     let props;
     const evs = () => {
-        if (!shallowEVs) {
-            shallowEVs = shallow(<EVs {...props}/>);
+        if (!shallowProjects) {
+            shallowProjects = shallow(<Projects {...props}/>);
         }
-        return shallowEVs;
+        return shallowProjects;
     }
 
-    // This reset the props and the shallowEVs variable before every test. 
+    // This reset the props and the shallowProjects variable before every test. 
     // Otherwise, state from one test would leak into another. 
-    // By setting shallowEVs to undefined here, when the next test runs, 
-    // if it calls evs, a new EVs will be created
+    // By setting shallowProjects to undefined here, when the next test runs, 
+    // if it calls evs, a new Projects will be created
     beforeEach(() => {
         props = {
             fetchUrl: 'Text to test the fetchUrl property',
         }
-        shallowEVs = undefined;
+        shallowProjects = undefined;
     });
 
     // The default test environment for Jest is a browser-like environment provided by jsdom,

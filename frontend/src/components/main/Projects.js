@@ -9,7 +9,7 @@ import applyFilters from '../../utils/applyFilters';
 import applySort from '../../utils/applySort';
 import sortString from '../../utils/sortString';
 
-export default class EVs extends React.Component {
+export default class Projects extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
