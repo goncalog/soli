@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const projectsController = require('../controllers/projectsController');
-const makeController = require('../controllers/makeController');
-const modelController = require('../controllers/modelController');
 const locationController = require('../controllers/locationController');
 const ownerController = require('../controllers/ownerController');
 const withAuth = require('../auth/authMiddleware');
@@ -18,21 +16,6 @@ router.get('/project/create', projectsController.getCreateProject);
 
 // GET request for unique project
 router.get('/project/:id', projectsController.getUniqueProject);
-
-// GET request for make
-router.get('/make/:id', makeController.getMake);
-
-// GET request for list of all makes
-router.get('/makes', makeController.getMakes);
-
-// GET request for make's models
-router.get('/make/:id/models', makeController.getModels);
-
-// GET request for model
-router.get('/model/:id', modelController.getModel);
-
-// GET request for list of all models
-router.get('/models', modelController.getModels);
 
 // GET request for list of all locations
 router.get('/locations', locationController.getLocations);

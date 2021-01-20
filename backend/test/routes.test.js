@@ -34,7 +34,7 @@ describe('Routes testing', function () {
         return request(app)
             .get('/content')
             .expect('Content-type', /json/)
-            .expect({ title: 'Fully Electric' })
+            .expect({ title: 'Soli' })
             .expect(200)
     });
 
@@ -54,14 +54,14 @@ describe('Routes testing', function () {
         }
 
         function hasProjects(res) {
-            if (!(Object.keys(res.body.projects).length === 18)) {
+            if (!(Object.keys(res.body.projects).length === 4)) {
                 throw new Error("Doesn\'t have all the db projects");
             }
         }
 
         function isProject(res) {
             for (let key in res.body.projects) {
-                if (!(Object.keys(res.body.projects[key]).length === 20)) {
+                if (!(Object.keys(res.body.projects[key]).length === 21)) {
                     throw new Error("Not an instance of Project");
                 }
             }
@@ -92,7 +92,7 @@ describe('Routes testing', function () {
             }
     
             function isProject(res) {
-                if (!(Object.keys(res.body.project).length === 20)) {
+                if (!(Object.keys(res.body.project).length === 21)) {
                     throw new Error("Not an instance of Project");
                 }
             }
@@ -130,111 +130,6 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
-    it('make route works (1)', () => {
-        return request(app)
-            .get('/content/make/12345')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Make with id 12345' })
-            .expect(200)
-    });
-
-    it('make route works (2)', () => {
-        return request(app)
-            .get('/content/make/678910')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Make with id 678910' })
-            .expect(200)
-    });
-
-    it('all makes route works', () => {
-        return request(app)
-            .get('/content/makes')
-            .expect('Content-type', /json/)
-            .expect(hasTitle)
-            .expect(hasMakes)
-            .expect(isMake)
-            .expect(200)
-        
-        function hasTitle(res) {
-            if (!(res.body.title === 'List of all makes')) {
-                throw new Error("Wrong title");  
-            } 
-        }
-
-        function hasMakes(res) {
-            if (!(Object.keys(res.body.makes).length === 12)) {
-                throw new Error("Doesn\'t have all the db makes");
-            }
-        }
-
-        function isMake(res) {
-            for (let key in res.body.makes) {
-                if (!(Object.keys(res.body.makes[key]).length === 3)) {
-                    throw new Error("Not an instance of Make");
-                }
-            }
-        }
-    });
-
-    it('route for getting a makes\'s list of models works', () => {
-        return request(app)
-            .get('/content/make/5f80744b1a698848220d9e1e/models')
-            .expect('Content-type', /json/)
-            // The ids from makes created at test time isn't accessible, so it returns
-            // an empty models array
-            .expect({ 
-                title: 'List of models from make with id 5f80744b1a698848220d9e1e', 
-                models: [],
-            })
-            .expect(200)
-    });
-
-    it('model route works (1)', () => {
-        return request(app)
-            .get('/content/model/12345')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Model with id 12345' })
-            .expect(200)
-    });
-
-    it('model route works (2)', () => {
-        return request(app)
-            .get('/content/model/678910')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Model with id 678910' })
-            .expect(200)
-    });
-
-    it('all models route works', () => {
-        return request(app)
-            .get('/content/models')
-            .expect('Content-type', /json/)
-            .expect(hasTitle)
-            .expect(hasModels)
-            .expect(isModel)
-            .expect(200)
-        
-        function hasTitle(res) {
-            if (!(res.body.title === 'List of all models')) {
-                throw new Error("Wrong title");  
-            } 
-        }
-
-        function hasModels(res) {
-            if (!(Object.keys(res.body.models).length === 19)) {
-                throw new Error("Doesn\'t have all the db models");
-            }
-        }
-
-        function isModel(res) {
-            for (let key in res.body.models) {
-                if (![7,8].includes((Object.keys(res.body.models[key]).length))) {
-                    throw new Error("Not an instance of Model");
-                }
-            }
-        }
-    });
-
     it('all locations route works', () => {
         return request(app)
             .get('/content/locations')
@@ -251,7 +146,7 @@ describe('Routes testing', function () {
         }
 
         function hasLocations(res) {
-            if (!(Object.keys(res.body.locations).length === 12)) {
+            if (!(Object.keys(res.body.locations).length === 5)) {
                 throw new Error("Doesn\'t have all the db locations");
             }
         }

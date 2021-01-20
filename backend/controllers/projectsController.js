@@ -2,7 +2,7 @@ const Project = require('../models/project');
 
 // GET request for home page.
 exports.index = (req, res, next) => {
-    res.json({ title: 'Fully Electric' });
+    res.json({ title: 'Soli' });
 }
 
 // GET request for list of all projects
