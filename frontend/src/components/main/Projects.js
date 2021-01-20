@@ -2,7 +2,7 @@ import React from 'react';
 import Filters from '../support/Filters';
 import EVsContainer from '../support/EVsContainer';
 import getFullEvTitle from '../../utils/getFullEvTitle';
-import '../../css/EVs.css';
+import '../../css/Projects.css';
 import formatMiles from '../../utils/formatMiles';
 import formatNumber from '../../utils/formatNumber';
 import applyFilters from '../../utils/applyFilters';
