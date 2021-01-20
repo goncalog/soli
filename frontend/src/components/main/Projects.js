@@ -1,6 +1,6 @@
 import React from 'react';
 import Filters from '../support/Filters';
-import EVsContainer from '../support/EVsContainer';
+import ProjectsContainer from '../support/ProjectsContainer';
 import getFullEvTitle from '../../utils/getFullEvTitle';
 import '../../css/Projects.css';
 import formatMiles from '../../utils/formatMiles';
@@ -14,7 +14,7 @@ export default class Projects extends React.Component {
         super(props);
         this.state = { 
             projects: [],
-            filteredEvs: [],
+            filteredProjects: [],
             make: { property: 'make', title: 'Make', options: [], },
             price: { property: 'price', title: 'Price', min: "", max: "",},
             range: { property: 'range', title: 'Range', min: "", max: "",},
@@ -76,7 +76,7 @@ export default class Projects extends React.Component {
         // Upload database data
         fetch(this.props.fetchUrl)
             .then(res => res.json())
-            .then((res) => { this.setState({ projects: res.projects, filteredEvs: applySort(res.projects, this.state.sort) }) })
+            .then((res) => { this.setState({ projects: res.projects, filteredProjects: applySort(res.projects, this.state.sort) }) })
 
         // Fetch makes
         if (this.state.make.options.length === 0) {
@@ -101,17 +101,17 @@ export default class Projects extends React.Component {
             prevState.included !== this.state.included ||
             prevState.sort !== this.state.sort
         ) {
-            this.setState({ filteredEvs: applySort(applyFilters(this.state), this.state.sort) });
+            this.setState({ filteredProjects: applySort(applyFilters(this.state), this.state.sort) });
         }
     }
 
     render() {
-        const projects = this.state.filteredEvs.map((item) => {
-            let ev = {
+        const projects = this.state.filteredProjects.map((item) => {
+            let project = {
                 imageUrls: item.image_urls,
                 title: getFullEvTitle(item),
                 price: item.price_per_day,
-                evFeatures: [
+                features: [
                     { 
                         name: 'Status',
                         value: `£${formatNumber(item.deposit)}`,
@@ -127,7 +127,7 @@ export default class Projects extends React.Component {
                 ],
                 id: item._id,                
             };
-            return ev;
+            return project;
         });
 
         return (
@@ -145,7 +145,7 @@ export default class Projects extends React.Component {
                     onOptionChange={this.handleOptionChange}
                     />
                 )}
-                <EVsContainer projects={projects} {...this.props} />
+                <ProjectsContainer projects={projects} {...this.props} />
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Projects from '../../../components/main/Projects';
 import Filters from '../../../components/support/Filters';
-import EVsContainer from '../../../components/support/EVsContainer';
+import ProjectsContainer from '../../../components/support/ProjectsContainer';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -57,8 +57,8 @@ describe('Projects', () => {
         expect(Object.keys(shallowWrapper.props())).toContain('onOptionChange');
     });
 
-    test('has one EVsContainer component rendered with passed properties', () => {
-        const shallowWrapper = projects().find(EVsContainer);
+    test('has one ProjectsContainer component rendered with passed properties', () => {
+        const shallowWrapper = projects().find(ProjectsContainer);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('projects');
     });    

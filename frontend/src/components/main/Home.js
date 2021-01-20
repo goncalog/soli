@@ -15,7 +15,7 @@ import { useHistory } from 'react-router-dom';
 export default function Home(props) {
     let history = useHistory();
 
-    function onEvsButtonClick() {
+    function handleButtonClick() {
         history.push('/projects');
     }
 
@@ -32,7 +32,7 @@ export default function Home(props) {
         mainHeadline: 'Make money from solar panels',
         secondaryHeadline: 'Whether you own a roof or not',
         callToActionText: driverCallToActionText,
-        onButtonClick: onEvsButtonClick,
+        onButtonClick: handleButtonClick,
     }
 
     const howitworksProps = {
@@ -78,7 +78,7 @@ export default function Home(props) {
             },
         ],
         callToActionText: driverCallToActionText,
-        onButtonClick: onEvsButtonClick,
+        onButtonClick: handleButtonClick,
     }
 
     const ownerProps = {
@@ -95,7 +95,7 @@ export default function Home(props) {
             <div className="howitworks-container">
                 <MainHeadline mainHeadline="How it works" />
                 <Grid {...howitworksProps} />
-                <CallToActionButton callToActionText={driverCallToActionText} onButtonClick={onEvsButtonClick}/>
+                <CallToActionButton callToActionText={driverCallToActionText} onButtonClick={handleButtonClick}/>
             </div>
             <BenefitsContainer {...benefitsProps} />
             <OwnerContainer {...ownerProps} />

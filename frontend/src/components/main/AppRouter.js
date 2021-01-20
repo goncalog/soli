@@ -5,12 +5,12 @@ import Projects from './Projects';
 import Contact from './Contact';
 import Auth from './Auth';
 import Navigation from './Navigation';
-import EV from './EV';
+import Project from './Project';
 import LogOut from './LogOut';
 import withAuth from '../support/withAuth';
 import OwnerProjects from './OwnerProjects';
-import OwnerEV from './OwnerEV';
-import EVForm from './EVForm';
+import OwnerProject from './OwnerProject';
+import Form from './Form';
 
 function AppRouter() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -66,7 +66,7 @@ function AppRouter() {
                     render={(props) => (<Projects fetchUrl={projectsUrl} {...props} />)}
                 >
                 </Route>
-                <Route path='/ev/:id' exact component={EV}></Route>
+                <Route path='/project/:id' exact component={Project}></Route>
                 <Route path='/contact' exact component={Contact}></Route>
                 <Route path='/owner/:id/contact' exact component={Contact}></Route>
                 <Route 
@@ -88,9 +88,9 @@ function AppRouter() {
                 >
                 </Route>
                 <Route path='/owner/:id/projects' component={withAuth(OwnerProjects)}></Route>
-                <Route path='/owner/:id/ev/create' component={withAuth(EVForm)}></Route>
-                <Route path='/owner/:id/ev/:id/update' component={withAuth(EVForm)}></Route>
-                <Route path='/owner/:id/ev/:id' component={withAuth(OwnerEV)}></Route>
+                <Route path='/owner/:id/project/create' component={withAuth(Form)}></Route>
+                <Route path='/owner/:id/project/:id/update' component={withAuth(Form)}></Route>
+                <Route path='/owner/:id/project/:id' component={withAuth(OwnerProject)}></Route>
             </Switch>
         </Router>
     );

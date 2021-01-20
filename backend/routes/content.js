@@ -13,11 +13,11 @@ router.get('/', projectsController.index);
 // GET request for list of all projects
 router.get('/projects', projectsController.getProjects);
 
-// GET request for data to create new ev
-router.get('/ev/create', projectsController.getCreateEv);
+// GET request for data to create new project
+router.get('/project/create', projectsController.getCreateProject);
 
-// GET request for unique ev
-router.get('/ev/:id', projectsController.getUniqueEv);
+// GET request for unique project
+router.get('/project/:id', projectsController.getUniqueProject);
 
 // GET request for make
 router.get('/make/:id', makeController.getMake);
@@ -52,20 +52,20 @@ router.get('/owner/projects', withAuth, ownerController.getProjects);
 // GET request to check log in status
 router.get('/owner/checkAuth', withAuth, ownerController.checkAuth);
 
-// GET request to get a owner's list of evs for sale
-router.get('/owner/:id/evs', ownerController.getOwnerEvs);
+// GET request to get a owner's list of projects for sale
+router.get('/owner/:id/projects', ownerController.getOwnerProjects);
 
-// POST request to create new ev
-router.post('/owner/:id/ev/create', withAuth, ownerController.postCreateEv);
+// POST request to create new project
+router.post('/owner/:id/project/create', withAuth, ownerController.postCreateProject);
 
-// GET request to update ev
-router.get('/owner/:id/ev/:id/update', withAuth, ownerController.getUpdateEv);
+// GET request to update project
+router.get('/owner/:id/project/:id/update', withAuth, ownerController.getUpdateProject);
 
-// PUT request to update ev
-router.put('/owner/:id/ev/:id/update', withAuth, ownerController.putUpdateEv);
+// PUT request to update project
+router.put('/owner/:id/project/:id/update', withAuth, ownerController.putUpdateProject);
 
-// DELETE request to delete ev
-router.delete('/owner/:id/ev/:id/delete', withAuth, ownerController.deleteEv);
+// DELETE request to delete project
+router.delete('/owner/:id/project/:id/delete', withAuth, ownerController.deleteProject);
 
 // POST request to contact owner
 router.post('/owner/:id/contact', ownerController.postContactOwner);

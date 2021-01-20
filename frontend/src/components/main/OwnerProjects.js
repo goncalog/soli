@@ -6,7 +6,7 @@ import '../../css/OwnerProjects.css';
 
 export default function OwnerProjects(props) {
     function handleButtonClick() {
-        props.history.push(`/owner/${props.match.params.id}/ev/create`);
+        props.history.push(`/owner/${props.match.params.id}/project/create`);
     }
 
     let url = (process.env.NODE_ENV === 'production') 
@@ -19,8 +19,8 @@ export default function OwnerProjects(props) {
 
     return (
         <div className="owner-projects">
-            <MainHeadline mainHeadline="Your EVs for rent" />
-            <CallToActionButton callToActionText="Add EV" onButtonClick={handleButtonClick} />
+            <MainHeadline mainHeadline="Your Projects" />
+            <CallToActionButton callToActionText="Add Project" onButtonClick={handleButtonClick} />
             <Projects fetchUrl={url} {...props} />   
         </div>
     );

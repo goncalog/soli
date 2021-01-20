@@ -54,7 +54,7 @@ describe('Routes testing', function () {
         }
 
         function hasProjects(res) {
-            if (!(Object.keys(res.body.projects).length === 12)) {
+            if (!(Object.keys(res.body.projects).length === 18)) {
                 throw new Error("Doesn\'t have all the db projects");
             }
         }
@@ -68,7 +68,7 @@ describe('Routes testing', function () {
         }
     });
 
-    it('unique ev route works', () => {
+    it('unique project route works', () => {
         return request(app)
             .get(`/content/projects`)
             .expect('Content-type', /json/)
@@ -78,53 +78,53 @@ describe('Routes testing', function () {
                 let id = res.body.projects[keys[0]]._id;
 
                 return request(app)
-                .get(`/content/ev/${id}`)
+                .get(`/content/project/${id}`)
                 .expect('Content-type', /json/)
                 .expect(hasTitle)
-                .expect(isEv)
+                .expect(isProject)
                 .expect(200)
             });
 
             function hasTitle(res) {
-                if (!(res.body.title === `Unique EV with id ${res.body.ev._id}`)) {
+                if (!(res.body.title === `Unique Project with id ${res.body.project._id}`)) {
                     throw new Error("Wrong title");  
                 } 
             }
     
-            function isEv(res) {
-                if (!(Object.keys(res.body.ev).length === 20)) {
-                    throw new Error("Not an instance of EV");
+            function isProject(res) {
+                if (!(Object.keys(res.body.project).length === 20)) {
+                    throw new Error("Not an instance of Project");
                 }
             }
     });
 
-    it('route to get data to create new ev works', () => {
+    it('route to get data to create new project works', () => {
         return request(app)
-            .get('/content/ev/create')
+            .get('/content/project/create')
             .expect('Content-type', /json/)
-            .expect({ title: 'Data to create new EV' })
+            .expect({ title: 'Data to create new Project' })
             .expect(200)
     });
 
-    it('route to get data to update ev works', () => {
+    it('route to get data to update project works', () => {
         return request(app)
-            .get('/content/owner/xpto/ev/12345/update')
+            .get('/content/owner/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
     });
     
-    it('route to update ev works', () => {
+    it('route to update project works', () => {
         return request(app)
-            .put('/content/owner/xpto/ev/12345/update')
+            .put('/content/owner/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
     });
 
-    it('route to delete ev works', () => {
+    it('route to delete project works', () => {
         return request(app)
-            .delete('/content/owner/xpto/ev/12345/delete')
+            .delete('/content/owner/xpto/project/12345/delete')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
@@ -221,7 +221,7 @@ describe('Routes testing', function () {
         }
 
         function hasModels(res) {
-            if (!(Object.keys(res.body.models).length === 13)) {
+            if (!(Object.keys(res.body.models).length === 19)) {
                 throw new Error("Doesn\'t have all the db models");
             }
         }
@@ -315,15 +315,15 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
-    it('route for getting a owner\'s list of evs for sale works', () => {
+    it('route for getting a owner\'s list of projects for sale works', () => {
         return request(app)
-            .get('/content/owner/5f80744b1a698848220d9e1e/evs')
+            .get('/content/owner/5f80744b1a698848220d9e1e/projects')
             .expect('Content-type', /json/)
             // The ids from owners created at test time isn't accessible, so it returns
-            // an empty evs array
+            // an empty projects array
             .expect({ 
-                title: 'List of EVs for sale from owner with id 5f80744b1a698848220d9e1e', 
-                evs: [],
+                title: 'List of Projects from owner with id 5f80744b1a698848220d9e1e', 
+                projects: [],
             })
             .expect(200)
     });

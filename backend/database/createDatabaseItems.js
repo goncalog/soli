@@ -1,10 +1,10 @@
 function createDatabaseItems(mongooseConnection) {
-    console.log('This script populates some test EVs, makes, models, locations and owners to the database');
+    console.log('This script populates some test projects, makes, models, locations and owners to the database');
 
     const async = require('async');
     
     // Import mongoose models
-    const EV = require('../models/ev');
+    const Project = require('../models/project');
     const Make = require('../models/make'); 
     const Model = require('../models/model');
     const Location = require('../models/location');
@@ -15,7 +15,7 @@ function createDatabaseItems(mongooseConnection) {
     let models = [];
     let locations = [];
     let owners = [];
-    let evs = [];
+    let projects = [];
     
     function hashedPasswordCreate(password, cb) {
         const bcrypt = require('bcryptjs');
@@ -116,10 +116,10 @@ function createDatabaseItems(mongooseConnection) {
         });
     }
     
-    function evCreate(make, model, year, pricePerDay, deposit, minRentalPeriod, includedExtras, 
+    function projectCreate(make, model, year, pricePerDay, deposit, minRentalPeriod, includedExtras, 
                 mileage, location, imageUrls, owner, listDate, equipmentAndOptions, exterior, interior, 
                 vehicleIdentificationNumber, fullVehicleInspection, pcoLicense, cb) {
-        evDetail = { 
+        projectDetail = { 
             make: make, 
             model: model,
             year: year,
@@ -140,17 +140,17 @@ function createDatabaseItems(mongooseConnection) {
             pco_license: pcoLicense, 
         }
     
-        const ev = new EV(evDetail);
+        const project = new Project(projectDetail);
     
-        ev.save(function (err) {
+        project.save(function (err) {
             if (err) {
                 cb(err, null);
                 return;
             }
     
-            // console.log(`New EV: ${ev}`);
-            evs.push(ev);
-            cb(null, ev);
+            // console.log(`New Project: ${project}`);
+            projects.push(project);
+            cb(null, project);
         });
     }
 
@@ -413,12 +413,12 @@ function createDatabaseItems(mongooseConnection) {
         );
     }
     
-    function createEvs(cb) {
+    function createProjects(cb) {
         const currentDate = new Date();
     
         async.series([
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[13], 
                     2019, 
@@ -446,7 +446,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[4], 
                     models[5], 
                     2020, 
@@ -473,7 +473,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[3], 
                     models[14], 
                     2020, 
@@ -500,7 +500,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[3], 
                     models[4], 
                     2020, 
@@ -527,7 +527,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[9], 
                     models[10], 
                     2018, 
@@ -555,7 +555,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[15], 
                     2020, 
@@ -581,7 +581,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[16], 
                     2019, 
@@ -605,7 +605,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[15], 
                     2019, 
@@ -629,7 +629,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[13], 
                     2019, 
@@ -653,7 +653,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[3], 
                     models[14], 
                     2019, 
@@ -677,7 +677,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[13], 
                     2020, 
@@ -705,7 +705,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[0], 
                     models[1], 
                     2020, 
@@ -728,7 +728,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[2], 
                     2020, 
@@ -751,7 +751,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[2], 
                     2020, 
@@ -774,7 +774,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[4], 
                     models[5], 
                     2020, 
@@ -800,7 +800,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[3], 
                     models[17], 
                     2020, 
@@ -826,7 +826,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[3], 
                     models[17], 
                     2020, 
@@ -854,7 +854,7 @@ function createDatabaseItems(mongooseConnection) {
                 );
             },
             function (callback) {
-                evCreate(
+                projectCreate(
                     makes[1], 
                     models[18], 
                     2020, 
@@ -895,14 +895,14 @@ function createDatabaseItems(mongooseConnection) {
         createModels,
         createLocations,
         createOwners,
-        createEvs,
+        createProjects,
     ],
     // Optional callback
     function (err, results) {
         if (err) {
             console.log(`CREATE DATABASE FINAL ERR: ${err}`);
         } else {
-            // console.log(`EVs: ${evs}`);
+            // console.log(`Projects: ${projects}`);
 
             // All done, so close connection to database in case one was passed to this function
             if (mongooseConnection) {

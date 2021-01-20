@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../../../components/main/Navigation';
 import AppRouter from '../../../components/main/AppRouter';
-import EV from '../../../components/main/EV';
+import Project from '../../../components/main/Project';
 import Contact from '../../../components/main/Contact';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { shallow, configure } from 'enzyme';
@@ -44,15 +44,15 @@ test('renders all Route components with correct paths', () => {
     }, {});
     expect(Object.keys(pathMap)).toContain('/');
     expect(Object.keys(pathMap)).toContain('/projects');
-    expect(pathMap['/ev/:id']).toBe(EV);
+    expect(pathMap['/project/:id']).toBe(Project);
     expect(pathMap['/contact']).toBe(Contact);
     expect(pathMap['/owner/:id/contact']).toBe(Contact);
     expect(Object.keys(pathMap)).toContain('/owner/signup');
     expect(Object.keys(pathMap)).toContain('/owner/login');
     expect(Object.keys(pathMap)).toContain('/owner/logout');
     expect(Object.keys(pathMap)).toContain('/owner/:id/projects');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/ev/create');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/ev/:id');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/ev/:id/update');
+    expect(Object.keys(pathMap)).toContain('/owner/:id/project/create');
+    expect(Object.keys(pathMap)).toContain('/owner/:id/project/:id');
+    expect(Object.keys(pathMap)).toContain('/owner/:id/project/:id/update');
 });
   

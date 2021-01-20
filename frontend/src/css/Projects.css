@@ -58,16 +58,16 @@
     padding-top: 20px;
 }
 
-.ev-link {
+.project-link {
     color: black;
 }
 
-.ev-link:hover {
+.project-link:hover {
     color: black;
     text-decoration: none;
 }
 
-.ev-intro-card {
+.intro-card {
     display: grid;
     grid-template-rows: 15fr 2fr 2fr 6fr;
     height: 90%;
@@ -76,19 +76,19 @@
     width: 100%;
 }
 
-.ev-intro-card:hover {
+.intro-card:hover {
     width: 102%;
     height: 91%;
     box-shadow: 0px 0px 2px 4px rgb(209, 209, 209);
 }
 
-.ev-intro-card .ev-image-container .ev-image {
+.intro-card .image-container .image {
     max-width: 100%;
     border-radius: 5px 5px 0 0;
     max-height: 230px;
 }
 
-.ev-title {
+.title {
     font-weight: 900;
     padding: 0 5%;
 }
@@ -98,7 +98,7 @@
     font-weight: 600;
 }
 
-.ev-key-features {
+.key-features {
     align-self: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -126,7 +126,7 @@
         gap: 20px 8%;
     }
     
-    .ev-intro-card {
+    .intro-card {
         grid-template-rows: 15fr 2fr 2fr 6fr;
     }
 }
@@ -147,11 +147,11 @@
         gap: 20px 10%;
     }
 
-    .ev-intro-card .ev-image-container .ev-image {
+    .intro-card .image-container .image {
         max-height: 210px;
     }
 
-    .ev-title {
+    .title {
         font-size: 16px;
     }
 
@@ -184,12 +184,12 @@
         grid-template-columns: 1fr;
     }
 
-    .ev-intro-card {
+    .intro-card {
         margin: 0 auto;
         max-width: 260px;
     }
 
-    .ev-intro-card .ev-image-container .ev-image {
+    .intro-card .image-container .image {
         max-height: 205px;
     }
 }

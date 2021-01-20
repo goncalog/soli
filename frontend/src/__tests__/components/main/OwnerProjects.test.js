@@ -20,7 +20,7 @@ describe('OwnerProjects', () => {
     // This resets the props and the shallowOwnerProjects variable before every test. 
     // Otherwise, state from one test would leak into another. 
     // By setting shallowOwnerProjects to undefined here, when the next test runs, 
-    // if it calls ownerProjects, a new OwnerEV will be created.
+    // if it calls ownerProjects, a new OwnerProjects will be created.
     beforeEach(() => {
         props = {
             match: {

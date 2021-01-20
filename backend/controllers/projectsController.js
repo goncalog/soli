@@ -1,4 +1,4 @@
-const EV = require('../models/ev');
+const Project = require('../models/project');
 
 // GET request for home page.
 exports.index = (req, res, next) => {
@@ -7,7 +7,7 @@ exports.index = (req, res, next) => {
 
 // GET request for list of all projects
 exports.getProjects = (req, res, next) => {
-    EV.find({})
+    Project.find({})
         .populate('location')
         .populate('make')
         .populate('model')
@@ -20,24 +20,24 @@ exports.getProjects = (req, res, next) => {
         });
 }
 
-// GET request for unique ev
-exports.getUniqueEv = (req, res, next) => {
-    EV.findById(req.params.id)
+// GET request for unique project
+exports.getUniqueProject = (req, res, next) => {
+    Project.findById(req.params.id)
         .populate('location')
         .populate('make')
         .populate('model')
         .populate('owner')
-        .exec(function (err, ev) {
+        .exec(function (err, project) {
             if (err) { return next(err); }
 
             // Successful, so send data
-            res.json({ title: `Unique EV with id ${ev._id}`, ev: ev });
+            res.json({ title: `Unique Project with id ${project._id}`, project: project });
         });
 }
 
-// GET request for data to create new ev
-exports.getCreateEv = (req, res, next) => {
-    res.json({ title: 'Data to create new EV' });
+// GET request for data to create new project
+exports.getCreateProject = (req, res, next) => {
+    res.json({ title: 'Data to create new Project' });
 }
 
 // Placeholder code for testing POST routes.
