@@ -1,7 +1,6 @@
 import React from 'react';
 import Filters from '../support/Filters';
 import ProjectsContainer from '../support/ProjectsContainer';
-import getFullEvTitle from '../../utils/getFullEvTitle';
 import '../../css/Projects.css';
 import formatMiles from '../../utils/formatMiles';
 import formatNumber from '../../utils/formatNumber';

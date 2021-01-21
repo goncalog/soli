@@ -6,7 +6,6 @@ import Detail from '../support/Detail';
 import formatRating from '../../utils/formatRating';
 import formatMiles from '../../utils/formatMiles';
 import formatNumber from '../../utils/formatNumber';
-import getFullEvTitle from '../../utils/getFullEvTitle';
 import getEvFeaturesArray from '../../utils/getEvFeaturesArray';
 import getImagePosForSlider from '../../utils/getImagePosForSlider';
 import '../../css/Project.css';
@@ -84,7 +83,7 @@ export default class Project extends React.Component {
             ];
             
             project = {
-                title: getFullEvTitle(this.state.project),
+                title: this.state.project.name,
                 price: this.state.project.price_per_day.toString(),
                 owner: {
                     name: this.state.project.owner.name,
