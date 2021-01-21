@@ -107,7 +107,7 @@ export default class Projects extends React.Component {
             let project = {
                 imageUrls: item.image_urls,
                 title: item.name,
-                size: `${item.size_kw} kW | ${item.total_cost_currency}${item.total_cost}`,
+                size: `${formatNumber(item.size_kw)} kW | ${item.total_cost_currency}${formatNumber(item.total_cost)}`,
                 features: [
                     { 
                         name: 'Status',
