@@ -15,30 +15,29 @@ export default class Projects extends React.Component {
         this.state = { 
             projects: [],
             filteredProjects: [],
-            make: { property: 'make', title: 'Make', options: [], },
-            price: { property: 'price', title: 'Price', min: "", max: "",},
-            range: { property: 'range', title: 'Range', min: "", max: "",},
-            included: { 
-                property: 'included', 
-                title: 'Included', 
+            return: { property: 'return', title: 'Return', min: "", max: "",},
+            location: { property: 'location', title: 'Location', options: [], },
+            size: { property: 'size', title: 'Size', min: "", max: "",},
+            status: { 
+                property: 'status', 
+                title: 'Status', 
                 options: [
-                    { name: 'Insurance' }, 
-                    { name: 'Maintenance' }, 
-                    { name: 'MOT' },
-                    { name: 'Road Assistance' },
-                    { name: 'Fuel' },
+                    { name: 'Planning' }, 
+                    { name: 'Funding' }, 
+                    { name: 'Installing' },
+                    { name: 'Producing' },
                 ], 
             },
             sort: { 
                 property: 'sort', 
                 title: 'Sort', 
                 options: [
-                    { name: 'Lowest Price', checked: true }, { name: 'Highest Price' }, 
-                    { name: 'Highest Range' }, 
+                    { name: 'Highest Return', checked: true }, { name: 'Smallest Size' }, 
+                    { name: 'Largest Size' }, { name: 'Highest CO2 Savings' },
                 ], 
             },
             filterVisibility: { 
-                make: false, price: false, range: false, included: false, sort: false 
+                return: false, location: false, size: false, status: false, sort: false 
             },
         };
         this.handleClick = this.handleClick.bind(this);
@@ -78,27 +77,27 @@ export default class Projects extends React.Component {
             .then(res => res.json())
             .then((res) => { this.setState({ projects: res.projects, filteredProjects: applySort(res.projects, this.state.sort) }) })
 
-        // Fetch makes
-        if (this.state.make.options.length === 0) {
+        // Fetch locations
+        if (this.state.location.options.length === 0) {
             let url = (process.env.NODE_ENV === 'production') 
-                    ? `/content/makes` 
-                    : `${process.env.REACT_APP_SERVER_URL}/content/makes`;
+                    ? `/content/locations` 
+                    : `${process.env.REACT_APP_SERVER_URL}/content/locations`;
 
             fetch(url)
                 .then((res) => res.json())
                 .then((res) => {
-                    res.makes.forEach((make) => make['checked'] = false);
-                    this.setState({ make: { ...this.state.make, options: sortString(res.makes, 'name') }}); 
+                    res.locations.forEach((location) => location['checked'] = false);
+                    this.setState({ location: { ...this.state.location, options: sortString(res.locations, 'country') }}); 
                 })
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (
-            prevState.make !== this.state.make ||
-            prevState.price !== this.state.price ||
-            prevState.range !== this.state.range ||
-            prevState.included !== this.state.included ||
+            prevState.return !== this.state.return ||
+            prevState.location !== this.state.location ||
+            prevState.size !== this.state.size ||
+            prevState.status !== this.state.status ||
             prevState.sort !== this.state.sort
         ) {
             this.setState({ filteredProjects: applySort(applyFilters(this.state), this.state.sort) });
@@ -109,20 +108,20 @@ export default class Projects extends React.Component {
         const projects = this.state.filteredProjects.map((item) => {
             let project = {
                 imageUrls: item.image_urls,
-                title: getFullEvTitle(item),
-                price: item.price_per_day,
+                title: item.name,
+                size: `${item.size_kw} kW | ${item.total_cost_currency}${item.total_cost}`,
                 features: [
                     { 
                         name: 'Status',
-                        value: `£${formatNumber(item.deposit)}`,
+                        value: item.status,
                     },
                     { 
                         name: 'Est. Return',
-                        value: item.min_rental_period,
+                        value: `${item.estimated_annual_return_percent}%`,
                     },
                     { 
                         name: 'Location',
-                        value: formatMiles(item.model.charging.range_miles),
+                        value: item.location.country,
                     },
                 ],
                 id: item._id,                
@@ -134,10 +133,10 @@ export default class Projects extends React.Component {
             <div className="projects">
                 {!this.props.fetchUrl.split('/').includes('owner') && (
                     <Filters 
-                    make={this.state.make}
-                    price={this.state.price}
-                    range={this.state.range}
-                    included={this.state.included}
+                    return={this.state.return}
+                    location={this.state.location}
+                    size={this.state.size}
+                    status={this.state.status}
                     sort={this.state.sort}
                     visibility={this.state.filterVisibility}
                     onClick={this.handleClick}

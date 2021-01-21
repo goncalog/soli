@@ -46,10 +46,10 @@ describe('Projects', () => {
     test('has one Filters component rendered with passed properties', () => {
         const shallowWrapper = projects().find(Filters);
         expect(shallowWrapper.length).toEqual(1);
-        expect(Object.keys(shallowWrapper.props())).toContain('make');
-        expect(Object.keys(shallowWrapper.props())).toContain('price');
-        expect(Object.keys(shallowWrapper.props())).toContain('range');
-        expect(Object.keys(shallowWrapper.props())).toContain('included');
+        expect(Object.keys(shallowWrapper.props())).toContain('return');
+        expect(Object.keys(shallowWrapper.props())).toContain('location');
+        expect(Object.keys(shallowWrapper.props())).toContain('size');
+        expect(Object.keys(shallowWrapper.props())).toContain('status');
         expect(Object.keys(shallowWrapper.props())).toContain('sort');
         expect(Object.keys(shallowWrapper.props())).toContain('visibility');
         expect(Object.keys(shallowWrapper.props())).toContain('onClick');

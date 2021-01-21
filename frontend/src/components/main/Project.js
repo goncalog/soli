@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from '../support/Title';
-import Price from '../support/Price';
+import Size from '../support/Size';
 import OwnerContact from '../support/OwnerContact';
 import Detail from '../support/Detail';
 import formatRating from '../../utils/formatRating';
@@ -205,7 +205,7 @@ export default class Project extends React.Component {
         return (
             <div className="project">
                 <Title title={project.title} />
-                <Price price={project.price} />
+                <Size price={project.price} />
                 <OwnerContact {...project.owner} />
                 <Detail {...project.detail} />
                 <OwnerContact {...project.owner} />

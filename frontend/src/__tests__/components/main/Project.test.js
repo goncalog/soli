@@ -1,7 +1,7 @@
 import React from 'react';
 import Project from '../../../components/main/Project';
 import Title from '../../../components/support/Title';
-import Price from '../../../components/support/Price';
+import Size from '../../../components/support/Size';
 import OwnerContact from '../../../components/support/OwnerContact';
 import Detail from '../../../components/support/Detail';
 import { configure, shallow } from 'enzyme';
@@ -55,8 +55,8 @@ describe('Project', () => {
         expect(Object.keys(shallowWrapper.props())).toContain('title');
     });
 
-    test('has one Price component rendered with passed properties', () => {
-        const shallowWrapper = project().find(Price);
+    test('has one Size component rendered with passed properties', () => {
+        const shallowWrapper = project().find(Size);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('price');
     });

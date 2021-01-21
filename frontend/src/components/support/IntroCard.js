@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from './Image';
 import Title from './Title';
-import Price from './Price';
+import Size from './Size';
 import KeyFeatures from './KeyFeatures';
 
 export default function IntroCard(props) {
@@ -9,7 +9,7 @@ export default function IntroCard(props) {
         <div className="intro-card">
             <Image imagePath={props.imagePath} />
             <Title title={props.title} />
-            <Price price={props.price} />
+            <Size size={props.size} />
             <KeyFeatures features={props.features} />
         </div>
     );

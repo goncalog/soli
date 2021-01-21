@@ -26,7 +26,7 @@ describe('ProjectsContainer', () => {
                 {
                     imageUrls: ['/path/to/projectOne/image1', '/path/to/projectOne/image2'],
                     title: 'Text to test title property #1',
-                    price: 10000,
+                    size: 10000,
                     features: [
                         { 
                             name: 'Text to test name property #1.1',
@@ -46,7 +46,7 @@ describe('ProjectsContainer', () => {
                 {
                     imageUrls: ['/path/to/projectTwo/image1', '/path/to/projectTwo/image2'],
                     title: 'Text to test title property #2',
-                    price: 20000,
+                    size: 20000,
                     features: [
                         { 
                             name: 'Text to test name property #2.1',
@@ -66,7 +66,7 @@ describe('ProjectsContainer', () => {
                 {
                     imageUrls: ['/path/to/projectThree/image1', '/path/to/projectThree/image2'],
                     title: 'Text to test title property #3',
-                    price: 30000,
+                    size: 30000,
                     features: [
                         { 
                             name: 'Text to test name property #3.1',
@@ -86,7 +86,7 @@ describe('ProjectsContainer', () => {
                 {
                     imageUrls: ['/path/to/four/image1', '/path/to/four/image2'],
                     title: 'Text to test title property #4',
-                    price: 40000,
+                    size: 40000,
                     features: [
                         { 
                             name: 'Text to test name property #4.1',
@@ -134,7 +134,7 @@ describe('ProjectsContainer', () => {
         shallowWrapper.forEach((project, i) => {
             expect(project.prop('imagePath')).toBe(props.projects[i].imageUrls[0]);
             expect(project.prop('title')).toBe(props.projects[i].title);
-            expect(project.prop('price')).toBe(props.projects[i].price.toString());
+            expect(project.prop('size')).toBe(props.projects[i].size);
             project.prop('features').forEach((feature, j) => {
                 expect(feature.name).toBe(props.projects[i].features[j].name);
                 expect(feature.value).toBe(props.projects[i].features[j].value.toString());

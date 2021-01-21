@@ -2,7 +2,7 @@ import React from 'react';
 import IntroCard from '../../../components/support/IntroCard';
 import Image from '../../../components/support/Image';
 import Title from '../../../components/support/Title';
-import Price from '../../../components/support/Price';
+import Price from '../../../components/support/Size';
 import KeyFeatures from '../../../components/support/KeyFeatures';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -26,7 +26,7 @@ describe('IntroCard', () => {
         props = {
             imagePath: '/path/to/project/image',
             title: 'Text to test title property',
-            price: '11900',
+            size: '11900',
             features: [
                 { 
                     name: 'Text to test name property #1',
@@ -64,7 +64,7 @@ describe('IntroCard', () => {
     test('has one Price component rendered with passed property', () => {
         const shallowWrapper = introCard().find(Price);
         expect(shallowWrapper.length).toEqual(1);
-        expect(shallowWrapper.prop('price')).toBe(props.price);
+        expect(shallowWrapper.prop('size')).toBe(props.size);
     });
 
     test('has one KeyFeatures components rendered with passed properties', () => {

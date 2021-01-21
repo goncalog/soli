@@ -22,7 +22,7 @@ export default function ProjectsContainer(props) {
                         <IntroCard 
                             imagePath={project.imageUrls[0]} 
                             title={project.title} 
-                            price={project.price.toString()} 
+                            size={project.size} 
                             features={features}
                             key={index} 
                         />
