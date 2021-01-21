@@ -1,380 +1,240 @@
 const assert = require('chai').assert;
-const EV = require('../models/ev');
-const Make = require('../models/make');
-const Model = require('../models/model');
+const Project = require('../models/project');
 const Location = require('../models/location');
 const Owner = require('../models/owner');
 
-const tesla = new Make({
-    name: "Tesla",
-    test: 2,
-});
-
-const s70 = new Model({
-    make: tesla,
-    name: 'S',
-    secondary_name: '70',
-    performance: {
-        horsepower: 500,
-        miles_per_kwh: 3.5,
-        top_speed_mph: 155,
-        zero_to_sixty_mph: 2.3,
-    },
-    charging: {
-        range_miles: 250,
-        battery_size_kwh: 65,
-        charge_cost: 5,
-        hours_to_charge: 7,
-    },
-    rating: 4.75,
-    test: 2,
-});
-
 const london = new Location({
-    name: 'London',
     city: 'London',
     country: 'UK',
+    continent: 'Europe',
     test: 2,
 });
 
-const missTesla = new Owner({
-    name: 'Miss Tesla',
-    contact: 'miss.tesla@gmail.com',
+const theSunExchange = new Owner({
+    name: 'The Sun Exchange',
+    contact: 'the.sun.exchange@gmail.com',
     rating: 4.2,
     password: '12345678',
     test: 2,
 });
 
-const date = new Date;
-const includedExtras = ['Insurance', 'Maintenance', 'MOT'];
-const equipmentAndOptions = ['Air conditioning', 'Heated seats', 'Brake assist'];
 const imageUrls = ['https://placeholder.com/image111', 'https://placeholder.com/image222']; 
+const realAnnualProduction = [98000, 132000];
+const realAnnualPayments = [10000, 13500];
+const realAnnualReturn = [10, 13.5];
+const realAnnualCo2Saved = [73, 107];
 
-const ev = new EV({
-    make: tesla,
-    model: s70,
-    year: 2018,
-    price_per_day: 50,
-    deposit: 250,
-    min_rental_period: '4 weeks',
-    included_extras: includedExtras,
-    mileage: 18000,
+const project = new Project({
+    name: 'Star Plaza',
+    size_kw: 360,
+    total_cost: 100000,
+    total_cost_currency: '£',
+    status: 'Funding',    
+    estimated_annual_return_percent: 12.45,
     location: london,
+    owner: theSunExchange,
     image_urls: imageUrls,
-    owner: missTesla,
-    list_date: date,
-    equipment_and_options: equipmentAndOptions,
-    exterior: {
-        body_style: 'Sedan',
-        colour: 'Blue',
-    },
-    interior: {
-        seating: 5,
-        colour: 'Black',
-    },
-    vehicle_identification_number: '1M8GDM9AXKP042788',
-    full_vehicle_inspection: true,
-    pco_license: true,
+    estimated_total_co2_saved_ton: 1200,
+    estimated_annual_production_kwh: 125000,
+    payment_schedule: 'Monthly',
+    risk_level: 'Medium',
+    year_start_production: 2021,
+    real_annual_production_kwh: realAnnualProduction,    
+    real_annual_payments: realAnnualPayments,
+    payments_currency: '£',
+    real_annual_return_percent: realAnnualReturn,    
+    real_annual_co2_saved_ton: realAnnualCo2Saved,    
     test: 2,
 });
 
-describe('EV model', () => {
-    it('EV model exists', () => {
-        assert.instanceOf(ev, EV, 'ev is instance of EV');
+describe('Project model', () => {
+    it('exists', () => {
+        assert.instanceOf(project, Project, 'project is instance of Project');
     });
 
-    it('EV model has 18 properties', () => {
-        assert.strictEqual(Object.keys(ev.schema.tree).length, 22, 'ev has 22 properties');
+    it('has 23 properties', () => {
+        assert.strictEqual(Object.keys(project.schema.tree).length, 23, 'project has 23 properties');
     });
 
-    it('EV model has make', () => {
-        assert.instanceOf(ev.make, Make, 'ev\'s make is instance of Make');
+    it('has name', () => {
+        assert.strictEqual(project.name, 'Star Plaza', 'project\'s name is Star Plaza');
     });
 
-    it('EV model has model', () => {
-        assert.instanceOf(ev.model, Model, 'ev\'s model is instance of Model');
+    it('has size kw', () => {
+        assert.strictEqual(project.size_kw, 360, 'project\'s size kw is 360');
     });
 
-    it('EV model has year', () => {
-        assert.strictEqual(ev.year, 2018, 'ev\'s year is 2018');
+    it('has total cost', () => {
+        assert.strictEqual(project.total_cost, 100000, 'project\'s total cost is 100000');
     });
 
-    it('EV model has price per day', () => {
-        assert.strictEqual(ev.price_per_day, 50, 'ev\'s price per day is 50');
+    it('has total cost currency', () => {
+        assert.strictEqual(project.total_cost_currency, '£', 'project\'s total cost currency is £');
     });
 
-    it('EV model has deposit', () => {
-        assert.strictEqual(ev.deposit, 250, 'ev\'s deposit is 250');
+    it('has status', () => {
+        assert.strictEqual(project.status, 'Funding', 'project\'s status is Funding');
     });
 
-    it('EV model has min rental period', () => {
-        assert.strictEqual(ev.min_rental_period, '4 weeks', 'ev\'s min rental period is 4 weeks');
+    it('has estimated annual return percent', () => {
+        assert.strictEqual(project.estimated_annual_return_percent, 12.45, 'project\'s estimated annual return percent is 12.45');
+    });
+    
+    it('has location', () => {
+        assert.instanceOf(project.location, Location, 'project\'s location is instance of Location');
     });
 
-    it('has included extras array', () => {
-        assert.instanceOf(ev.included_extras, Array, 'ev\'s included extras is an Array');
-        assert.strictEqual(ev.included_extras.length, 3, 'ev\'s included extras has 3 items');
-        ev.included_extras.forEach((extra, index) => {
-            assert.strictEqual(extra, includedExtras[index], 
-                    'ev\'s included extras is an array with Insurance, Maintenance and MOT');
-        });
-    });
-
-    it('EV model has mileage', () => {
-        assert.strictEqual(ev.mileage, 18000, 'ev\'s year is 18000');
-    });
-
-    it('EV model has location', () => {
-        assert.instanceOf(ev.location, Location, 'ev\'s location is instance of Location');
+    it('has owner', () => {
+        assert.instanceOf(project.owner, Owner, 'project\'s owner is instance of Owner');
     });
 
     it('has image urls array', () => {
-        assert.instanceOf(ev.image_urls, Array, 'ev\'s image urls is an Array');
-        assert.strictEqual(ev.image_urls.length, 2, 'ev\'s image urls has 2 items');
-        ev.image_urls.forEach((url, index) => {
+        assert.instanceOf(project.image_urls, Array, 'project\'s image urls is an Array');
+        assert.strictEqual(project.image_urls.length, 2, 'project\'s image urls has 2 items');
+        project.image_urls.forEach((url, index) => {
             assert.strictEqual(url, imageUrls[index], 
-                    'ev\'s image urls is an array with https://placeholder.com/image111 and https://placeholder.com/image222');
+                    'project\'s image urls is an array with https://placeholder.com/image111 and https://placeholder.com/image222');
         });
     });
 
-    it('EV model has owner', () => {
-        assert.instanceOf(ev.owner, Owner, 'ev\'s owner is instance of Owner');
+    it('has estimated_total_co2_saved_ton', () => {
+        assert.strictEqual(project.estimated_total_co2_saved_ton, 1200, 'project\'s estimated_total_co2_saved_ton is 1200');
     });
 
-    it('EV model has list date', () => {
-        assert.strictEqual(ev.list_date, date, `ev\'s list date is ${date}`);
+    it('has estimated_annual_production_kwh', () => {
+        assert.strictEqual(project.estimated_annual_production_kwh, 125000, 'project\'s estimated_annual_production_kwh is 125000');
     });
 
-    it('has equipment and options array', () => {
-        assert.instanceOf(ev.equipment_and_options, Array, 'ev\'s equipment and options is an Array');
-        assert.strictEqual(ev.equipment_and_options.length, 3, 'ev\'s equipment and options has 3 items');
-        ev.equipment_and_options.forEach((item, index) => {
-            assert.strictEqual(item, equipmentAndOptions[index], 
-                    'ev\'s equipment and options is an array with Air conditioning, Heated seats and Brake assist');
+    it('has payment_schedule', () => {
+        assert.strictEqual(project.payment_schedule, 'Monthly', 'project\'s payment_schedule is Monthly');
+    });
+
+    it('has risk_level', () => {
+        assert.strictEqual(project.risk_level, 'Medium', 'project\'s risk_level is Medium');
+    });
+
+    it('has year_start_production', () => {
+        assert.strictEqual(project.year_start_production, 2021, 'project\'s year_start_production is 2021');
+    });
+
+    it('has real_annual_production_kwh', () => {
+        assert.instanceOf(project.real_annual_production_kwh, Array, 'project\'s real_annual_production_kwh is an Array');
+        assert.strictEqual(project.real_annual_production_kwh.length, 2, 'project\'s real_annual_production_kwh has 2 items');
+        project.real_annual_production_kwh.forEach((item, index) => {
+            assert.strictEqual(item, realAnnualProduction[index], 
+                    'project\'s real_annual_production_kwh is an array with 98000 and 132000');
         });
     });
 
-    it('has exterior object', () => {
-        assert.instanceOf(ev.exterior, Object, 'ev\'s exterior is an object');
+    it('has real_annual_payments', () => {
+        assert.instanceOf(project.real_annual_payments, Array, 'project\'s real_annual_payments is an Array');
+        assert.strictEqual(project.real_annual_payments.length, 2, 'project\'s real_annual_payments has 2 items');
+        project.real_annual_payments.forEach((item, index) => {
+            assert.strictEqual(item, realAnnualPayments[index], 
+                    'project\'s real_annual_payments is an array with 10000 and 13500');
+        });
     });
 
-    it('has exterior object with 2 children', () => {
-        assert.strictEqual(Object.keys(ev.exterior).length, 2, 'ev\'s exterior has 2 children');
-        assert.strictEqual(ev.exterior.body_style, 'Sedan', 'ev\'s body style is Sedan');
-        assert.strictEqual(ev.exterior.colour, 'Blue', 'ev\'s exterior colour is Blue');    
+    it('has payments_currency', () => {
+        assert.strictEqual(project.payments_currency, '£', 'project\'s payments_currency is £');
     });
 
-    it('has interior object with 2 children', () => {
-        assert.instanceOf(ev.interior, Object, 'ev\'s interior is an object');
-        assert.strictEqual(Object.keys(ev.interior).length, 2, 'ev\'s interior has 2 children');
-        assert.strictEqual(ev.interior.seating, 5, 'ev\'s seating is 5');
-        assert.strictEqual(ev.interior.colour, 'Black', 'ev\'s interior colour is Black');    
+    it('has real_annual_return_percent', () => {
+        assert.instanceOf(project.real_annual_return_percent, Array, 'project\'s real_annual_return_percent is an Array');
+        assert.strictEqual(project.real_annual_return_percent.length, 2, 'project\'s real_annual_return_percent has 2 items');
+        project.real_annual_return_percent.forEach((item, index) => {
+            assert.strictEqual(item, realAnnualReturn[index], 
+                    'project\'s real_annual_return_percent is an array with 10 and 13.5');
+        });
     });
 
-    it('EV model has vehicle identification number', () => {
-        assert.strictEqual(ev.vehicle_identification_number, '1M8GDM9AXKP042788', 
-                'ev\'s vehicle identification number is 1M8GDM9AXKP042788');
+    it('has real_annual_co2_saved_ton', () => {
+        assert.instanceOf(project.real_annual_co2_saved_ton, Array, 'project\'s real_annual_co2_saved_ton is an Array');
+        assert.strictEqual(project.real_annual_co2_saved_ton.length, 2, 'project\'s real_annual_co2_saved_ton has 2 items');
+        project.real_annual_co2_saved_ton.forEach((item, index) => {
+            assert.strictEqual(item, realAnnualCo2Saved[index], 
+                    'project\'s real_annual_co2_saved_ton is an array with 73 and 107');
+        });
     });
 
-    it('EV model has full vehicle inspection', () => {
-        assert.strictEqual(ev.full_vehicle_inspection, true, 'ev\'s full vehicle inspection is true');
-    });
-
-    it('EV model has pco license', () => {
-        assert.strictEqual(ev.pco_license, true, 'ev\'s pco license is true');
-    });
-
-    it('EV model has url', () => {
-        assert.strictEqual(ev.url, `/content/ev/${ev._id}`, `ev\'s url is /content/ev/${ev._id}`);
-    });
-
-    it('EV model doesn\'t have test property', () => {
-        assert.notExists(ev.test, 'ev\'s test property is null or undefined');
-    });
-});
-
-describe('Make model', () => {
-    it('Make model exists', () => {
-        assert.instanceOf(tesla, Make, 'tesla is instance of Make');
-    });
-
-    it('Make model has 5 properties', () => {
-        assert.strictEqual(Object.keys(tesla.schema.tree).length, 5, 'tesla has 5 properties');
-    });
-
-    it('Make model has name', () => {
-        assert.strictEqual(tesla.name, 'Tesla', 'tesla\'s make is Tesla');
-    });
-
-    it('Make model has url', () => {
-        assert.strictEqual(tesla.url, `/content/make/${tesla._id}`, 
-                `tesla\'s url is /content/make/${tesla._id}`);
-    });
-
-    it('Make model doesn\'t have test property', () => {
-        assert.notExists(tesla.test, 'tesla\'s test property is null or undefined');
-    });
-});
-
-describe('Model model', () => {
-    it('Model model exists', () => {
-        assert.instanceOf(s70, Model, 's70 is instance of Model');
-    });
-
-    it('Model model has 10 properties', () => {
-        assert.strictEqual(Object.keys(s70.schema.tree).length, 10, 's70 has 10 properties');
-    });
-
-    it('Model model has make', () => {
-        assert.instanceOf(s70.make, Make, 's70\'s make is instance of Make');
-    });
-
-    it('Model model has name', () => {
-        assert.strictEqual(s70.name, 'S', 's70\'s name is S');
-    });
-
-    it('Model model has secondary name', () => {
-        assert.strictEqual(s70.secondary_name, '70', 's70\'s secondary name is 70');
-    });
-    
-    it('has performance object', () => {
-        assert.instanceOf(s70.performance, Object, 's70\'s performance is an object');
-    });
-
-    it('has performance object with 4 children', () => {
-        assert.strictEqual(Object.keys(s70.performance).length, 4, 's70\'s performance has 4 children');
-        assert.strictEqual(s70.performance.horsepower, 500, 's70\'s horsepower is 500');
-        assert.strictEqual(s70.performance.miles_per_kwh, 3.5, 's70\'s miles per kwh is 3.5');
-        assert.strictEqual(s70.performance.top_speed_mph, 155, 's70\'s top speed mph is 155');
-        assert.strictEqual(s70.performance.zero_to_sixty_mph, 2.3, 's70\'s 0-60mph is 2.3');
-    
-    });
-
-    it('has charging object', () => {
-        assert.instanceOf(s70.charging, Object, 's70\'s charging is an object');
-    });
-
-    it('has charging object with 4 children', () => {
-        assert.strictEqual(Object.keys(s70.charging).length, 4, 's70\'s charging has 4 children');
-        assert.strictEqual(s70.charging.range_miles, 250, 's70\'s range is 250');
-        assert.strictEqual(s70.charging.battery_size_kwh, 65, 's70\'s battery size is 65');
-        assert.strictEqual(s70.charging.charge_cost, 5, 's70\'s charge cost is 5');
-        assert.strictEqual(s70.charging.hours_to_charge, 7, 's70\'s hours to charge is 7');
-    
-    });
-
-    it('Model model has rating', () => {
-        assert.strictEqual(s70.rating, 4.75, 's70\'s rating is 4.75');
-    });
-
-    it('Model model has url', () => {
-        assert.strictEqual(s70.url, `/content/model/${s70._id}`, 
-                `s70\'s url is /content/model/${s70._id}`);
-    });
-
-    it('Model model doesn\'t have test property', () => {
-        assert.notExists(s70.test, 's70\'s test property is null or undefined');
+    it('doesn\'t have test property', () => {
+        assert.notExists(project.test, 'project\'s test property is null or undefined');
     });
 });
 
 describe('Location model', () => {
-    it('Location model exists', () => {
+    it('exists', () => {
         assert.instanceOf(london, Location, 'london is instance of Location');
     });
 
-    it('Location model has 6 properties', () => {
+    it('has 6 properties', () => {
         assert.strictEqual(Object.keys(london.schema.tree).length, 6, 'london has 6 properties');
     });
 
-    it('Location model has name', () => {
-        assert.strictEqual(london.name, 'London', 'london\'s name is London');
-    });
-
-    it('Location model has city', () => {
+    it('has city', () => {
         assert.strictEqual(london.city, 'London', 'london\'s city is London');
     });
 
-    it('Location model has country', () => {
+    it('has country', () => {
         assert.strictEqual(london.country, 'UK', 'london\'s country is UK');
     });
 
-    it('Location model doesn\'t have test property', () => {
+    it('has continent', () => {
+        assert.strictEqual(london.continent, 'Europe', 'london\'s continent is Europe');
+    });
+
+    it('doesn\'t have test property', () => {
         assert.notExists(london.test, 'london\'s test property is null or undefined');
     });
 });
 
 describe('Owner model', () => {
-    it('Owner model exists', () => {
-        assert.instanceOf(missTesla, Owner, 'missTesla is instance of Owner');
+    it('exists', () => {
+        assert.instanceOf(theSunExchange, Owner, 'theSunExchange is instance of Owner');
     });
 
-    it('Owner model has 7 properties', () => {
-        assert.strictEqual(Object.keys(missTesla.schema.tree).length, 7, 'missTesla has 7 properties');
+    it('has 7 properties', () => {
+        assert.strictEqual(Object.keys(theSunExchange.schema.tree).length, 7, 'theSunExchange has 7 properties');
     });
 
-    it('Owner model has name', () => {
-        assert.strictEqual(missTesla.name, 'Miss Tesla', 'missTesla\'s name is Miss Tesla');
+    it('has name', () => {
+        assert.strictEqual(theSunExchange.name, 'The Sun Exchange', 'theSunExchange\'s name is The Sun Exchange');
     });
 
-    it('Owner model has contact', () => {
-        assert.strictEqual(missTesla.contact, 'miss.tesla@gmail.com', 
-                'missTesla\'s contact is miss.tesla@gmail.com');
+    it('has contact', () => {
+        assert.strictEqual(theSunExchange.contact, 'the.sun.exchange@gmail.com', 
+                'theSunExchange\'s contact is the.sun.exchange@gmail.com');
     });
 
-    it('Owner model has rating', () => {
-        assert.strictEqual(missTesla.rating, 4.2, 'missTesla\'s rating is 4.2');
+    it('has rating', () => {
+        assert.strictEqual(theSunExchange.rating, 4.2, 'theSunExchange\'s rating is 4.2');
     });
 
     it('has password', () => {
-        assert.strictEqual(missTesla.password, '12345678', 'missTesla\'s password is 12345678');
+        assert.strictEqual(theSunExchange.password, '12345678', 'theSunExchange\'s password is 12345678');
     });
 
-    it('Owner model doesn\'t have test property', () => {
-        assert.notExists(missTesla.test, 'missTesla\'s test property is null or undefined');
+    it('doesn\'t have test property', () => {
+        assert.notExists(theSunExchange.test, 'theSunExchange\'s test property is null or undefined');
     });
 });
 
 // Testing model property validators
-const evEmpty = new EV();
-const makeEmpty = new Make();
-const modelEmpty = new Model();
+const projectEmpty = new Project();
 const locationEmpty = new Location();
 const ownerEmpty = new Owner();
 
-const evMinValidation = new EV({
-    year: 1899,
-    price_per_day: -1,
-    deposit: -1,
-    mileage: -1,
-    interior: {
-        seating: 0,
-    },
-    vehicle_identification_number: 'xxxxxxxxxxxxxxxx',
+const projectMinValidation = new Project({
+    size_kw: -1,
+    total_cost: -1,
+    estimated_annual_return_percent: -1,
+    estimated_total_co2_saved_ton: -1,
+    estimated_annual_production_kwh: -1,
+    year_start_production: 1999,  
 });
 
-const evMaxValidation = new EV({
-    year: date.getFullYear() + 1,
-    vehicle_identification_number: 'xxxxxxxxxxxxxxxxxx',
-});
-
-const modelMinValidation = new Model({
-    performance: {
-        horsepower: -1,
-        miles_per_kwh: -1,
-        top_speed_mph: -1,
-        zero_to_sixty_mph: -1,
-    },
-    charging: {
-        range: -1,
-        battery_size_kwh: -1,
-        charge_cost: -1,
-        hours_to_charge: -1,
-    },
-    rating: -1,
-});
-
-const modelMaxValidation = new Model({
-    rating: 5.1,
+const projectMaxValidation = new Project({
+    year_start_production: new Date().getFullYear() + 1,
 });
 
 const ownerMinValidation = new Owner({
@@ -386,348 +246,222 @@ const ownerMaxValidation = new Owner({
     rating: 5.1,
 });
 
-describe('EV model validators are set', () => {
-    it('EV model requires make', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.make, 'ev\'s make is required');
+describe('Project model validators are set', () => {
+    it('requires name', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.name, 'project\'s name is required');
         });
     });
 
-    it('EV model requires model', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.model, 'ev\'s model is required');
+    it('requires size_kw', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.size_kw, 'project\'s size_kw is required');
         });
     });
 
-    it('EV model requires year', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.year, 'ev\'s year is required');
+    it('size_kw isn\'t lower than 0', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.size_kw, 'project\'s size_kw isn\'t lower than 0');
         });
     });
 
-    it('EV model\'s year isn\'t lower than 1900', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors.year, 'ev\'s year isn\'t lower than 1900');
+    it('requires total_cost', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.total_cost, 'project\'s total_cost is required');
         });
     });
 
-    it('EV model\'s year isn\'t greater than current year', () => {
-        evMaxValidation.validate((err) => {
-            assert.exists(err.errors.year, 'ev\'s year isn\'t greater than current year');
+    it('total_cost isn\'t lower than 0', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.total_cost, 'project\'s total_cost isn\'t lower than 0');
         });
     });
 
-    it('EV model requires price per day', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.price_per_day, 'ev\'s price per day is required');
+    it('requires total_cost_currency', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.total_cost_currency, 'project\'s total_cost_currency is required');
         });
     });
 
-    it('EV model\'s price per day isn\'t lower than 0', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors.price_per_day, 'ev\'s price per day isn\'t lower than 0');
+    it('requires status', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.status, 'project\'s status is required');
+        });
+    });   
+    
+    it('requires estimated_annual_return_percent', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.estimated_annual_return_percent, 'project\'s estimated_annual_return_percent is required');
         });
     });
 
-    it('EV model requires deposit', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.deposit, 'ev\'s deposit is required');
+    it('estimated_annual_return_percent isn\'t lower than 0', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.estimated_annual_return_percent, 'project\'s estimated_annual_return_percent isn\'t lower than 0');
+        });
+    });
+    
+    it('requires location', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.location, 'project\'s location is required');
         });
     });
 
-    it('EV model\'s deposit isn\'t lower than 0', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors.deposit, 'ev\'s deposit isn\'t lower than 0');
+    it('requires owner', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.owner, 'project\'s owner is required');
         });
     });
 
-    it('EV model requires min rental period', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.min_rental_period, 'ev\'s min rental period is required');
+    it('requires image urls', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.image_urls, 'project\'s image urls is required');
         });
     });
 
-    it('EV model requires included extras', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.included_extras, 'ev\'s included extras is required');
+    it('requires estimated_total_co2_saved_ton', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.estimated_total_co2_saved_ton, 'project\'s estimated_total_co2_saved_ton is required');
         });
     });
 
-    it('EV model requires mileage', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.mileage, 'ev\'s mileage is required');
+    it('estimated_total_co2_saved_ton isn\'t lower than 0', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.estimated_total_co2_saved_ton, 'project\'s estimated_total_co2_saved_ton isn\'t lower than 0');
         });
     });
 
-    it('EV model\'s mileage isn\'t lower than 0', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors.mileage, 'ev\'s mileage isn\'t lower than 0');
+    it('requires estimated_annual_production_kwh', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.estimated_annual_production_kwh, 'project\'s estimated_annual_production_kwh is required');
         });
     });
 
-    it('EV model requires location', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.location, 'ev\'s location is required');
+    it('estimated_annual_production_kwh isn\'t lower than 0', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.estimated_annual_production_kwh, 'project\'s estimated_annual_production_kwh isn\'t lower than 0');
         });
     });
 
-    it('EV model requires image urls', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.image_urls, 'ev\'s image urls is required');
+    it('requires payment_schedule', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.payment_schedule, 'project\'s payment_schedule is required');
         });
     });
 
-    it('EV model requires owner', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.owner, 'ev\'s owner is required');
+    it('requires risk_level', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.risk_level, 'project\'s risk_level is required');
         });
     });
 
-    it('EV model requires list date', () => {
-        evEmpty.validate((err) => {
-            assert.notExists(err.errors.list_date, 'ev\'s list date has default value, so no error occurs');
+    it('requires year_start_production', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.year_start_production, 'project\'s year_start_production is required');
         });
     });
 
-    it('EV model requires equipment and options', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.equipment_and_options, 'ev\'s equipment and options is required');
+    it('year_start_production isn\'t lower than 2000', () => {
+        projectMinValidation.validate((err) => {
+            assert.exists(err.errors.year_start_production, 'project\'s year_start_production isn\'t lower than 0');
         });
     });
 
-    it('EV model requires exterior\'s colour property', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors['exterior.colour'], 'ev\'s exterior colour is required');
+    it('year_start_production isn\'t higher than current year', () => {
+        projectMaxValidation.validate((err) => {
+            assert.exists(err.errors.year_start_production, 'project\'s year_start_production isn\'t higher than current year');
         });
     });
 
-    it('EV model doesn\'t requires exterior\'s body style property', () => {
-        evEmpty.validate((err) => {
-            assert.notExists(err.errors['exterior.body_style'], 'ev\'s body style isn\'t required');
+    it('requires real_annual_production_kwh', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.real_annual_production_kwh, 'project\'s real_annual_production_kwh is required');
         });
     });
 
-    it('EV model requires interior\'s properties', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors['interior.seating'], 'ev\'s seating is required');
-            assert.exists(err.errors['interior.colour'], 'ev\'s interior colour is required');
+    it('requires real_annual_payments', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.real_annual_payments, 'project\'s real_annual_payments is required');
         });
     });
 
-    it('EV model\'s seating isn\'t lower than 1', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors['interior.seating'], 'ev\'s seating isn\'t lower than 1');
+    it('requires payments_currency', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.payments_currency, 'project\'s payments_currency is required');
         });
     });
 
-    it('EV model requires vehicle identification number', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.vehicle_identification_number, 'ev\'s vehicle identification number is required');
+    it('requires real_annual_return_percent', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.real_annual_return_percent, 'project\'s real_annual_return_percent is required');
         });
     });
 
-    it('EV model\'s vehicle identification number has length of 17', () => {
-        evMinValidation.validate((err) => {
-            assert.exists(err.errors.vehicle_identification_number, 
-                    'ev\'s vehicle identification number has length of 17');
-        });
-    });
-
-    it('EV model\'s vehicle identification number has length of 17', () => {
-        evMaxValidation.validate((err) => {
-            assert.exists(err.errors.vehicle_identification_number, 
-                    'ev\'s vehicle identification number has length of 17');
-        });
-    });
-
-    it('EV model requires full vehicle inspection', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.full_vehicle_inspection, 'ev\'s full vehicle inspection is required');
-        });
-    });
-
-    it('EV model requires pco license', () => {
-        evEmpty.validate((err) => {
-            assert.exists(err.errors.pco_license, 'ev\'s pco license is required');
-        });
-    });
-});
-
-describe('Make model require validators are set', () => {
-    it('Make model requires name', () => {
-        makeEmpty.validate((err) => {
-            assert.exists(err.errors.name, 'make model requires name');
-        });
-    });
-});
-
-describe('Model model require validators are set', () => {
-    it('Model model requires make', () => {
-        modelEmpty.validate((err) => {
-            assert.exists(err.errors.make, 'model model requires make');
-        });
-    });
-
-    it('Model model requires name', () => {
-        modelEmpty.validate((err) => {
-            assert.exists(err.errors.name, 'model model requires name');
-        });
-    });
-
-    it('Model model doesn\'t require secondary name', () => {
-        modelEmpty.validate((err) => {
-            assert.notExists(err.errors.secondary_name, 'model model doesn\'t require secondary name');
-        });
-    });
-
-    it('Model model requires performance\'s 3 properties', () => {
-        modelEmpty.validate((err) => {
-            assert.exists(err.errors['performance.horsepower'], 'model model requires horsepower');
-            assert.exists(err.errors['performance.top_speed_mph'], 'model model requires top speed mph');
-            assert.exists(err.errors['performance.zero_to_sixty_mph'], 'model model requires 0-60mph');
-        });
-    });
-
-    it('Model model doesn\'t require performance\'s miles per kwh', () => {
-        modelEmpty.validate((err) => {
-            assert.notExists(err.errors['performance.miles_per_kwh'], 'model model doesn\'t require miles per kwh');
-        });
-    });
-
-    it('Model model has horsepower with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['performance.horsepower'], 'model model\'s horsepower is greater than 0');
-        });
-    });
-
-    it('Model model has miles per kwh with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['performance.miles_per_kwh'], 'model model\'s miles per kwh is greater than 0');
-        });
-    });
-
-    it('Model model has top speed mph with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['performance.top_speed_mph'], 'model model\'s top speed mph is greater than 0');
-        });
-    });
-
-    it('Model model has 0-60mph with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['performance.zero_to_sixty_mph'], 'model model\'s 0-60mph is greater than 0');
-        });
-    });
-
-    it('Model model requires charging\'s 4 properties', () => {
-        modelEmpty.validate((err) => {
-            assert.exists(err.errors['charging.range_miles'], 'model model requires range');
-            assert.exists(err.errors['charging.battery_size_kwh'], 'model model requires battery size');
-            assert.exists(err.errors['charging.charge_cost'], 'model model requires charge cost');
-            assert.exists(err.errors['charging.hours_to_charge'], 'model model requires hours to charge');
-        });
-    });
-
-    it('Model model has range with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['charging.range_miles'], 'model model\'s range is greater than 0');
-        });
-    });
-
-    it('Model model has battery size with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['charging.battery_size_kwh'], 'model model\'s battery size is greater than 0');
-        });
-    });
-
-    it('Model model has charge cost with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['charging.charge_cost'], 'model model\'s charge cost is greater than 0');
-        });
-    });
-
-    it('Model model has hours to charge with value greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors['charging.hours_to_charge'], 'model model\'s hours to charge is greater than 0');
-        });
-    });
-
-    it('Model model requires rating', () => {
-        modelEmpty.validate((err) => {
-            assert.exists(err.errors.rating, 'model model requires rating');
-        });
-    });
-
-    it('Model model\'s rating is greater than 0', () => {
-        modelMinValidation.validate((err) => {
-            assert.exists(err.errors.rating, 'model model\'s rating is greater than 0');
-        });
-    });
-
-    it('Model model\'s rating is less or equal to 5', () => {
-        modelMaxValidation.validate((err) => {
-            assert.exists(err.errors.rating, 'model model\'s rating is less or equal to 5');
+    it('requires real_annual_co2_saved_ton', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.real_annual_co2_saved_ton, 'project\'s real_annual_co2_saved_ton is required');
         });
     });
 });
 
 describe('Location model require validators are set', () => {
-    it('Location model requires name', () => {
-        locationEmpty.validate((err) => {
-            assert.exists(err.errors.name, 'location model requires name');
-        });
-    });
-
-    it('Location model requires city', () => {
+    it('requires city', () => {
         locationEmpty.validate((err) => {
             assert.exists(err.errors.city, 'location model requires city');
         });
     });
 
-    it('Location model requires country', () => {
+    it('requires country', () => {
         locationEmpty.validate((err) => {
             assert.exists(err.errors.country, 'location model requires country');
+        });
+    });
+
+    it('requires continent', () => {
+        locationEmpty.validate((err) => {
+            assert.exists(err.errors.continent, 'location model requires continent');
         });
     });
 });
 
 describe('Owner model require validators are set', () => {
-    it('Owner model requires name', () => {
+    it('requires name', () => {
         ownerEmpty.validate((err) => {
             assert.exists(err.errors.name, 'owner model requires name');
         });
     });
 
-    it('Owner model requires contact', () => {
+    it('requires contact', () => {
         ownerEmpty.validate((err) => {
             assert.exists(err.errors.contact, 'owner model requires contact');
         });
     });
 
-    it('Owner model requires rating', () => {
+    it('requires rating', () => {
         ownerEmpty.validate((err) => {
             assert.exists(err.errors.rating, 'owner model requires rating');
         });
     });
 
-    it('Owner model\'s rating is greater than 0', () => {
+    it('rating is greater than 0', () => {
         ownerMinValidation.validate((err) => {
             assert.exists(err.errors.rating, 'owner model\'s rating is greater than 0');
         });
     });
 
-    it('Owner model\'s rating is less or equal to 0', () => {
+    it('rating is less or equal to 5', () => {
         ownerMaxValidation.validate((err) => {
-            assert.exists(err.errors.rating, 'owner model\'s rating is less or equal to 0');
+            assert.exists(err.errors.rating, 'owner model\'s rating is less or equal to 5');
         });
     });
 
-    it('Owner model requires password', () => {
+    it('requires password', () => {
         ownerEmpty.validate((err) => {
             assert.exists(err.errors.password, 'owner model requires password');
         });
     });
 
-    it('Owner model\'s password has at least 8 characters', () => {
+    it('password has at least 8 characters', () => {
         ownerMinValidation.validate((err) => {
             assert.exists(err.errors.password, 'owner model\'s password has at least 8 characters');
         });

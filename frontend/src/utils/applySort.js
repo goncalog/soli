@@ -2,20 +2,20 @@ export default function applySort(filteredEVs, sortState) {
     const sortOption = sortState.options.filter((option) => option.checked)[0];
 
     switch(sortOption.name) {
-        case 'Lowest Price':
-            filteredEVs.sort((a, b) => a.price_per_day - b.price_per_day);
+        case 'Highest Return':
+            filteredEVs.sort((a, b) => b.estimated_annual_return_percent - a.estimated_annual_return_percent);
             break;
 
-        case 'Highest Price':
-            filteredEVs.sort((a, b) => b.price_per_day - a.price_per_day);
+        case 'Smallest Size':
+            filteredEVs.sort((a, b) => a.size_kw - b.size_kw);
             break;
 
-        case 'Lowest Mileage':
-            filteredEVs.sort((a, b) => a.mileage - b.mileage);
+        case 'Largest Size':
+            filteredEVs.sort((a, b) => b.size_kw - a.size_kw);
             break;
 
-        case 'Highest Range':
-            filteredEVs.sort((a, b) => b.model.charging.range_miles - a.model.charging.range_miles);
+        case 'Highest CO2 Savings':
+            filteredEVs.sort((a, b) => b.estimated_total_co2_saved_ton - a.estimated_total_co2_saved_ton);
             break;
 
         default:

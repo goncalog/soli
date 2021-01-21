@@ -34,205 +34,100 @@ describe('Routes testing', function () {
         return request(app)
             .get('/content')
             .expect('Content-type', /json/)
-            .expect({ title: 'Fully Electric' })
+            .expect({ title: 'Soli' })
             .expect(200)
     });
 
-    it('all evs route works', () => {
+    it('all projects route works', () => {
         return request(app)
-            .get('/content/evs')
+            .get('/content/projects')
             .expect('Content-type', /json/)
             .expect(hasTitle)
-            .expect(hasEvs)
-            .expect(isEv)
+            .expect(hasProjects)
+            .expect(isProject)
             .expect(200)
         
         function hasTitle(res) {
-            if (!(res.body.title === 'List of all EVs')) {
+            if (!(res.body.title === 'List of all Projects')) {
                 throw new Error("Wrong title");  
             } 
         }
 
-        function hasEvs(res) {
-            if (!(Object.keys(res.body.evs).length === 12)) {
-                throw new Error("Doesn\'t have all the db evs");
+        function hasProjects(res) {
+            if (!(Object.keys(res.body.projects).length === 4)) {
+                throw new Error("Doesn\'t have all the db projects");
             }
         }
 
-        function isEv(res) {
-            for (let key in res.body.evs) {
-                if (!(Object.keys(res.body.evs[key]).length === 20)) {
-                    throw new Error("Not an instance of EV");
+        function isProject(res) {
+            for (let key in res.body.projects) {
+                if (!(Object.keys(res.body.projects[key]).length === 21)) {
+                    throw new Error("Not an instance of Project");
                 }
             }
         }
     });
 
-    it('unique ev route works', () => {
+    it('unique project route works', () => {
         return request(app)
-            .get(`/content/evs`)
+            .get(`/content/projects`)
             .expect('Content-type', /json/)
             .expect(200)
             .then((res) => {
-                let keys = Object.keys(res.body.evs);
-                let id = res.body.evs[keys[0]]._id;
+                let keys = Object.keys(res.body.projects);
+                let id = res.body.projects[keys[0]]._id;
 
                 return request(app)
-                .get(`/content/ev/${id}`)
+                .get(`/content/project/${id}`)
                 .expect('Content-type', /json/)
                 .expect(hasTitle)
-                .expect(isEv)
+                .expect(isProject)
                 .expect(200)
             });
 
             function hasTitle(res) {
-                if (!(res.body.title === `Unique EV with id ${res.body.ev._id}`)) {
+                if (!(res.body.title === `Unique Project with id ${res.body.project._id}`)) {
                     throw new Error("Wrong title");  
                 } 
             }
     
-            function isEv(res) {
-                if (!(Object.keys(res.body.ev).length === 20)) {
-                    throw new Error("Not an instance of EV");
+            function isProject(res) {
+                if (!(Object.keys(res.body.project).length === 21)) {
+                    throw new Error("Not an instance of Project");
                 }
             }
     });
 
-    it('route to get data to create new ev works', () => {
+    it('route to get data to create new project works', () => {
         return request(app)
-            .get('/content/ev/create')
+            .get('/content/project/create')
             .expect('Content-type', /json/)
-            .expect({ title: 'Data to create new EV' })
+            .expect({ title: 'Data to create new Project' })
             .expect(200)
     });
 
-    it('route to get data to update ev works', () => {
+    it('route to get data to update project works', () => {
         return request(app)
-            .get('/content/owner/xpto/ev/12345/update')
+            .get('/content/owner/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
     });
     
-    it('route to update ev works', () => {
+    it('route to update project works', () => {
         return request(app)
-            .put('/content/owner/xpto/ev/12345/update')
+            .put('/content/owner/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
     });
 
-    it('route to delete ev works', () => {
+    it('route to delete project works', () => {
         return request(app)
-            .delete('/content/owner/xpto/ev/12345/delete')
+            .delete('/content/owner/xpto/project/12345/delete')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
-    });
-
-    it('make route works (1)', () => {
-        return request(app)
-            .get('/content/make/12345')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Make with id 12345' })
-            .expect(200)
-    });
-
-    it('make route works (2)', () => {
-        return request(app)
-            .get('/content/make/678910')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Make with id 678910' })
-            .expect(200)
-    });
-
-    it('all makes route works', () => {
-        return request(app)
-            .get('/content/makes')
-            .expect('Content-type', /json/)
-            .expect(hasTitle)
-            .expect(hasMakes)
-            .expect(isMake)
-            .expect(200)
-        
-        function hasTitle(res) {
-            if (!(res.body.title === 'List of all makes')) {
-                throw new Error("Wrong title");  
-            } 
-        }
-
-        function hasMakes(res) {
-            if (!(Object.keys(res.body.makes).length === 12)) {
-                throw new Error("Doesn\'t have all the db makes");
-            }
-        }
-
-        function isMake(res) {
-            for (let key in res.body.makes) {
-                if (!(Object.keys(res.body.makes[key]).length === 3)) {
-                    throw new Error("Not an instance of Make");
-                }
-            }
-        }
-    });
-
-    it('route for getting a makes\'s list of models works', () => {
-        return request(app)
-            .get('/content/make/5f80744b1a698848220d9e1e/models')
-            .expect('Content-type', /json/)
-            // The ids from makes created at test time isn't accessible, so it returns
-            // an empty models array
-            .expect({ 
-                title: 'List of models from make with id 5f80744b1a698848220d9e1e', 
-                models: [],
-            })
-            .expect(200)
-    });
-
-    it('model route works (1)', () => {
-        return request(app)
-            .get('/content/model/12345')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Model with id 12345' })
-            .expect(200)
-    });
-
-    it('model route works (2)', () => {
-        return request(app)
-            .get('/content/model/678910')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Model with id 678910' })
-            .expect(200)
-    });
-
-    it('all models route works', () => {
-        return request(app)
-            .get('/content/models')
-            .expect('Content-type', /json/)
-            .expect(hasTitle)
-            .expect(hasModels)
-            .expect(isModel)
-            .expect(200)
-        
-        function hasTitle(res) {
-            if (!(res.body.title === 'List of all models')) {
-                throw new Error("Wrong title");  
-            } 
-        }
-
-        function hasModels(res) {
-            if (!(Object.keys(res.body.models).length === 13)) {
-                throw new Error("Doesn\'t have all the db models");
-            }
-        }
-
-        function isModel(res) {
-            for (let key in res.body.models) {
-                if (![7,8].includes((Object.keys(res.body.models[key]).length))) {
-                    throw new Error("Not an instance of Model");
-                }
-            }
-        }
     });
 
     it('all locations route works', () => {
@@ -251,7 +146,7 @@ describe('Routes testing', function () {
         }
 
         function hasLocations(res) {
-            if (!(Object.keys(res.body.locations).length === 12)) {
+            if (!(Object.keys(res.body.locations).length === 5)) {
                 throw new Error("Doesn\'t have all the db locations");
             }
         }
@@ -299,9 +194,9 @@ describe('Routes testing', function () {
             .expect(200)
     });
 
-    it('route for owner\'s evs works', () => {
+    it('route for owner\'s projects works', () => {
         return request(app)
-            .get('/content/owner/evs')
+            .get('/content/owner/projects')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
@@ -315,15 +210,15 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
-    it('route for getting a owner\'s list of evs for sale works', () => {
+    it('route for getting a owner\'s list of projects for sale works', () => {
         return request(app)
-            .get('/content/owner/5f80744b1a698848220d9e1e/evs')
+            .get('/content/owner/5f80744b1a698848220d9e1e/projects')
             .expect('Content-type', /json/)
             // The ids from owners created at test time isn't accessible, so it returns
-            // an empty evs array
+            // an empty projects array
             .expect({ 
-                title: 'List of EVs for sale from owner with id 5f80744b1a698848220d9e1e', 
-                evs: [],
+                title: 'List of Projects from owner with id 5f80744b1a698848220d9e1e', 
+                projects: [],
             })
             .expect(200)
     });

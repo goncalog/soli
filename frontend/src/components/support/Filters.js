@@ -16,40 +16,40 @@ export default function Filters(props) {
 
     return (
         <div className="filters">
-            <DropDown 
-                property={props.make.property}
-                title={props.make.title}
+            <DropDown
+                type="minMax" 
+                property={props.return.property}
+                title={props.return.title}
                 onClick={handleClick}
-                options={props.make.options}
-                visibility={props.visibility.make}
+                visibility={props.visibility.return}
+                min={props.return.min}
+                max={props.return.max}
+                onTextChange={handleTextChange}
+            />
+            <DropDown 
+                property={props.location.property}
+                title={props.location.title}
+                onClick={handleClick}
+                options={props.location.options}
+                visibility={props.visibility.location}
                 onOptionChange={handleOptionChange}
             />
             <DropDown
                 type="minMax" 
-                property={props.price.property}
-                title={props.price.title}
+                property={props.size.property}
+                title={props.size.title}
                 onClick={handleClick}
-                visibility={props.visibility.price}
-                min={props.price.min}
-                max={props.price.max}
-                onTextChange={handleTextChange}
-            />
-            <DropDown
-                type="minMax" 
-                property={props.range.property}
-                title={props.range.title}
-                onClick={handleClick}
-                visibility={props.visibility.range}
-                min={props.range.min}
-                max={props.range.max}
+                visibility={props.visibility.size}
+                min={props.size.min}
+                max={props.size.max}
                 onTextChange={handleTextChange}
             />
             <DropDown 
-                property={props.included.property}
-                title={props.included.title}
+                property={props.status.property}
+                title={props.status.title}
                 onClick={handleClick}
-                options={props.included.options}
-                visibility={props.visibility.included}
+                options={props.status.options}
+                visibility={props.visibility.status}
                 onOptionChange={handleOptionChange}
             />
             <DropDown

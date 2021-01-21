@@ -24,10 +24,10 @@ describe('Filters', () => {
     // if it calls filters, a new Filters will be created with the current props.
     beforeEach(() => {
         props = {
-            make: "Text to test make property",
-            price: "Text to test price property",
-            range: "Text to test range property",
-            included: "Text to test included property",
+            return: "Text to test return property",
+            location: "Text to test location property",
+            size: "Text to test size property",
+            status: "Text to test status property",
             sort: "Text to test sort property",
             visibility: "Text to test visibility property",
             onClick: mockFunction,
@@ -51,7 +51,7 @@ describe('Filters', () => {
             expect(mockFunction).toHaveBeenCalled();
             expect(Object.keys(node.props())).toContain('visibility');
 
-            if ([1,2].includes(index)) {
+            if ([0,2].includes(index)) {
                 expect(Object.keys(node.props())).toContain('type');
                 expect(Object.keys(node.props())).toContain('min');
                 expect(Object.keys(node.props())).toContain('max');

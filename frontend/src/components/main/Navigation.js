@@ -34,11 +34,11 @@ function Navigation(props) {
 
                             <Nav.Item 
                                 className={`${
-                                    props.location.pathname === "/evs" ? "active" : "" 
+                                    props.location.pathname === "/projects" ? "active" : "" 
                                 }`}
                             >
                                 <Link 
-                                    className="nav-link" to="/evs" onClick={() => setExpanded(false)}
+                                    className="nav-link" to="/projects" onClick={() => setExpanded(false)}
                                 >
                                     Projects
                                 </Link>

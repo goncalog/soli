@@ -20,7 +20,7 @@ export default function CheckBox(props) {
                                 onChange={handleChange}
                             >
                             </input>
-                            {`${item.name ? item.name : item.city}`}
+                            {`${item.name ? item.name : item.country}`}
                         </label>
                     </div>
                 );

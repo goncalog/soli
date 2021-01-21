@@ -1,5 +1,5 @@
 const Owner = require('../models/owner');
-const EV = require('../models/ev');
+const Project = require('../models/project');
 
 const validator = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -90,9 +90,9 @@ exports.logOut = (req, res, next) => {
     res.json({ title: `Owner logged out` });
 }
 
-// GET request for list of owner's evs
-exports.getEvs = (req, res, next) => {
-    res.json({ title: `List of ${req.name}'s EVs` });
+// GET request for list of owner's projects
+exports.getProjects = (req, res, next) => {
+    res.json({ title: `List of ${req.name}'s Projects` });
 }
 
 // GET request to check log in status
@@ -100,30 +100,30 @@ exports.checkAuth = (req, res, next) => {
     res.json({ title: `User is logged in`, userId: req.user._id });
 }
 
-// GET request to get a owner's list of evs for sale
-exports.getOwnerEvs = (req, res, next) => {
-    EV.find({ owner: { _id: req.params.id }  })
+// GET request to get a owner's list of projects
+exports.getOwnerProjects = (req, res, next) => {
+    Project.find({ owner: { _id: req.params.id }  })
         .populate('location')
         .populate('make')
         .populate('model')
         .populate('owner')
-        .exec(function (err, evs) {
+        .exec(function (err, projects) {
             if (err) { return next(err); }
 
             // Successful, so send data
-            res.json({ title: `List of EVs for sale from owner with id ${req.params.id}`, evs: evs });
+            res.json({ title: `List of Projects from owner with id ${req.params.id}`, projects: projects });
         });
 }
 
-// POST request to create new ev
-exports.postCreateEv = [
+// POST request to create new project
+exports.postCreateProject = [
     // Mongoose and the backend already validates the data, so validation isn't repeat it here 
     // (although triple redundancy could make sense)
     // Removed fields sanitization due to resulting bugs when passing arrays and/or urls 
 
     // Process request after sanitization.
     (req, res, next) => {
-        const evDetail = { 
+        const projectDetail = { 
             make: req.body.make, 
             model: req.body.model,
             year: req.body.year,
@@ -146,33 +146,33 @@ exports.postCreateEv = [
             pco_license: req.body.pcoLicense, 
         }
 
-        const ev = new EV(evDetail);
-        ev.save(err => {
+        const project = new Project(projectDetail);
+        project.save(err => {
             if (err) { return next(err); }
 
             // Successful
-            return res.json({ title: `Created new EV ${ev._id}`, userId: req.user._id });                        
+            return res.json({ title: `Created new Project ${project._id}`, userId: req.user._id });                        
         });
     }
 ];
 
-// GET request to update ev
-exports.getUpdateEv = (req, res, next) => {
-    EV.findById(req.params.id)
+// GET request to update project
+exports.getUpdateProject = (req, res, next) => {
+    Project.findById(req.params.id)
         .populate('location')
         .populate('make')
         .populate('model')
         .populate('owner')
-        .exec(function (err, ev) {
+        .exec(function (err, project) {
             if (err) { return next(err); }
 
-            res.json({ title: `Data to update EV with id ${req.params.id}`, ev: ev });
+            res.json({ title: `Data to update Project with id ${req.params.id}`, project: project });
         });
 }
 
-// PUT request to update ev
-exports.putUpdateEv = (req, res, next) => {
-    const evDetail = { 
+// PUT request to update project
+exports.putUpdateProject = (req, res, next) => {
+    const projectDetail = { 
         make: req.body.make, 
         model: req.body.model,
         year: req.body.year,
@@ -195,19 +195,19 @@ exports.putUpdateEv = (req, res, next) => {
         pco_license: req.body.pcoLicense,
     }
 
-    EV.findByIdAndUpdate(req.params.id, evDetail, (err) => {
+    Project.findByIdAndUpdate(req.params.id, projectDetail, (err) => {
         if (err) { return next(err); }
 
-        res.json({ title: `Updating EV with id ${req.params.id}`, userId: req.user._id });
+        res.json({ title: `Updating Project with id ${req.params.id}`, userId: req.user._id });
     });
 }
 
-// DELETE request to delete ev
-exports.deleteEv = (req, res, next) => {
-    EV.findByIdAndDelete(req.params.id, (err) => {
+// DELETE request to delete project
+exports.deleteProject = (req, res, next) => {
+    Project.findByIdAndDelete(req.params.id, (err) => {
         if (err) { return next(err); }
 
-        res.json({ title: `Deleted EV with id ${req.params.id}`, userId: req.user._id });
+        res.json({ title: `Deleted Project with id ${req.params.id}`, userId: req.user._id });
     });
 }
 

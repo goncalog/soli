@@ -1,37 +1,37 @@
 import applyFilters from '../../utils/applyFilters';
 
 const state = {
-    evs: [
-        { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 40, model: { charging: { range_miles: 100 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, model: { charging: { range_miles: 500 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 40, model: { charging: { range_miles: 200 }}, included_extras: ['A/C'] },
-        { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 40, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 40, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-        { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 45, model: { charging: { range_miles: 200 }}, included_extras: ['Insurance'] },
+    projects: [
+        { _id: '78123', location: { _id: '67890', country: 'UK' }, size_kw: 50, estimated_annual_return_percent: 300, status: 'Producing' },
+        { _id: '12345', location: { _id: '67890', country: 'UK' }, size_kw: 30, estimated_annual_return_percent: 300, status: 'Producing' },
+        { _id: '23456', location: { _id: '67890', country: 'UK' }, size_kw: 80, estimated_annual_return_percent: 300, status: 'Producing' },
+        { _id: '78912', location: { _id: '67890', country: 'UK' }, size_kw: 40, estimated_annual_return_percent: 100, status: 'Producing' },
+        { _id: '68123', location: { _id: '67890', country: 'UK' }, size_kw: 50, estimated_annual_return_percent: 500, status: 'Producing' },
+        { _id: '68912', location: { _id: '67890', country: 'UK' }, size_kw: 40, estimated_annual_return_percent: 200, status: 'Planning' },
+        { _id: '34567', location: { _id: '678901', country: 'Belgium' }, size_kw: 40, estimated_annual_return_percent: 300, status: 'Producing' },
+        { _id: '45678', location: { _id: '678902', country: 'Portugal' }, size_kw: 40, estimated_annual_return_percent: 300, status: 'Producing' },
+        { _id: '56789', location: { _id: '678903', country: 'South Africa' }, size_kw: 45, estimated_annual_return_percent: 200, status: 'Producing' },
     ],
-    make: { 
+    location: { 
         options: [
-            { _id: '67890', name: 'Tesla', checked: true },
-            { _id: '678901', name: 'Renault', checked: false },
-            { _id: '678902', name: 'Nissan', checked: false },
-            { _id: '678903', name: 'Jaguar', checked: true },
+            { _id: '67890', country: 'UK', checked: true },
+            { _id: '678901', country: 'Belgium', checked: false },
+            { _id: '678902', country: 'Portugal', checked: false },
+            { _id: '678903', country: 'South Africa', checked: true },
         ]
     },
-    price: { min: '35', max: '60' },
-    range: { min: '150', max: '400' },
-    included: { options: [{ name: 'Insurance', checked: true }] },
+    size: { min: '35', max: '60' },
+    return: { min: '150', max: '400' },
+    status: { options: [{ name: 'Producing', checked: true }] },
 };
 
 const filteredEvs =  [
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, model: { charging: { range_miles: 300 }}, included_extras: ['A/C', 'Insurance'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 45, model: { charging: { range_miles: 200 }}, included_extras: ['Insurance'] },
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, size_kw: 50, estimated_annual_return_percent: 300, status: 'Producing' },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, size_kw: 45, estimated_annual_return_percent: 200, status: 'Producing' },
 ];
 
 describe('applyFilters', () => {
-    it('returns filtered EVs correctly', () => {
+    it('returns filtered Projects correctly', () => {
         expect(applyFilters(state)).toEqual(filteredEvs);
     });
 });

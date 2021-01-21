@@ -1,116 +1,116 @@
 import applySort from '../../utils/applySort';
 
-const filteredEvs = [
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 60, mileage: 72000, model: { charging: { range_miles: 200 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, mileage: 70000, model: { charging: { range_miles: 300 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, mileage: 76000, model: { charging: { range_miles: 400 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '91234', make: { _id: '67890', name: 'Tesla' }, price_per_day: 42, mileage: 20000, model: { charging: { range_miles: 350 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '89123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 41, mileage: 121000, model: { charging: { range_miles: 320 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 44, mileage: 77000, model: { charging: { range_miles: 100 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, mileage: 71000, model: { charging: { range_miles: 500 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 43, mileage: 75000, model: { charging: { range_miles: 250 }}, equipment_and_options: ['A/C'] },
-    { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 49, mileage: 120000, model: { charging: { range_miles: 600 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 48, mileage: 125000, model: { charging: { range_miles: 340 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 46, mileage: 60000, model: { charging: { range_miles: 210 }}, equipment_and_options: ['FSD'] },
+const filtered = [
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 60, size_kw: 72000, estimated_total_co2_saved_ton: 200, },
+    { _id: '12345', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 30, size_kw: 70000, estimated_total_co2_saved_ton: 300, },
+    { _id: '23456', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 80, size_kw: 76000, estimated_total_co2_saved_ton: 400, },
+    { _id: '91234', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 42, size_kw: 20000, estimated_total_co2_saved_ton: 350, },
+    { _id: '89123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 41, size_kw: 121000, estimated_total_co2_saved_ton: 320, },
+    { _id: '78912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 44, size_kw: 77000, estimated_total_co2_saved_ton: 100, },
+    { _id: '68123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 50, size_kw: 71000, estimated_total_co2_saved_ton: 500, },
+    { _id: '68912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 43, size_kw: 75000, estimated_total_co2_saved_ton: 250, },
+    { _id: '34567', location: { _id: '678901', country: 'Belgium' }, estimated_annual_return_percent: 49, size_kw: 120000, estimated_total_co2_saved_ton: 600, },
+    { _id: '45678', location: { _id: '678902', country: 'Portugal' }, estimated_annual_return_percent: 48, size_kw: 125000, estimated_total_co2_saved_ton: 340, },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, estimated_annual_return_percent: 46, size_kw: 60000, estimated_total_co2_saved_ton: 210, },
 ];
 
-const lowestPrice = {
+const highestReturn = {
     options: [
-        { name: 'Lowest Price', checked: true },
-        { name: 'Highest Price', checked: false }, 
-        { name: 'Lowest Mileage', checked: false }, 
-        { name: 'Highest Range', checked: false }, 
+        { name: 'Highest Return', checked: true },
+        { name: 'Smallest Size', checked: false }, 
+        { name: 'Largest Size', checked: false }, 
+        { name: 'Highest CO2 Savings', checked: false }, 
     ]
 };
 
-const lowestPriceSorted = [
-    { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, mileage: 70000, model: { charging: { range_miles: 300 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '89123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 41, mileage: 121000, model: { charging: { range_miles: 320 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '91234', make: { _id: '67890', name: 'Tesla' }, price_per_day: 42, mileage: 20000, model: { charging: { range_miles: 350 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 43, mileage: 75000, model: { charging: { range_miles: 250 }}, equipment_and_options: ['A/C'] },
-    { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 44, mileage: 77000, model: { charging: { range_miles: 100 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 46, mileage: 60000, model: { charging: { range_miles: 210 }}, equipment_and_options: ['FSD'] },
-    { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 48, mileage: 125000, model: { charging: { range_miles: 340 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 49, mileage: 120000, model: { charging: { range_miles: 600 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, mileage: 71000, model: { charging: { range_miles: 500 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 60, mileage: 72000, model: { charging: { range_miles: 200 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, mileage: 76000, model: { charging: { range_miles: 400 }}, equipment_and_options: ['A/C', 'FSD'] },
+const highestReturnSorted = [
+    { _id: '23456', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 80, size_kw: 76000, estimated_total_co2_saved_ton: 400, },
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 60, size_kw: 72000, estimated_total_co2_saved_ton: 200, },
+    { _id: '68123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 50, size_kw: 71000, estimated_total_co2_saved_ton: 500, },
+    { _id: '34567', location: { _id: '678901', country: 'Belgium' }, estimated_annual_return_percent: 49, size_kw: 120000, estimated_total_co2_saved_ton: 600, },
+    { _id: '45678', location: { _id: '678902', country: 'Portugal' }, estimated_annual_return_percent: 48, size_kw: 125000, estimated_total_co2_saved_ton: 340, },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, estimated_annual_return_percent: 46, size_kw: 60000, estimated_total_co2_saved_ton: 210, },
+    { _id: '78912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 44, size_kw: 77000, estimated_total_co2_saved_ton: 100, },
+    { _id: '68912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 43, size_kw: 75000, estimated_total_co2_saved_ton: 250, },
+    { _id: '91234', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 42, size_kw: 20000, estimated_total_co2_saved_ton: 350, },
+    { _id: '89123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 41, size_kw: 121000, estimated_total_co2_saved_ton: 320, },
+    { _id: '12345', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 30, size_kw: 70000, estimated_total_co2_saved_ton: 300, },
 ];
 
-const highestPrice = {
+const smallestSize = {
     options: [
-        { name: 'Lowest Price', checked: false },
-        { name: 'Highest Price', checked: true }, 
-        { name: 'Lowest Mileage', checked: false }, 
-        { name: 'Highest Range', checked: false }, 
+        { name: 'Highest Return', checked: false },
+        { name: 'Smallest Size', checked: true }, 
+        { name: 'Largest Size', checked: false }, 
+        { name: 'Highest CO2 Savings', checked: false },
     ]
 };
 
-const highestPriceSorted = [
-    { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, mileage: 76000, model: { charging: { range_miles: 400 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 60, mileage: 72000, model: { charging: { range_miles: 200 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, mileage: 71000, model: { charging: { range_miles: 500 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 49, mileage: 120000, model: { charging: { range_miles: 600 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 48, mileage: 125000, model: { charging: { range_miles: 340 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 46, mileage: 60000, model: { charging: { range_miles: 210 }}, equipment_and_options: ['FSD'] },
-    { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 44, mileage: 77000, model: { charging: { range_miles: 100 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 43, mileage: 75000, model: { charging: { range_miles: 250 }}, equipment_and_options: ['A/C'] },
-    { _id: '91234', make: { _id: '67890', name: 'Tesla' }, price_per_day: 42, mileage: 20000, model: { charging: { range_miles: 350 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '89123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 41, mileage: 121000, model: { charging: { range_miles: 320 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, mileage: 70000, model: { charging: { range_miles: 300 }}, equipment_and_options: ['A/C', 'FSD'] },
+const smallestSizeSorted = [
+    { _id: '91234', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 42, size_kw: 20000, estimated_total_co2_saved_ton: 350, },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, estimated_annual_return_percent: 46, size_kw: 60000, estimated_total_co2_saved_ton: 210, },
+    { _id: '12345', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 30, size_kw: 70000, estimated_total_co2_saved_ton: 300, },
+    { _id: '68123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 50, size_kw: 71000, estimated_total_co2_saved_ton: 500, },
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 60, size_kw: 72000, estimated_total_co2_saved_ton: 200, },
+    { _id: '68912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 43, size_kw: 75000, estimated_total_co2_saved_ton: 250, },
+    { _id: '23456', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 80, size_kw: 76000, estimated_total_co2_saved_ton: 400, },
+    { _id: '78912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 44, size_kw: 77000, estimated_total_co2_saved_ton: 100, },
+    { _id: '34567', location: { _id: '678901', country: 'Belgium' }, estimated_annual_return_percent: 49, size_kw: 120000, estimated_total_co2_saved_ton: 600, },
+    { _id: '89123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 41, size_kw: 121000, estimated_total_co2_saved_ton: 320, },
+    { _id: '45678', location: { _id: '678902', country: 'Portugal' }, estimated_annual_return_percent: 48, size_kw: 125000, estimated_total_co2_saved_ton: 340, },
 ];
 
-const lowestMileage = {
+const largestSize = {
     options: [
-        { name: 'Lowest Price', checked: false },
-        { name: 'Highest Price', checked: false  }, 
-        { name: 'Lowest Mileage', checked: true  }, 
-        { name: 'Highest Range', checked: false  }, 
+        { name: 'Highest Return', checked: false },
+        { name: 'Smallest Size', checked: false }, 
+        { name: 'Largest Size', checked: true }, 
+        { name: 'Highest CO2 Savings', checked: false },
     ]
 };
 
-const lowestMileageSorted = [
-    { _id: '91234', make: { _id: '67890', name: 'Tesla' }, price_per_day: 42, mileage: 20000, model: { charging: { range_miles: 350 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 46, mileage: 60000, model: { charging: { range_miles: 210 }}, equipment_and_options: ['FSD'] },
-    { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, mileage: 70000, model: { charging: { range_miles: 300 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, mileage: 71000, model: { charging: { range_miles: 500 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 60, mileage: 72000, model: { charging: { range_miles: 200 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 43, mileage: 75000, model: { charging: { range_miles: 250 }}, equipment_and_options: ['A/C'] },
-    { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, mileage: 76000, model: { charging: { range_miles: 400 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 44, mileage: 77000, model: { charging: { range_miles: 100 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 49, mileage: 120000, model: { charging: { range_miles: 600 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '89123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 41, mileage: 121000, model: { charging: { range_miles: 320 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 48, mileage: 125000, model: { charging: { range_miles: 340 }}, equipment_and_options: ['A/C', 'FSD'] },
+const largestSizeSorted = [
+    { _id: '45678', location: { _id: '678902', country: 'Portugal' }, estimated_annual_return_percent: 48, size_kw: 125000, estimated_total_co2_saved_ton: 340, },
+    { _id: '89123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 41, size_kw: 121000, estimated_total_co2_saved_ton: 320, },
+    { _id: '34567', location: { _id: '678901', country: 'Belgium' }, estimated_annual_return_percent: 49, size_kw: 120000, estimated_total_co2_saved_ton: 600, },
+    { _id: '78912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 44, size_kw: 77000, estimated_total_co2_saved_ton: 100, },
+    { _id: '23456', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 80, size_kw: 76000, estimated_total_co2_saved_ton: 400, },
+    { _id: '68912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 43, size_kw: 75000, estimated_total_co2_saved_ton: 250, },
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 60, size_kw: 72000, estimated_total_co2_saved_ton: 200, },
+    { _id: '68123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 50, size_kw: 71000, estimated_total_co2_saved_ton: 500, },
+    { _id: '12345', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 30, size_kw: 70000, estimated_total_co2_saved_ton: 300, },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, estimated_annual_return_percent: 46, size_kw: 60000, estimated_total_co2_saved_ton: 210, },
+    { _id: '91234', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 42, size_kw: 20000, estimated_total_co2_saved_ton: 350, },
 ];
 
-const highestRange = {
+const highestCo2Savings = {
     options: [
-        { name: 'Lowest Price', checked: false },
-        { name: 'Highest Price', checked: false  }, 
-        { name: 'Lowest Mileage', checked: false  }, 
-        { name: 'Highest Range', checked: true  }, 
+        { name: 'Highest Return', checked: false },
+        { name: 'Smallest Size', checked: false }, 
+        { name: 'Largest Size', checked: false }, 
+        { name: 'Highest CO2 Savings', checked: true },
     ]
 };
 
-const highestRangeSorted = [
-    { _id: '34567', make: { _id: '678901', name: 'Renault' }, price_per_day: 49, mileage: 120000, model: { charging: { range_miles: 600 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 50, mileage: 71000, model: { charging: { range_miles: 500 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '23456', make: { _id: '67890', name: 'Tesla' }, price_per_day: 80, mileage: 76000, model: { charging: { range_miles: 400 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '91234', make: { _id: '67890', name: 'Tesla' }, price_per_day: 42, mileage: 20000, model: { charging: { range_miles: 350 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '45678', make: { _id: '678902', name: 'Nissan' }, price_per_day: 48, mileage: 125000, model: { charging: { range_miles: 340 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '89123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 41, mileage: 121000, model: { charging: { range_miles: 320 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '12345', make: { _id: '67890', name: 'Tesla' }, price_per_day: 30, mileage: 70000, model: { charging: { range_miles: 300 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '68912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 43, mileage: 75000, model: { charging: { range_miles: 250 }}, equipment_and_options: ['A/C'] },
-    { _id: '56789', make: { _id: '678903', name: 'Jaguar' }, price_per_day: 46, mileage: 60000, model: { charging: { range_miles: 210 }}, equipment_and_options: ['FSD'] },
-    { _id: '78123', make: { _id: '67890', name: 'Tesla' }, price_per_day: 60, mileage: 72000, model: { charging: { range_miles: 200 }}, equipment_and_options: ['A/C', 'FSD'] },
-    { _id: '78912', make: { _id: '67890', name: 'Tesla' }, price_per_day: 44, mileage: 77000, model: { charging: { range_miles: 100 }}, equipment_and_options: ['A/C', 'FSD'] },
+const highestCo2SavingsSorted = [
+    { _id: '34567', location: { _id: '678901', country: 'Belgium' }, estimated_annual_return_percent: 49, size_kw: 120000, estimated_total_co2_saved_ton: 600, },
+    { _id: '68123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 50, size_kw: 71000, estimated_total_co2_saved_ton: 500, },
+    { _id: '23456', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 80, size_kw: 76000, estimated_total_co2_saved_ton: 400, },
+    { _id: '91234', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 42, size_kw: 20000, estimated_total_co2_saved_ton: 350, },
+    { _id: '45678', location: { _id: '678902', country: 'Portugal' }, estimated_annual_return_percent: 48, size_kw: 125000, estimated_total_co2_saved_ton: 340, },
+    { _id: '89123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 41, size_kw: 121000, estimated_total_co2_saved_ton: 320, },
+    { _id: '12345', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 30, size_kw: 70000, estimated_total_co2_saved_ton: 300, },
+    { _id: '68912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 43, size_kw: 75000, estimated_total_co2_saved_ton: 250, },
+    { _id: '56789', location: { _id: '678903', country: 'South Africa' }, estimated_annual_return_percent: 46, size_kw: 60000, estimated_total_co2_saved_ton: 210, },
+    { _id: '78123', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 60, size_kw: 72000, estimated_total_co2_saved_ton: 200, },
+    { _id: '78912', location: { _id: '67890', country: 'UK' }, estimated_annual_return_percent: 44, size_kw: 77000, estimated_total_co2_saved_ton: 100, },
 ];
 
 describe('applySort', () => {
-    it('returns EVs correctly sorted', () => {
-        expect(applySort(filteredEvs, lowestPrice)).toEqual(lowestPriceSorted);
-        expect(applySort(filteredEvs, highestPrice)).toEqual(highestPriceSorted);
-        expect(applySort(filteredEvs, lowestMileage)).toEqual(lowestMileageSorted);
-        expect(applySort(filteredEvs, highestRange)).toEqual(highestRangeSorted);
+    it('returns items correctly sorted', () => {
+        expect(applySort(filtered, highestReturn)).toEqual(highestReturnSorted);
+        expect(applySort(filtered, smallestSize)).toEqual(smallestSizeSorted);
+        expect(applySort(filtered, largestSize)).toEqual(largestSizeSorted);
+        expect(applySort(filtered, highestCo2Savings)).toEqual(highestCo2SavingsSorted);
     });
 });
