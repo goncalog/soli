@@ -224,7 +224,7 @@ function createDatabaseItems(mongooseConnection) {
                 projectCreate(
                     'Iago\'s Castle',
                     4.8,
-                    6.5,
+                    6500,
                     '€',
                     'Planning',
                     6.2,
