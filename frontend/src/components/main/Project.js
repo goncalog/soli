@@ -4,7 +4,6 @@ import Size from '../support/Size';
 import OwnerContact from '../support/OwnerContact';
 import Detail from '../support/Detail';
 import formatRating from '../../utils/formatRating';
-import formatMiles from '../../utils/formatMiles';
 import formatNumber from '../../utils/formatNumber';
 import getEvFeaturesArray from '../../utils/getEvFeaturesArray';
 import getImagePosForSlider from '../../utils/getImagePosForSlider';
@@ -105,7 +104,7 @@ export default class Project extends React.Component {
                         },
                         { 
                             name: 'Range',
-                            value: formatMiles(this.state.project.model.charging.range_miles),
+                            value: this.state.project.model.charging.range_miles,
                         },
                         { 
                             name: 'Year',

@@ -2,7 +2,6 @@ import React from 'react';
 import Filters from '../support/Filters';
 import ProjectsContainer from '../support/ProjectsContainer';
 import '../../css/Projects.css';
-import formatMiles from '../../utils/formatMiles';
 import formatNumber from '../../utils/formatNumber';
 import applyFilters from '../../utils/applyFilters';
 import applySort from '../../utils/applySort';
