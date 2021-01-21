@@ -6,6 +6,7 @@ import formatNumber from '../../utils/formatNumber';
 import applyFilters from '../../utils/applyFilters';
 import applySort from '../../utils/applySort';
 import sortString from '../../utils/sortString';
+import removeDuplicates from '../../utils/removeDuplicates';
 
 export default class Projects extends React.Component {
     constructor(props) {
@@ -85,7 +86,7 @@ export default class Projects extends React.Component {
                 .then((res) => res.json())
                 .then((res) => {
                     res.locations.forEach((location) => location['checked'] = false);
-                    this.setState({ location: { ...this.state.location, options: sortString(res.locations, 'country') }}); 
+                    this.setState({ location: { ...this.state.location, options: removeDuplicates(sortString(res.locations, 'country'), 'country') }}); 
                 })
         }
     }
