@@ -3,46 +3,46 @@ import MainHeadline from '../support/MainHeadline';
 import Input from '../support/Input';
 import Select from '../support/Select';
 import CallToActionButton from '../support/CallToActionButton';
-import AdditionalFeatures from '../support/AdditionalFeatures';
 import sortString from '../../utils/sortString';
+import removeDuplicates from '../../utils/removeDuplicates';
 import '../../css/Form.css';
 
 export default class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            make: '',
-            model: '',
-            price: '',
-            deposit: '',
-            minRentalPeriod: '',
-            includedExtra: '',
-            includedExtras: [],
-            year: '',
-            mileage: '',
+            name: '',
+            size: '',
+            totalCost: '',
+            totalCostCurrency: '',
+            status: '',
+            estimatedAnnualReturn: '',
             location: '',
             imageUrl: '',
             imageUrls: [],
-            equipmentAndOption: '',
-            equipmentAndOptions: [],
-            bodyStyle: '',
-            exteriorColour: '',
-            interiorColour: '',
-            seating: '',
-            vehicleIdentificationNumber: 'XPTO123456789XPTO', // Use a default value while focusing on PCO rental companies
-            fullVehicleInspection: '',
-            pcoLicense: '',
-            makes: [],
-            models: [],
+            estimatedTotalCo2Saved: '',
+            estimatedAnnualProduction: '',
+            paymentSchedule: '',
+            riskLevel: '',
+            yearStartProduction: '',
+            realAnnualProduction: '',
+            realAnnualProductions: [],
+            realAnnualPayment: '',
+            realAnnualPayments: [],
+            paymentsCurrency: '',
+            realAnnualReturn: '',
+            realAnnualReturns: [],
+            realAnnualCo2Saving: '',
+            realAnnualCo2Savings: [],
             locations: [],
-            makeSelected: false,
         }
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleAddImageUrlButtonClick = this.handleAddImageUrlButtonClick.bind(this);
-        this.handleAddEquimentAndOptionsButtonClick = this.handleAddEquimentAndOptionsButtonClick.bind(this);
-        this.handleAddIncludedExtrasButtonClick = this.handleAddIncludedExtrasButtonClick.bind(this);
+        this.handleAddRealAnnualProductionsButtonClick = this.handleAddRealAnnualProductionsButtonClick.bind(this);
+        this.handleAddRealAnnualPaymentsButtonClick = this.handleAddRealAnnualPaymentsButtonClick.bind(this);
+        this.handleAddRealAnnualReturnsButtonClick = this.handleAddRealAnnualReturnsButtonClick.bind(this);
+        this.handleAddRealAnnualCo2SavingsButtonClick = this.handleAddRealAnnualCo2SavingsButtonClick.bind(this);
         this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
-        this.handleMakeSelection = this.handleMakeSelection.bind(this);
     }
     
     handleTextChange(property, value) {
@@ -62,66 +62,87 @@ export default class Form extends React.Component {
         });
     }
 
-    handleAddEquimentAndOptionsButtonClick() {
-        if (this.state.equipmentAndOption === '') {
+    handleAddRealAnnualProductionsButtonClick() {
+        if (this.state.realAnnualProduction === '') {
             alert('Please provide a valid input.');
             return;
         }
 
         this.setState((state) => {
-            let array = state.equipmentAndOptions.slice(); // Creating a new copy
-            array.push({ name: state.equipmentAndOption });
-            return { equipmentAndOptions: array, equipmentAndOption: '' };
+            let array = state.realAnnualProductions.slice(); // Creating a new copy
+            array.push(state.realAnnualProduction);
+            return { realAnnualProductions: array, realAnnualProduction: '' };
         });
     }
 
-    handleAddIncludedExtrasButtonClick() {
-        if (this.state.includedExtra === '') {
+    handleAddRealAnnualPaymentsButtonClick() {
+        if (this.state.realAnnualPayment === '') {
             alert('Please provide a valid input.');
             return;
         }
 
         this.setState((state) => {
-            let array = state.includedExtras.slice(); // Creating a new copy
-            array.push({ name: state.includedExtra });
-            return { includedExtras: array, includedExtra: '' };
+            let array = state.realAnnualPayments.slice(); // Creating a new copy
+            array.push(state.realAnnualPayment);
+            return { realAnnualPayments: array, realAnnualPayment: '' };
+        });
+    }
+
+    handleAddRealAnnualReturnsButtonClick() {
+        if (this.state.realAnnualReturn === '') {
+            alert('Please provide a valid input.');
+            return;
+        }
+
+        this.setState((state) => {
+            let array = state.realAnnualReturns.slice(); // Creating a new copy
+            array.push(state.realAnnualReturn);
+            return { realAnnualReturns: array, realAnnualReturn: '' };
+        });
+    }
+
+    handleAddRealAnnualCo2SavingsButtonClick() {
+        if (this.state.realAnnualCo2Saving === '') {
+            alert('Please provide a valid input.');
+            return;
+        }
+
+        this.setState((state) => {
+            let array = state.realAnnualCo2Savings.slice(); // Creating a new copy
+            array.push(state.realAnnualCo2Saving);
+            return { realAnnualCo2Savings: array, realAnnualCo2Saving: '' };
         });
     }
 
     handleSaveButtonClick() {
         // Validation
-        if (this.state.make === '') {
-            alert('Please provide a valid make.');
+        if (this.state.name === '') {
+            alert('Please provide a valid name.');
             return;
         }
 
-        if (this.state.model === '') {
-            alert('Please provide a valid model.');
+        if (this.state.size < 0 || this.state.size === '' || isNaN(Number(this.state.size))) {
+            alert('Please provide a valid size.');
             return;
         }
 
-        if (this.state.price < 0 || this.state.price === '' || isNaN(Number(this.state.price))) {
-            alert('Please provide a valid price.');
+        if (this.state.totalCost < 0 || this.state.totalCost === '' || isNaN(Number(this.state.totalCost))) {
+            alert('Please provide a valid total cost.');
             return;
         }
 
-        if (this.state.deposit < 0 || this.state.deposit === '' || isNaN(Number(this.state.deposit))) {
-            alert('Please provide a valid deposit.');
+        if (this.state.totalCostCurrency === '') {
+            alert('Please provide a valid total cost currency.');
             return;
         }
 
-        if (this.state.minRentalPeriod === '') {
-            alert('Please provide a valid minimum rental period.');
+        if (this.state.status === '') {
+            alert('Please provide a valid status.');
             return;
         }
 
-        if (this.state.year < 1900 || this.state.year === '' || isNaN(Number(this.state.year))) {
-            alert('Please provide a valid year.');
-            return;
-        }
-
-        if (this.state.mileage < 0 || this.state.mileage === '' || isNaN(Number(this.state.mileage))) {
-            alert('Please provide a valid mileage.');
+        if (this.state.estimatedAnnualReturn < 0 || this.state.estimatedAnnualReturn === '' || isNaN(Number(this.state.estimatedAnnualReturn))) {
+            alert('Please provide a valid estimated annual return.');
             return;
         }
 
@@ -135,64 +156,62 @@ export default class Form extends React.Component {
             return;
         }
 
-        if (this.state.exteriorColour === '') {
-            alert('Please provide a valid exterior colour.');
+        if (this.state.estimatedTotalCo2Saved < 0 || this.state.estimatedTotalCo2Saved === '' || isNaN(Number(this.state.estimatedTotalCo2Saved))) {
+            alert('Please provide a valid estimated total CO2 saved.');
             return;
         }
 
-        if (this.state.interiorColour === '') {
-            alert('Please provide a valid interior colour.');
+        if (this.state.estimatedAnnualProduction < 0 || this.state.estimatedAnnualProduction === '' || isNaN(Number(this.state.estimatedAnnualProduction))) {
+            alert('Please provide a valid estimated annual production.');
             return;
         }
 
-        if (this.state.seating <= 0 || isNaN(Number(this.state.seating))) {
-            alert('Please provide a valid seating.');
+        if (this.state.paymentSchedule === '') {
+            alert('Please provide a valid payment schedule.');
             return;
         }
 
-        if (this.state.vehicleIdentificationNumber === '' || 
-                this.state.vehicleIdentificationNumber.length !== 17) {
-            alert('Please provide a valid VIN.');
+        if (this.state.riskLevel === '') {
+            alert('Please provide a valid risk level.');
             return;
         }
 
-        if (this.state.fullVehicleInspection === '') {
-            alert('Please provide the vehicle inspection status.');
+        if (this.state.yearStartProduction < 2000 || this.state.yearStartProduction > new Date().getFullYear 
+                || this.state.yearStartProduction === '' || isNaN(Number(this.state.yearStartProduction))) {
+            alert('Please provide a valid year of production start.');
             return;
-        } 
+        }
 
-        if (this.state.pcoLicense === '') {
-            alert('Please provide the PCO license status.');
+        if (this.state.paymentsCurrency === '') {
+            alert('Please provide a valid payments currency.');
             return;
-        } 
+        }
 
         // Send data to backend
         let url = (process.env.NODE_ENV === 'production') 
             ? `/content${this.props.match.url}`
             : `${process.env.REACT_APP_SERVER_URL}/content${this.props.match.url}`;
         
-        const currentDate = new Date();
         let data = {
-            make: this.state.make,
-            model: this.state.model,
-            price: this.state.price,
-            deposit: this.state.deposit,
-            minRentalPeriod: this.state.minRentalPeriod,
-            includedExtras: this.state.includedExtras.map((item) => item.name),
-            year: this.state.year,
-            mileage: this.state.mileage,
+            name: this.state.name,
+            size: this.state.size,
+            totalCost: this.state.totalCost,
+            totalCostCurrency: this.state.totalCostCurrency,
+            status: this.state.status,
+            estimatedAnnualReturn: this.state.estimatedAnnualReturn,
             location: this.state.location,
-            imageUrls: this.state.imageUrls,
             // Not sending the owner because the backend (Passport) already has this info
-            listDate: currentDate,
-            equipmentAndOptions: this.state.equipmentAndOptions.map((item) => item.name),
-            bodyStyle: this.state.bodyStyle,
-            exteriorColour: this.state.exteriorColour,
-            interiorColour: this.state.interiorColour,
-            seating: this.state.seating,
-            vehicleIdentificationNumber: this.state.vehicleIdentificationNumber,
-            fullVehicleInspection: this.state.fullVehicleInspection,
-            pcoLicense: this.state.pcoLicense,
+            imageUrls: this.state.imageUrls,
+            estimatedTotalCo2Saved: this.state.estimatedTotalCo2Saved,
+            estimatedAnnualProduction: this.state.estimatedAnnualProduction,
+            paymentSchedule: this.state.paymentSchedule,
+            riskLevel: this.state.riskLevel,
+            yearStartProduction: this.state.yearStartProduction,
+            realAnnualProductions: this.state.realAnnualProductions,
+            realAnnualPayments: this.state.realAnnualPayments,          
+            paymentsCurrency: this.state.paymentsCurrency,          
+            realAnnualReturns: this.state.realAnnualReturns,          
+            realAnnualCo2Savings: this.state.realAnnualCo2Savings,          
         };
 
         fetch(url, {
@@ -221,37 +240,10 @@ export default class Form extends React.Component {
             });        
     }
 
-    handleMakeSelection(property, value) {
-        // Fetch models of selected make
-        if (value !== "") {
-            let url = (process.env.NODE_ENV === 'production') 
-                    ? `/content/make/${value}/models`
-                    : `${process.env.REACT_APP_SERVER_URL}/content/make/${value}/models`;
-
-            fetch(url)
-                .then((res) => res.json())
-                .then((res) => { this.setState({ models: res.models }) })
-        }
-
-        (value === "")
-                ? this.setState({ [property]: value,  makeSelected: false})
-                : this.setState({ [property]: value,  makeSelected: true})
-    }
-
     componentDidMount() {
         window.scrollTo(0, 0);
 
-        // Fetch makes and locations
-        if (this.state.makes.length === 0) {
-            let url = (process.env.NODE_ENV === 'production') 
-                    ? `/content/makes` 
-                    : `${process.env.REACT_APP_SERVER_URL}/content/makes`;
-
-            fetch(url)
-                .then((res) => res.json())
-                .then((res) => { this.setState({ makes: sortString(res.makes, 'name') }) })
-        }
-
+        // Fetch locations
         if (this.state.locations.length === 0) {
             let url = (process.env.NODE_ENV === 'production') 
                     ? `/content/locations` 
@@ -259,7 +251,7 @@ export default class Form extends React.Component {
 
             fetch(url)
                 .then((res) => res.json())
-                .then((res) => { this.setState({ locations: sortString(res.locations, 'name') }) })
+                .then((res) => { this.setState({ locations: removeDuplicates(sortString(res.locations, 'country'), 'country') }) })
         }
 
         // If this is the update page, load Project data
@@ -271,25 +263,26 @@ export default class Form extends React.Component {
             fetch(url, { credentials: 'include' })
                 .then((res) => res.json())
                 .then((res) => {
-                    this.handleMakeSelection('make', res.project.make._id);
                     this.setState({
-                        model: res.project.model._id,
-                        price: res.project.price_per_day,
-                        deposit: res.project.deposit,
-                        minRentalPeriod: res.project.min_rental_period,
-                        includedExtras: res.project.included_extras.map((item) => ({ name: item })),
-                        year: res.project.year,
-                        mileage: res.project.mileage,
-                        location: res.project.location._id,
-                        imageUrls: res.project.image_urls,
-                        equipmentAndOptions: res.project.equipment_and_options.map((item) => ({ name: item })),
-                        bodyStyle: res.project.exterior.body_style ? res.project.exterior.body_style : '',
-                        exteriorColour: res.project.exterior.colour,
-                        interiorColour: res.project.interior.colour,
-                        seating: res.project.interior.seating,
-                        vehicleIdentificationNumber: res.project.vehicle_identification_number,
-                        fullVehicleInspection: res.project.full_vehicle_inspection, 
-                        pcoLicense: res.project.pco_license, 
+                        name: res.name,
+                        size: res.size_kw,
+                        totalCost: res.total_cost,
+                        totalCostCurrency: res.total_cost_currency,
+                        status: res.status,
+                        estimatedAnnualReturn: res.estimated_annual_return_percent,
+                        location: res.location._id,
+                        // Not sending the owner because the backend (Passport) already has this info
+                        imageUrls: res.image_urls,
+                        estimatedTotalCo2Saved: res.estimated_total_co2_saved_ton,
+                        estimatedAnnualProduction: res.estimated_annual_production_kwh,
+                        paymentSchedule: res.payment_schedule,
+                        riskLevel: res.risk_level,
+                        yearStartProduction: res.year_start_production,
+                        realAnnualProductions: res.real_annual_production_kwh,
+                        realAnnualPayments: res.real_annual_payments,          
+                        paymentsCurrency: res.payments_currency,          
+                        realAnnualReturns: res.real_annual_return_percent,          
+                        realAnnualCo2Savings: res.real_annual_co2_saved_ton,                        
                     }); 
                 });
         }
@@ -297,79 +290,56 @@ export default class Form extends React.Component {
 
     render() {
         return (
-            <div className="project-form">
+            <div className="form">
                 <MainHeadline mainHeadline="Your Project" />
                 <CallToActionButton 
                     callToActionText="Save" 
                     onButtonClick={this.handleSaveButtonClick}
                 />
 
+                <Input 
+                    className="name"
+                    property="name"
+                    placeholder="Name" 
+                    text={this.state.name}
+                    onTextChange={this.handleTextChange}
+                />
+                <Input 
+                    className="size"
+                    property="size"
+                    placeholder="Size in kW" 
+                    text={this.state.size}
+                    onTextChange={this.handleTextChange}
+                />
+                <Input 
+                    className="total-cost"
+                    property="totalCost"
+                    placeholder="Total cost" 
+                    text={this.state.totalCost}
+                    onTextChange={this.handleTextChange}
+                />
+                <Input 
+                    className="total-cost-currency"
+                    property="totalCostCurrency"
+                    placeholder="Total cost currency" 
+                    text={this.state.totalCostCurrency}
+                    onTextChange={this.handleTextChange}
+                />
                 <Select 
-                    className="make"
-                    property="make"
-                    placeholder="Make" 
-                    onTextChange={this.handleMakeSelection}
-                    option={this.state.make} 
-                    options={this.state.makes}
-                />
-                <Select 
-                    className={this.state.makeSelected ? "model" : "model invisible"}
-                    property="model"
-                    placeholder="Model" 
+                    className="status"
+                    property="status"
+                    placeholder="Status" 
                     onTextChange={this.handleTextChange}
-                    option={this.state.model}
-                    options={this.state.models}
+                    option={this.state.status}
+                    // _id is what is saved to the db
+                    options={[{ name: 'Planning', _id: 'Planning' }, { name: 'Funding', _id: 'Funding' },
+                            { name: 'Installing', _id: 'Installing' }, { name: 'Producing', _id: 'Producing' }]}
                 />
                 <Input 
-                    className="price"
-                    property="price"
-                    placeholder="Price per day" 
-                    text={this.state.price}
-                    onTextChange={this.handleTextChange}
-                />
-                <Input 
-                    className="deposit"
-                    property="deposit"
-                    placeholder="Deposit" 
-                    text={this.state.deposit}
-                    onTextChange={this.handleTextChange}
-                />
-                <Input 
-                    className="min-rental-period"
-                    property="minRentalPeriod"
-                    placeholder="Min rental period" 
-                    text={this.state.minRentalPeriod}
-                    onTextChange={this.handleTextChange}
-                />
-                <div className="included-extras-container add">
-                    <Input 
-                        className="included-extra"
-                        property="includedExtra"
-                        placeholder="Included in rental" 
-                        text={this.state.includedExtra}
-                        onTextChange={this.handleTextChange}
-                    />
-                    <CallToActionButton  
-                        callToActionText="Add" 
-                        onButtonClick={this.handleAddIncludedExtrasButtonClick}
-                    />
-                    <AdditionalFeatures 
-                        features={this.state.includedExtras}
-                        sectionVisibility={true}
-                    />
-                </div>
-                <Input 
-                    className="year"
-                    property="year"
-                    placeholder="Year" 
-                    text={this.state.year}
-                    onTextChange={this.handleTextChange}
-                />
-                <Input 
-                    className="mileage"
-                    property="mileage"
-                    placeholder="Mileage" 
-                    text={this.state.mileage}
+                    className="estimated-annual-return"
+                    property="estimatedAnnualReturn"
+                    placeholder="Estimated annual return" 
+                    text={this.state.estimatedAnnualReturn}
                     onTextChange={this.handleTextChange}
                 />
                 <Select
@@ -399,68 +369,125 @@ export default class Form extends React.Component {
                     </p>
                 </div>
 
-                <div className="equipment-and-options-container add">
+                <Input 
+                    className="estimated-total-co2-saved"
+                    property="estimatedTotalCo2Saved"
+                    placeholder="Estimated total CO2 saved" 
+                    text={this.state.estimatedTotalCo2Saved}
+                    onTextChange={this.handleTextChange}
+                />
+                <Input 
+                    className="estimated-annual_production"
+                    property="estimatedAnnualProduction"
+                    placeholder="Estimated annual production in kWh"
+                    text={this.state.estimatedAnnualProduction}
+                    onTextChange={this.handleTextChange}
+                />
+                <Input 
+                    className="payment-schedule"
+                    property="paymentSchedule"
+                    placeholder="Payment schedule" 
+                    text={this.state.paymentSchedule}
+                    onTextChange={this.handleTextChange}
+                />
+                <Select 
+                    className="risk-level"
+                    property="riskLevel"
+                    placeholder="Risk level" 
+                    onTextChange={this.handleTextChange}
+                    option={this.state.riskLevel}
+                    // _id is what is saved to the db
+                    options={[{ name: 'Very Low', _id: 'Very Low' }, { name: 'Low', _id: 'Low' },
+                            { name: 'Medium', _id: 'Medium' }, { name: 'High', _id: 'High' }, 
+                            { name: 'Very High', _id: 'Very High' }]}
+
+                />
+                <Input 
+                    className="year-start-production"
+                    property="yearStartProduction"
+                    placeholder="Year of production start" 
+                    text={this.state.yearStartProduction}
+                    onTextChange={this.handleTextChange}
+                />
+
+                <div className="real-annual-productions-container add">
                     <Input 
-                        className="equipment-and-option"
-                        property="equipmentAndOption"
-                        placeholder="Equipment and Options" 
-                        text={this.state.equipmentAndOption}
+                        className="real-annual-production"
+                        property="realAnnualProduction"
+                        placeholder="Real annual production in kWh" 
+                        text={this.state.realAnnualProduction}
                         onTextChange={this.handleTextChange}
                     />
                     <CallToActionButton  
                         callToActionText="Add" 
-                        onButtonClick={this.handleAddEquimentAndOptionsButtonClick}
+                        onButtonClick={this.handleAddRealAnnualProductionsButtonClick}
                     />
-                    <AdditionalFeatures 
-                        features={this.state.equipmentAndOptions}
-                        sectionVisibility={true}
+                   <p className="real-annual-productions">
+                        {`${this.state.realAnnualProductions.length} ${this.state.realAnnualProductions.length === 1 
+                                ? 'year' : 'years'} added`}
+                    </p>
+                </div>
+
+                <div className="real-annual-payments-container add">
+                    <Input 
+                        className="real-annual-payment"
+                        property="realAnnualPayment"
+                        placeholder="Real annual payment" 
+                        text={this.state.realAnnualPayment}
+                        onTextChange={this.handleTextChange}
                     />
+                    <CallToActionButton  
+                        callToActionText="Add" 
+                        onButtonClick={this.handleAddRealAnnualPaymentsButtonClick}
+                    />
+                   <p className="real-annual-payments">
+                        {`${this.state.realAnnualPayments.length} ${this.state.realAnnualPayments.length === 1 
+                                ? 'year' : 'years'} added`}
+                    </p>
                 </div>
                 
                 <Input 
-                    className="body-style"
-                    property="bodyStyle"
-                    placeholder="Body style" 
-                    text={this.state.bodyStyle}
+                    className="payments-currency"
+                    property="paymentsCurrency"
+                    placeholder="Payments currency" 
+                    text={this.state.paymentsCurrency}
                     onTextChange={this.handleTextChange}
                 />
-                <Input 
-                    className="exterior-colour"
-                    property="exteriorColour"
-                    placeholder="Exterior colour" 
-                    text={this.state.exteriorColour}
-                    onTextChange={this.handleTextChange}
-                />
-                <Input 
-                    className="interior-colour"
-                    property="interiorColour"
-                    placeholder="Interior colour" 
-                    text={this.state.interiorColour}
-                    onTextChange={this.handleTextChange}
-                />
-                <Input 
-                    className="seating"
-                    property="seating"
-                    placeholder="Seating" 
-                    text={this.state.seating}
-                    onTextChange={this.handleTextChange}
-                />
-                <Select 
-                    className="full-vehicle-inspection"
-                    property="fullVehicleInspection"
-                    placeholder="Full Vehicle Inspection" 
-                    onTextChange={this.handleTextChange}
-                    option={this.state.fullVehicleInspection} 
-                    options={[{ name: 'Yes', _id: true }, { name: 'No', _id: false }]}
-                />
-                <Select 
-                    className="pco-license"
-                    property="pcoLicense"
-                    placeholder="PCO License" 
-                    onTextChange={this.handleTextChange}
-                    option={this.state.pcoLicense} 
-                    options={[{ name: 'Yes', _id: true }, { name: 'No', _id: false }]}
-                />
+
+                <div className="real-annual-returns-container add">
+                    <Input 
+                        className="real-annual-return"
+                        property="realAnnualReturn"
+                        placeholder="Real annual return" 
+                        text={this.state.realAnnualReturn}
+                        onTextChange={this.handleTextChange}
+                    />
+                    <CallToActionButton  
+                        callToActionText="Add" 
+                        onButtonClick={this.handleAddRealAnnualReturnsButtonClick}
+                    />
+                   <p className="real-annual-returns">
+                        {`${this.state.realAnnualReturns.length} ${this.state.realAnnualReturns.length === 1 
+                                ? 'year' : 'years'} added`}
+                    </p>
+                </div>
+                <div className="real-annual-co2-savings-container add">
+                    <Input 
+                        className="real-annual-co2-saving"
+                        property="realAnnualCo2Saving"
+                        placeholder="Real annual co2 saved in tons" 
+                        text={this.state.realAnnualCo2Saving}
+                        onTextChange={this.handleTextChange}
+                    />
+                    <CallToActionButton  
+                        callToActionText="Add" 
+                        onButtonClick={this.handleAddRealAnnualCo2SavingsButtonClick}
+                    />
+                   <p className="real-annual-co2-savings">
+                        {`${this.state.realAnnualCo2Savings.length} ${this.state.realAnnualCo2Savings.length === 1 
+                                ? 'year' : 'years'} added`}
+                    </p>
+                </div>
 
                 <CallToActionButton 
                     callToActionText="Save" 
