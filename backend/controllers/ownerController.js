@@ -104,8 +104,6 @@ exports.checkAuth = (req, res, next) => {
 exports.getOwnerProjects = (req, res, next) => {
     Project.find({ owner: { _id: req.params.id }  })
         .populate('location')
-        .populate('make')
-        .populate('model')
         .populate('owner')
         .exec(function (err, projects) {
             if (err) { return next(err); }
@@ -123,27 +121,26 @@ exports.postCreateProject = [
 
     // Process request after sanitization.
     (req, res, next) => {
-        const projectDetail = { 
-            make: req.body.make, 
-            model: req.body.model,
-            year: req.body.year,
-            price_per_day: req.body.price,
-            deposit: req.body.deposit,
-            min_rental_period: req.body.minRentalPeriod,
-            included_extras: req.body.includedExtras,
-            mileage: req.body.mileage,
+        const projectDetail = {
+            name: req.body.name,
+            size_kw: req.body.size,
+            total_cost: req.body.totalCost,
+            total_cost_currency: req.body.totalCostCurrency,
+            status: req.body.status,    
+            estimated_annual_return_percent: req.body.estimatedAnnualReturn,
             location: req.body.location,
             image_urls: req.body.imageUrls,
             owner: req.user, // The owner is the logged in user via Passport
-            list_date: req.body.listDate,
-            equipment_and_options: req.body.equipmentAndOptions,
-            exterior: req.body.bodyStyle 
-                    ? { body_style: req.body.bodyStyle, colour: req.body.exteriorColour }
-                    : { colour: req.body.exteriorColour },
-            interior: { seating: req.body.seating, colour: req.body.interiorColour },
-            vehicle_identification_number: req.body.vehicleIdentificationNumber,
-            full_vehicle_inspection: req.body.fullVehicleInspection, 
-            pco_license: req.body.pcoLicense, 
+            estimated_total_co2_saved_ton: req.body.estimatedTotalCo2Saved,
+            estimated_annual_production_kwh: req.body.estimatedAnnualProduction,
+            payment_schedule: req.body.paymentSchedule,
+            risk_level: req.body.riskLevel,
+            year_start_production: req.body.yearStartProduction,  
+            real_annual_production_kwh: req.body.realAnnualProductions,    
+            real_annual_payments: req.body.realAnnualPayments,
+            payments_currency: req.body.paymentsCurrency,
+            real_annual_return_percent: req.body.realAnnualReturns,    
+            real_annual_co2_saved_ton: req.body.realAnnualCo2Savings,  
         }
 
         const project = new Project(projectDetail);
@@ -160,8 +157,6 @@ exports.postCreateProject = [
 exports.getUpdateProject = (req, res, next) => {
     Project.findById(req.params.id)
         .populate('location')
-        .populate('make')
-        .populate('model')
         .populate('owner')
         .exec(function (err, project) {
             if (err) { return next(err); }
