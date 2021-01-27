@@ -234,7 +234,7 @@ const projectMinValidation = new Project({
 });
 
 const projectMaxValidation = new Project({
-    year_start_production: new Date().getFullYear() + 1,
+    year_start_production: new Date().getFullYear() + 2,
 });
 
 const ownerMinValidation = new Owner({
