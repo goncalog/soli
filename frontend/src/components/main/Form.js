@@ -251,7 +251,7 @@ export default class Form extends React.Component {
 
             fetch(url)
                 .then((res) => res.json())
-                .then((res) => { this.setState({ locations: removeDuplicates(sortString(res.locations, 'country'), 'country') }) })
+                .then((res) => { this.setState({ locations: removeDuplicates(sortString(res.locations, 'city'), 'city') }) })
         }
 
         // If this is the update page, load Project data
