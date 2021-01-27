@@ -58,7 +58,7 @@ describe('Project', () => {
     test('has one Size component rendered with passed properties', () => {
         const shallowWrapper = project().find(Size);
         expect(shallowWrapper.length).toEqual(1);
-        expect(Object.keys(shallowWrapper.props())).toContain('price');
+        expect(Object.keys(shallowWrapper.props())).toContain('size');
     });
 
     test('has 2 OwnerContact components rendered with passed properties', () => {
@@ -78,7 +78,7 @@ describe('Project', () => {
         const shallowWrapper = project().find(Detail);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('imagePath');
-        expect(shallowWrapper.prop('projectFeatures')).toBeTruthy();
+        expect(shallowWrapper.prop('features')).toBeTruthy();
         expect(shallowWrapper.prop('sectionsVisibility')).toBeTruthy();
         expect(shallowWrapper.prop('sections')).toBeTruthy();
         expect(Object.keys(shallowWrapper.props())).toContain('onChangeImageButtonClick');

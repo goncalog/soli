@@ -3,9 +3,8 @@ import Title from '../support/Title';
 import Size from '../support/Size';
 import OwnerContact from '../support/OwnerContact';
 import Detail from '../support/Detail';
-import formatRating from '../../utils/formatRating';
 import formatNumber from '../../utils/formatNumber';
-import getEvFeaturesArray from '../../utils/getEvFeaturesArray';
+import getSectionArray from '../../utils/getSectionArray';
 import getImagePosForSlider from '../../utils/getImagePosForSlider';
 import '../../css/Project.css';
 
@@ -15,7 +14,7 @@ export default class Project extends React.Component {
         this.state = { 
             project: {}, 
             currentImage: 0,
-            sectionsVisibility: [true, false, false, false, false], 
+            sectionsVisibility: [true, false, false, false], 
         };
         this.handleChangeImageButtonClick = this.handleChangeImageButtonClick.bind(this);
         this.handleChangeSectionsVisibility = this.handleChangeSectionsVisibility.bind(this);
@@ -58,7 +57,7 @@ export default class Project extends React.Component {
     render() {
         let project = {
             title: '', 
-            price: '',
+            size: '',
             owner: { 
                 name: '', 
                 rating: '', 
@@ -68,7 +67,7 @@ export default class Project extends React.Component {
             },
             detail: { 
                 imagePath: '', 
-                projectFeatures: [], 
+                features: [], 
                 sectionsVisibility: [], 
                 sections: [], 
                 onChangeImageButtonClick: this.handleChangeImageButtonClick, 
@@ -83,7 +82,7 @@ export default class Project extends React.Component {
             
             project = {
                 title: this.state.project.name,
-                price: this.state.project.price_per_day.toString(),
+                size: `${formatNumber(this.state.project.size_kw)} kW | ${this.state.project.total_cost_currency}${formatNumber(this.state.project.total_cost)}`,
                 owner: {
                     name: this.state.project.owner.name,
                     rating: this.state.project.owner.rating,
@@ -93,106 +92,68 @@ export default class Project extends React.Component {
                 },
                 detail: {
                     imagePath: imagePath,
-                    projectFeatures: [
+                    features: [
                         { 
-                            name: 'Deposit',
-                            value: `£${formatNumber(this.state.project.deposit)}`,
+                            name: 'Status',
+                            value: this.state.project.status,
                         },
                         { 
-                            name: 'Min Rental',
-                            value: this.state.project.min_rental_period,
-                        },
-                        { 
-                            name: 'Range',
-                            value: this.state.project.model.charging.range_miles,
-                        },
-                        { 
-                            name: 'Year',
-                            value: this.state.project.year,
+                            name: 'Est. Return',
+                            value: `${this.state.project.estimated_annual_return_percent}%`,
                         },
                         { 
                             name: 'Location',
-                            value: this.state.project.location.name,
+                            value: this.state.project.location.country,
                         },
                         { 
-                            name: 'Full Charge',
-                            value: `${this.state.project.model.charging.hours_to_charge}h`,
+                            name: 'Est. Production',
+                            value: `${formatNumber(this.state.project.estimated_annual_production_kwh)} kWh/year`,
+                        },
+                        { 
+                            name: 'CO2 Saved',
+                            value: `${formatNumber(this.state.project.estimated_total_co2_saved_ton)} tons`,
+                        },
+                        { 
+                            name: 'Risk',
+                            value: this.state.project.risk_level,
                         },
                         { 
                             name: '',
                             value: '',
                         },
                         { 
-                            name: 'Rating',
-                            value: formatRating(this.state.project.model.rating),
+                            name: 'Payment',
+                            value: this.state.project.payment_schedule,
                         },
                     ],
                     sectionsVisibility: this.state.sectionsVisibility,
                     sections: [
                         {
-                            name: 'Included in Rental',
+                            name: 'Production',
                             expandButtonText: (this.state.sectionsVisibility[0]) ? '-' : '+',
-                            projectFeatures: getEvFeaturesArray(this.state.project.included_extras),    
+                            features: getSectionArray(this.state.project.real_annual_production_kwh, 
+                                this.state.project.year_start_production, 'kWh'),    
                         },
                         {
-                            name: 'Equipment and Options',
+                            name: 'Payments',
                             expandButtonText: (this.state.sectionsVisibility[1]) ? '-' : '+',
-                            projectFeatures: getEvFeaturesArray(this.state.project.equipment_and_options),    
+                            features: getSectionArray(this.state.project.real_annual_payments, 
+                                this.state.project.year_start_production, 
+                                this.state.project.payments_currency),    
                         },
                         {
-                            name: 'Exterior',
+                            name: 'Annual Return',
                             expandButtonText: (this.state.sectionsVisibility[2]) ? '-' : '+',
-                            projectFeatures: [
-                                { 
-                                    name: 'Body style',
-                                    value: (this.state.project.exterior.body_style) ? 
-                                    `${this.state.project.exterior.body_style}` : 
-                                    'N/a',
-                                },
-                                { 
-                                    name: 'Colour',
-                                    value: this.state.project.exterior.colour,
-                                },
-                            ],    
+                            features: getSectionArray(this.state.project.real_annual_return_percent, 
+                                this.state.project.year_start_production, '%'),    
                         },
                         {
-                            name: 'Interior',
+                            name: 'CO2 Saved',
                             expandButtonText: (this.state.sectionsVisibility[3]) ? '-' : '+',
-                            projectFeatures: [
-                                { 
-                                    name: 'Seating',
-                                    value: this.state.project.interior.seating,
-                                },
-                                { 
-                                    name: 'Colour',
-                                    value: this.state.project.interior.colour,
-                                },
-                            ],    
+                            features: getSectionArray(this.state.project.real_annual_co2_saved_ton, 
+                                this.state.project.year_start_production, 'tons'), 
                         },
-                        {
-                            name: 'Performance',
-                            expandButtonText: (this.state.sectionsVisibility[4]) ? '-' : '+',
-                            projectFeatures: [
-                                { 
-                                    name: 'Horsepower',
-                                    value: `${this.state.project.model.performance.horsepower}hp`,
-                                },
-                                { 
-                                    name: 'Top speed',
-                                    value: `${this.state.project.model.performance.top_speed_mph}mph`,
-                                },
-                                { 
-                                    name: '0-60mph',
-                                    value: `${this.state.project.model.performance.zero_to_sixty_mph}sec`,
-                                },
-                                { 
-                                    name: 'Miles per kWh',
-                                    value: (this.state.project.model.performance.miles_per_kwh) ? 
-                                            `${this.state.project.model.performance.miles_per_kwh}` : 
-                                            'N/a',
-                                },
-                            ],    
-                        },
+                        
                     ],
                     onChangeImageButtonClick: this.handleChangeImageButtonClick,
                     onChangeSectionsVisibility: this.handleChangeSectionsVisibility,
@@ -203,7 +164,7 @@ export default class Project extends React.Component {
         return (
             <div className="project">
                 <Title title={project.title} />
-                <Size price={project.price} />
+                <Size size={project.size} />
                 <OwnerContact {...project.owner} />
                 <Detail {...project.detail} />
                 <OwnerContact {...project.owner} />

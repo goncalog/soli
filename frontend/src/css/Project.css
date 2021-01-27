@@ -8,7 +8,7 @@
     margin: 0 18%;
 }
 
-.project .price {
+.project .size {
     font-size: 30px;
 }
 
@@ -130,7 +130,7 @@
         font-size: 30px;
     }
     
-    .project .price {
+    .project .size {
         font-size: 25px;
     }
     
@@ -166,7 +166,7 @@
         margin: 0 5%;
     }
     
-    .project .price {
+    .project .size {
         font-size: 22px;
     }
 

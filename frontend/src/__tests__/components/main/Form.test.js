@@ -4,7 +4,6 @@ import MainHeadline from '../../../components/support/MainHeadline';
 import CallToActionButton from '../../../components/support/CallToActionButton';
 import Input from '../../../components/support/Input';
 import Select from '../../../components/support/Select';
-import AdditionalFeatures from '../../../components/support/AdditionalFeatures';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -44,8 +43,8 @@ describe('Form', () => {
         window.scrollTo = jsdomScrollTo; // restore the jsdom scrollTo
     });
 
-    test('has 20 children', () => {
-        expect(form().children().length).toEqual(20);
+    test('has 21 children', () => {
+        expect(form().children().length).toEqual(21);
     });
 
     test('has one MainHeadline rendered with passed properties', () => {
@@ -54,9 +53,9 @@ describe('Form', () => {
         expect(Object.keys(shallowWrapper.props())).toContain('mainHeadline');
     });
 
-    test('has 5 CallToActionButton components rendered with passed properties', () => {
+    test('has 7 CallToActionButton components rendered with passed properties', () => {
         const shallowWrapper = form().find(CallToActionButton);
-        expect(shallowWrapper.length).toEqual(5);
+        expect(shallowWrapper.length).toEqual(7);
         shallowWrapper.forEach((node) => {
             expect(Object.keys(node.props())).toContain('callToActionText');
             expect(Object.keys(node.props())).toContain('onButtonClick');
@@ -64,9 +63,9 @@ describe('Form', () => {
         
     });
 
-    test('has 12 Input components rendered with passed properties', () => {
+    test('has 15 Input components rendered with passed properties', () => {
         const shallowWrapper = form().find(Input);
-        expect(shallowWrapper.length).toEqual(12);
+        expect(shallowWrapper.length).toEqual(15);
         shallowWrapper.forEach((node) => {
             expect(Object.keys(node.props())).toContain('className');
             expect(Object.keys(node.props())).toContain('property');
@@ -76,9 +75,9 @@ describe('Form', () => {
         })
     });
 
-    test('has 5 Select components rendered with passed properties', () => {
+    test('has 3 Select components rendered with passed properties', () => {
         const shallowWrapper = form().find(Select);
-        expect(shallowWrapper.length).toEqual(5);
+        expect(shallowWrapper.length).toEqual(3);
         shallowWrapper.forEach((node) => {
             expect(Object.keys(node.props())).toContain('className');
             expect(Object.keys(node.props())).toContain('property');
@@ -89,17 +88,8 @@ describe('Form', () => {
         });
     });
 
-    test('has one HTML p element', () => {
+    test('has 5 HTML p elements', () => {
         const shallowWrapper = form().find('p');
-        expect(shallowWrapper.length).toEqual(1);
-    });
-
-    test('has 2 AdditionalFeatures rendered with passed properties', () => {
-        const shallowWrapper = form().find(AdditionalFeatures);
-        expect(shallowWrapper.length).toEqual(2);
-        shallowWrapper.forEach((node) => {
-            expect(Object.keys(node.props())).toContain('features');
-            expect(Object.keys(node.props())).toContain('sectionVisibility');
-        });
+        expect(shallowWrapper.length).toEqual(5);
     });
 });
