@@ -3,7 +3,7 @@ const getData = require('../../utils/getData');
 
 const user = {
     name: 'Ar',
-    contact: 'xpto@proton.mail',
+    contact: 'xpto@protonmail.com',
     _id: '1234567'
 }
 
