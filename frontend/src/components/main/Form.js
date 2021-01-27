@@ -262,6 +262,7 @@ export default class Form extends React.Component {
 
             fetch(url, { credentials: 'include' })
                 .then((res) => res.json())
+                .then((res) => res.project)
                 .then((res) => {
                     this.setState({
                         name: res.name,
