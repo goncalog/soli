@@ -15,7 +15,7 @@ const ProjectSchema = new Schema({
     estimated_annual_production_kwh: { type: Number, required: true, min: 0 },
     payment_schedule: { type: String, required: true },
     risk_level: { type: String, required: true },
-    year_start_production: { type: Number, required: true, min: 2000, max: new Date().getFullYear() },  
+    year_start_production: { type: Number, required: true, min: 2000, max: new Date().getFullYear() + 1 },  
     real_annual_production_kwh: { type: [Number], required: true, default: undefined },    
     real_annual_payments: { type: [Number], required: true, default: undefined },
     payments_currency: { type: String, required: true },

@@ -176,7 +176,7 @@ export default class Form extends React.Component {
             return;
         }
 
-        if (this.state.yearStartProduction < 2000 || this.state.yearStartProduction > new Date().getFullYear 
+        if (this.state.yearStartProduction < 2000 || this.state.yearStartProduction > new Date().getFullYear() + 1
                 || this.state.yearStartProduction === '' || isNaN(Number(this.state.yearStartProduction))) {
             alert('Please provide a valid year of production start.');
             return;
