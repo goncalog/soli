@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=backend:* npm run devstart",
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "dependencies": {
     "async": "^3.2.0",
