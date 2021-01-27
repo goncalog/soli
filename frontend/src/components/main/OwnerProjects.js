@@ -10,7 +10,7 @@ export default function OwnerProjects(props) {
     }
 
     let url = (process.env.NODE_ENV === 'production') 
-        ? `/content/${props.match.url}`
+        ? `/content${props.match.url}`
         : `${process.env.REACT_APP_SERVER_URL}/content${props.match.url}`;
 
     useEffect(() => {
