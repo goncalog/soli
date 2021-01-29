@@ -86,7 +86,7 @@ export default class Project extends React.Component {
                 owner: {
                     name: this.state.project.owner.name,
                     rating: this.state.project.owner.rating,
-                    callToActionText: 'Contact Owner',
+                    callToActionText: 'Invest',
                     contact: this.state.project.owner.contact,
                     id: this.state.project.owner._id,
                 },
