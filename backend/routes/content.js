@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const projectsController = require('../controllers/projectsController');
 const locationController = require('../controllers/locationController');
-const ownerController = require('../controllers/ownerController');
+const userController = require('../controllers/userController');
 const withAuth = require('../auth/authMiddleware');
 
 // GET request for home page
@@ -20,38 +20,35 @@ router.get('/project/:id', projectsController.getUniqueProject);
 // GET request for list of all locations
 router.get('/locations', locationController.getLocations);
 
-// POST request to sign up owner
-router.post('/owner/signup', ownerController.signUp);
+// POST request to sign up user
+router.post('/user/signup', userController.signUp);
 
-// POST request to log in owner
-router.post('/owner/login', ownerController.logIn);
+// POST request to log in user
+router.post('/user/login', userController.logIn);
 
-// POST request to log out owner
-router.post('/owner/logout', ownerController.logOut);
-
-// GET request to list of the owner's projects
-router.get('/owner/projects', withAuth, ownerController.getProjects);
+// POST request to log out user
+router.post('/user/logout', userController.logOut);
 
 // GET request to check log in status
-router.get('/owner/checkAuth', withAuth, ownerController.checkAuth);
+router.get('/user/checkAuth', withAuth, userController.checkAuth);
 
-// GET request to get a owner's list of projects for sale
-router.get('/owner/:id/projects', ownerController.getOwnerProjects);
+// GET request to get a user's list of projects for sale
+router.get('/user/:id/projects', userController.getUserProjects);
 
 // POST request to create new project
-router.post('/owner/:id/project/create', withAuth, ownerController.postCreateProject);
+router.post('/user/:id/project/create', withAuth, userController.postCreateProject);
 
 // GET request to update project
-router.get('/owner/:id/project/:id/update', withAuth, ownerController.getUpdateProject);
+router.get('/user/:id/project/:id/update', withAuth, userController.getUpdateProject);
 
 // PUT request to update project
-router.put('/owner/:id/project/:id/update', withAuth, ownerController.putUpdateProject);
+router.put('/user/:id/project/:id/update', withAuth, userController.putUpdateProject);
 
 // DELETE request to delete project
-router.delete('/owner/:id/project/:id/delete', withAuth, ownerController.deleteProject);
+router.delete('/user/:id/project/:id/delete', withAuth, userController.deleteProject);
 
-// POST request to contact owner
-router.post('/owner/:id/contact', ownerController.postContactOwner);
+// POST request to contact user
+router.post('/user/:id/contact', userController.postContactUser);
 
 // Placeholder code for testing POST routes
 router.get('/test', projectsController.getTest);

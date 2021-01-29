@@ -1,4 +1,4 @@
-const Owner = require('../models/owner');
+const User = require('../models/user');
 const Project = require('../models/project');
 
 const validator = require('express-validator');
@@ -7,7 +7,7 @@ const passport = require('passport');
 
 const getData = require('../utils/getData');
 
-// POST request to sign up owner
+// POST request to sign up user
 exports.signUp = [
     // Validate fields.
     validator.body('name', 'Name must not be empty.').trim().isLength({ min: 1 }),
@@ -22,9 +22,9 @@ exports.signUp = [
         // Extract the validation errors from a request.
         const errors = validator.validationResult(req);
 
-        // Check if Owner already exists
+        // Check if User already exists
         // If not, hash password and save to db
-        Owner.findOne({ contact: req.body.contact }, (err, user) => {
+        User.findOne({ contact: req.body.contact }, (err, user) => {
             if (err) { return next(err); }
       
             if (user) {
@@ -38,11 +38,12 @@ exports.signUp = [
                 if (err) { return next(err); }
 
                 // otherwise, store hashedPassword in db
-                const user = new Owner({
+                const user = new User({
                     name: req.body.name,
                     contact: req.body.contact,
-                    rating: 5,
                     password: hashedPassword,
+                    investments: new Map(),
+                    rating: 5,
                 });
                 
                 if (!errors.isEmpty()) {
@@ -69,7 +70,7 @@ exports.signUp = [
     }
 ];
 
-// POST request to log in owner
+// POST request to log in user
 exports.logIn = (req, res, next) => {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
@@ -86,15 +87,10 @@ exports.logIn = (req, res, next) => {
     })(req, res, next);
 }
 
-// POST request to log out owner
+// POST request to log out user
 exports.logOut = (req, res, next) => {
     req.logOut();
-    res.json({ title: `Owner logged out` });
-}
-
-// GET request for list of owner's projects
-exports.getProjects = (req, res, next) => {
-    res.json({ title: `List of ${req.name}'s Projects` });
+    res.json({ title: `User logged out` });
 }
 
 // GET request to check log in status
@@ -102,16 +98,16 @@ exports.checkAuth = (req, res, next) => {
     res.json({ title: `User is logged in`, userId: req.user._id });
 }
 
-// GET request to get a owner's list of projects
-exports.getOwnerProjects = (req, res, next) => {
-    Project.find({ owner: { _id: req.params.id }  })
+// GET request to get a user's list of projects
+exports.getUserProjects = (req, res, next) => {
+    Project.find({ user: { _id: req.params.id }  })
         .populate('location')
-        .populate('owner')
+        .populate('user')
         .exec(function (err, projects) {
             if (err) { return next(err); }
 
             // Successful, so send data
-            res.json({ title: `List of Projects from owner with id ${req.params.id}`, projects: projects });
+            res.json({ title: `List of Projects from user with id ${req.params.id}`, projects: projects });
         });
 }
 
@@ -138,7 +134,7 @@ exports.postCreateProject = [
 exports.getUpdateProject = (req, res, next) => {
     Project.findById(req.params.id)
         .populate('location')
-        .populate('owner')
+        .populate('user')
         .exec(function (err, project) {
             if (err) { return next(err); }
 
@@ -165,8 +161,8 @@ exports.deleteProject = (req, res, next) => {
     });
 }
 
-// POST request to contact owner
-exports.postContactOwner = (req, res, next) => {
+// POST request to contact user
+exports.postContactUser = (req, res, next) => {
     const nodemailer = require('nodemailer');
 
     // async..await is not allowed in global scope, must use a wrapper
@@ -183,7 +179,7 @@ exports.postContactOwner = (req, res, next) => {
         // Send mail with defined transport object
         let info = await transporter.sendMail({
             from: process.env.NODEMAILER_AUTH_USER, // sender address
-            // If there's no owner contact, this is a general contact, so send it to a specified email
+            // If there's no user contact, this is a general contact, so send it to a specified email
             to: (req.body.to !== '') ? req.body.to : process.env.CONTACT_EMAIL, // list of receivers
             subject: req.body.subject, // Subject line
             text: `${req.body.from} has sent you the following message: \n\n${req.body.text}`,
@@ -195,5 +191,5 @@ exports.postContactOwner = (req, res, next) => {
 
     main().catch(console.error);
 
-    res.json({ title: `Contact owner with id ${req.params.id}` });
+    res.json({ title: `Contact user with id ${req.params.id}` });
 }
