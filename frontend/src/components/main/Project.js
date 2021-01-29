@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from '../support/Title';
 import Size from '../support/Size';
-import OwnerContact from '../support/OwnerContact';
+import Owner from '../support/Owner';
 import Detail from '../support/Detail';
 import formatNumber from '../../utils/formatNumber';
 import getSectionArray from '../../utils/getSectionArray';
@@ -62,8 +62,7 @@ export default class Project extends React.Component {
                 name: '', 
                 rating: '', 
                 callToActionText: '',
-                contact: '',
-                id: '', 
+                path: '', 
             },
             detail: { 
                 imagePath: '', 
@@ -87,8 +86,7 @@ export default class Project extends React.Component {
                     name: this.state.project.owner.name,
                     rating: this.state.project.owner.rating,
                     callToActionText: 'Invest',
-                    contact: this.state.project.owner.contact,
-                    id: this.state.project.owner._id,
+                    path: `/project/${this.state.project._id}/invest`,
                 },
                 detail: {
                     imagePath: imagePath,
@@ -165,9 +163,9 @@ export default class Project extends React.Component {
             <div className="project">
                 <Title title={project.title} />
                 <Size size={project.size} />
-                <OwnerContact {...project.owner} />
+                <Owner {...project.owner} />
                 <Detail {...project.detail} />
-                <OwnerContact {...project.owner} />
+                <Owner {...project.owner} />
             </div>
         )
     }

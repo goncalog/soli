@@ -2,7 +2,7 @@ import React from 'react';
 import Project from '../../../components/main/Project';
 import Title from '../../../components/support/Title';
 import Size from '../../../components/support/Size';
-import OwnerContact from '../../../components/support/OwnerContact';
+import Owner from '../../../components/support/Owner';
 import Detail from '../../../components/support/Detail';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -61,16 +61,15 @@ describe('Project', () => {
         expect(Object.keys(shallowWrapper.props())).toContain('size');
     });
 
-    test('has 2 OwnerContact components rendered with passed properties', () => {
-        const shallowWrapper = project().find(OwnerContact);
+    test('has 2 Owner components rendered with passed properties', () => {
+        const shallowWrapper = project().find(Owner);
         expect(shallowWrapper.length).toEqual(2);
 
         shallowWrapper.forEach((node) => {
             expect(Object.keys(node.props())).toContain('name');
             expect(Object.keys(node.props())).toContain('rating');
             expect(Object.keys(node.props())).toContain('callToActionText');
-            expect(Object.keys(node.props())).toContain('contact');
-            expect(Object.keys(node.props())).toContain('id');
+            expect(Object.keys(node.props())).toContain('path');
         });
     });
 
