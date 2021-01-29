@@ -4,23 +4,20 @@ import OwnerRating from './OwnerRating';
 import CallToActionButton from './CallToActionButton';
 import { useHistory } from 'react-router-dom';
 
-export default function OwnerContact(props) {
+export default function Owner(props) {
     let history = useHistory();
 
-    function onContactOwnerClick() {
-        history.push({
-            pathname: `/owner/${props.id}/contact`,
-            state: { contact: props.contact }, 
-        });
+    function handleButtonClick() {
+        history.push(props.path);
     }
 
     return (
-        <div className="owner-contact">
+        <div className="owner">
             <OwnerName name={props.name} />
             <OwnerRating rating={props.rating} />
             <CallToActionButton 
                 callToActionText={props.callToActionText}
-                onButtonClick={onContactOwnerClick} 
+                onButtonClick={handleButtonClick}
             />
         </div>
     );

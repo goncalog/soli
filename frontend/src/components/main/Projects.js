@@ -2,11 +2,11 @@ import React from 'react';
 import Filters from '../support/Filters';
 import ProjectsContainer from '../support/ProjectsContainer';
 import '../../css/Projects.css';
-import formatNumber from '../../utils/formatNumber';
 import applyFilters from '../../utils/applyFilters';
 import applySort from '../../utils/applySort';
 import sortString from '../../utils/sortString';
 import removeDuplicates from '../../utils/removeDuplicates';
+import getSize from '../../utils/getSize';
 
 export default class Projects extends React.Component {
     constructor(props) {
@@ -108,7 +108,7 @@ export default class Projects extends React.Component {
             let project = {
                 imageUrls: item.image_urls,
                 title: item.name,
-                size: `${formatNumber(item.size_kw)} kW | ${item.total_cost_currency}${formatNumber(item.total_cost)}`,
+                size: getSize(item),
                 features: [
                     { 
                         name: 'Status',

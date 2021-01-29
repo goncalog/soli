@@ -44,7 +44,7 @@ export default class Contact extends React.Component {
         
         const data = { 
             from: this.state.emailText,
-            to: (this.props.location.state) ? this.props.location.state.contact : '',
+            to: '', // This will be sent to fully.electric.app@gmail.com in the backend (using Nodemailer)
             subject: 'Contact',
             text: this.state.messageText,
         };

@@ -1,11 +1,12 @@
 import React from 'react';
 import Title from '../support/Title';
 import Size from '../support/Size';
-import OwnerContact from '../support/OwnerContact';
+import Owner from '../support/Owner';
 import Detail from '../support/Detail';
 import formatNumber from '../../utils/formatNumber';
 import getSectionArray from '../../utils/getSectionArray';
 import getImagePosForSlider from '../../utils/getImagePosForSlider';
+import getSize from '../../utils/getSize';
 import '../../css/Project.css';
 
 export default class Project extends React.Component {
@@ -62,8 +63,7 @@ export default class Project extends React.Component {
                 name: '', 
                 rating: '', 
                 callToActionText: '',
-                contact: '',
-                id: '', 
+                path: '', 
             },
             detail: { 
                 imagePath: '', 
@@ -82,13 +82,12 @@ export default class Project extends React.Component {
             
             project = {
                 title: this.state.project.name,
-                size: `${formatNumber(this.state.project.size_kw)} kW | ${this.state.project.total_cost_currency}${formatNumber(this.state.project.total_cost)}`,
+                size: getSize(this.state.project),
                 owner: {
                     name: this.state.project.owner.name,
                     rating: this.state.project.owner.rating,
-                    callToActionText: 'Contact Owner',
-                    contact: this.state.project.owner.contact,
-                    id: this.state.project.owner._id,
+                    callToActionText: 'Invest',
+                    path: `/project/${this.state.project._id}/invest`,
                 },
                 detail: {
                     imagePath: imagePath,
@@ -165,9 +164,9 @@ export default class Project extends React.Component {
             <div className="project">
                 <Title title={project.title} />
                 <Size size={project.size} />
-                <OwnerContact {...project.owner} />
+                <Owner {...project.owner} />
                 <Detail {...project.detail} />
-                <OwnerContact {...project.owner} />
+                <Owner {...project.owner} />
             </div>
         )
     }

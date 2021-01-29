@@ -11,6 +11,7 @@ import withAuth from '../support/withAuth';
 import OwnerProjects from './OwnerProjects';
 import OwnerProject from './OwnerProject';
 import Form from './Form';
+import Invest from './Invest';
 
 function AppRouter() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -68,7 +69,7 @@ function AppRouter() {
                 </Route>
                 <Route path='/project/:id' exact component={Project}></Route>
                 <Route path='/contact' exact component={Contact}></Route>
-                <Route path='/owner/:id/contact' exact component={Contact}></Route>
+                <Route path='/project/:id/invest' exact component={Invest}></Route>
                 <Route 
                     path='/owner/signup'
                     exact
