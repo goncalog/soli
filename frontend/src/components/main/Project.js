@@ -6,6 +6,7 @@ import Detail from '../support/Detail';
 import formatNumber from '../../utils/formatNumber';
 import getSectionArray from '../../utils/getSectionArray';
 import getImagePosForSlider from '../../utils/getImagePosForSlider';
+import getSize from '../../utils/getSize';
 import '../../css/Project.css';
 
 export default class Project extends React.Component {
@@ -81,7 +82,7 @@ export default class Project extends React.Component {
             
             project = {
                 title: this.state.project.name,
-                size: `${formatNumber(this.state.project.size_kw)} kW | ${this.state.project.total_cost_currency}${formatNumber(this.state.project.total_cost)}`,
+                size: getSize(this.state.project),
                 owner: {
                     name: this.state.project.owner.name,
                     rating: this.state.project.owner.rating,
