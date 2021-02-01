@@ -48,12 +48,12 @@ test('renders all Route components with correct paths', () => {
     expect(pathMap['/project/:id']).toBe(Project);
     expect(pathMap['/contact']).toBe(Contact);
     expect(pathMap['/project/:id/invest']).toBe(Invest);
-    expect(Object.keys(pathMap)).toContain('/owner/signup');
-    expect(Object.keys(pathMap)).toContain('/owner/login');
-    expect(Object.keys(pathMap)).toContain('/owner/logout');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/projects');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/project/create');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/project/:id');
-    expect(Object.keys(pathMap)).toContain('/owner/:id/project/:id/update');
+    expect(Object.keys(pathMap)).toContain('/user/signup');
+    expect(Object.keys(pathMap)).toContain('/user/login');
+    expect(Object.keys(pathMap)).toContain('/user/logout');
+    expect(Object.keys(pathMap)).toContain('/user/:id/projects');
+    expect(Object.keys(pathMap)).toContain('/user/:id/project/create');
+    expect(Object.keys(pathMap)).toContain('/user/:id/project/:id');
+    expect(Object.keys(pathMap)).toContain('/user/:id/project/:id/update');
 });
   

@@ -9,7 +9,7 @@ const ProjectSchema = new Schema({
     status: { type: String, required: true },    
     estimated_annual_return_percent: { type: Number, required: true, min: 0 },
     location: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
-    owner: { type: Schema.Types.ObjectId, ref: 'Owner', required: true },
+    owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     image_urls: { type: [String], required: true, default: undefined },
     estimated_total_co2_saved_ton: { type: Number, required: true, min: 0 },
     estimated_annual_production_kwh: { type: Number, required: true, min: 0 },

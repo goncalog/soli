@@ -22,8 +22,8 @@ function AppRouter() {
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
         let url = (process.env.NODE_ENV === 'production')
-                ? '/content/owner/checkAuth' 
-                : `${process.env.REACT_APP_SERVER_URL}/content/owner/checkAuth`;
+                ? '/content/user/checkAuth' 
+                : `${process.env.REACT_APP_SERVER_URL}/content/user/checkAuth`;
 
         fetch(url, { credentials: 'include' })
             .then(res => {
@@ -71,27 +71,27 @@ function AppRouter() {
                 <Route path='/contact' exact component={Contact}></Route>
                 <Route path='/project/:id/invest' exact component={Invest}></Route>
                 <Route 
-                    path='/owner/signup'
+                    path='/user/signup'
                     exact
                     render={(props) => (<Auth onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
                 <Route 
-                    path='/owner/login'
+                    path='/user/login'
                     exact
                     render={(props) => (<Auth onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
                 <Route 
-                    path='/owner/logout'
+                    path='/user/logout'
                     exact 
                     render={(props) => (<LogOut onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
-                <Route path='/owner/:id/projects' component={withAuth(OwnerProjects)}></Route>
-                <Route path='/owner/:id/project/create' component={withAuth(Form)}></Route>
-                <Route path='/owner/:id/project/:id/update' component={withAuth(Form)}></Route>
-                <Route path='/owner/:id/project/:id' component={withAuth(OwnerProject)}></Route>
+                <Route path='/user/:id/projects' component={withAuth(OwnerProjects)}></Route>
+                <Route path='/user/:id/project/create' component={withAuth(Form)}></Route>
+                <Route path='/user/:id/project/:id/update' component={withAuth(Form)}></Route>
+                <Route path='/user/:id/project/:id' component={withAuth(OwnerProject)}></Route>
             </Switch>
         </Router>
     );

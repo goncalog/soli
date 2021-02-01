@@ -200,7 +200,7 @@ export default class Form extends React.Component {
             status: this.state.status,
             estimatedAnnualReturn: this.state.estimatedAnnualReturn,
             location: this.state.location,
-            // Not sending the owner because the backend (Passport) already has this info
+            // Not sending the user because the backend (Passport) already has this info
             imageUrls: this.state.imageUrls,
             estimatedTotalCo2Saved: this.state.estimatedTotalCo2Saved,
             estimatedAnnualProduction: this.state.estimatedAnnualProduction,
@@ -231,8 +231,8 @@ export default class Form extends React.Component {
                 }
 
                 console.log('Success:', data);
-                // Go to Owner Page
-                this.props.history.push(`/owner/${data.userId}/projects`);
+                // Go to User's Page
+                this.props.history.push(`/user/${data.userId}/projects`);
             })            
             .catch((error) => {
                 console.error('Error:', error);
@@ -272,7 +272,7 @@ export default class Form extends React.Component {
                         status: res.status,
                         estimatedAnnualReturn: res.estimated_annual_return_percent,
                         location: res.location._id,
-                        // Not sending the owner because the backend (Passport) already has this info
+                        // Not sending the user because the backend (Passport) already has this info
                         imageUrls: res.image_urls,
                         estimatedTotalCo2Saved: res.estimated_total_co2_saved_ton,
                         estimatedAnnualProduction: res.estimated_annual_production_kwh,

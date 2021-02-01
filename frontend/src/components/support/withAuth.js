@@ -14,8 +14,8 @@ export default function withAuth(ComponentToProtect) {
 
         componentDidMount() {
             let url = (process.env.NODE_ENV === 'production') 
-                    ? '/content/owner/checkAuth' 
-                    : `${process.env.REACT_APP_SERVER_URL}/content/owner/checkAuth`;
+                    ? '/content/user/checkAuth' 
+                    : `${process.env.REACT_APP_SERVER_URL}/content/user/checkAuth`;
 
             fetch(url, { credentials: 'include' })
                 .then(res => {
@@ -38,7 +38,7 @@ export default function withAuth(ComponentToProtect) {
                 return null;
             }
             if (redirect) {
-                return <Redirect to="/owner/login" />;
+                return <Redirect to="/user/login" />;
             }
             return <ComponentToProtect {...this.props} />;
         } 

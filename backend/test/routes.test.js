@@ -108,7 +108,7 @@ describe('Routes testing', function () {
 
     it('route to get data to update project works', () => {
         return request(app)
-            .get('/content/owner/xpto/project/12345/update')
+            .get('/content/user/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
@@ -116,7 +116,7 @@ describe('Routes testing', function () {
     
     it('route to update project works', () => {
         return request(app)
-            .put('/content/owner/xpto/project/12345/update')
+            .put('/content/user/xpto/project/12345/update')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
@@ -124,7 +124,7 @@ describe('Routes testing', function () {
 
     it('route to delete project works', () => {
         return request(app)
-            .delete('/content/owner/xpto/project/12345/delete')
+            .delete('/content/user/xpto/project/12345/delete')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
@@ -160,9 +160,9 @@ describe('Routes testing', function () {
         }
     });
 
-    it('route for owner sign up works', () => {
+    it('route for user sign up works', () => {
         return request(app)
-            .post('/content/owner/signup')
+            .post('/content/user/signup')
             .type('form')
             .send({ name: 'Miss Zoe', contact: 'zoe@gmail.com', password: '12345678' })
             .expect(function(res) {
@@ -173,9 +173,9 @@ describe('Routes testing', function () {
             .expect(200)
     });
 
-    it('route for owner log in works', () => {
+    it('route for user log in works', () => {
         return request(app)
-            .post('/content/owner/login')
+            .post('/content/user/login')
             .type('form')
             .send({ username: 'zoe@gmail.com', password: '12345678' })
             .expect(function(res) {
@@ -186,50 +186,42 @@ describe('Routes testing', function () {
             .expect(200)
     });
 
-    it('route for owner log out works', () => {
+    it('route for user log out works', () => {
         return request(app)
-            .post('/content/owner/logout')
+            .post('/content/user/logout')
             .expect('Content-type', /json/)
-            .expect({ title: 'Owner logged out' })
+            .expect({ title: 'User logged out' })
             .expect(200)
-    });
-
-    it('route for owner\'s projects works', () => {
-        return request(app)
-            .get('/content/owner/projects')
-            .expect('Content-type', /json/)
-            .expect({ message: 'Unauthorized: User not logged in' })
-            .expect(401)
     });
 
     it('route to check the log in auth check works', () => {
         return request(app)
-            .get('/content/owner/checkAuth')
+            .get('/content/user/checkAuth')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
     });
 
-    it('route for getting a owner\'s list of projects for sale works', () => {
+    it('route for getting a user\'s list of projects for sale works', () => {
         return request(app)
-            .get('/content/owner/5f80744b1a698848220d9e1e/projects')
+            .get('/content/user/5f80744b1a698848220d9e1e/projects')
             .expect('Content-type', /json/)
-            // The ids from owners created at test time isn't accessible, so it returns
+            // The ids from users created at test time isn't accessible, so it returns
             // an empty projects array
             .expect({ 
-                title: 'List of Projects from owner with id 5f80744b1a698848220d9e1e', 
+                title: 'List of Projects from user with id 5f80744b1a698848220d9e1e', 
                 projects: [],
             })
             .expect(200)
     });
 
-    it('route for sending message to owner works', () => {
+    it('route for sending message to user works', () => {
         return request(app)
-            .post('/content/owner/12345/contact')
+            .post('/content/user/12345/contact')
             .type('form')
             .send({ to: 'tomasa.hintz99@ethereal.email', subject: '', from: '', text: '' })
             .expect('Content-type', /json/)
-            .expect({ title: 'Contact owner with id 12345' })
+            .expect({ title: 'Contact user with id 12345' })
             .expect(200)
     });
 

@@ -1,4 +1,4 @@
-const Owner = require('../models/owner');
+const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 // Passport for handling user sessions (e.g. log in)
 passport.use(
     new LocalStrategy((username, password, done) => {
-      Owner.findOne({ contact: username }, async (err, user) => {
+      User.findOne({ contact: username }, async (err, user) => {
         if (err) { return done(err); }
   
         if (!user) {
@@ -32,7 +32,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    Owner.findById(id, function(err, user) {
+    User.findById(id, function(err, user) {
         done(err, user);
     });
 });

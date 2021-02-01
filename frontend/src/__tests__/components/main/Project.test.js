@@ -27,7 +27,8 @@ describe('Project', () => {
             match: {
                 params: {
                     id: 12345,
-                }
+                },
+                url: '/test/url.com',
             },
         }
         shallowProject = undefined;

@@ -1,16 +1,16 @@
 function createDatabaseItems(mongooseConnection) {
-    console.log('This script populates some test projects, locations and owners to the database');
+    console.log('This script populates some test projects, locations and users to the database');
 
     const async = require('async');
     
     // Import mongoose models
     const Project = require('../models/project');
     const Location = require('../models/location');
-    const Owner = require('../models/owner');
+    const User = require('../models/user');
     
     let hashedPasswords = [];
     let locations = [];
-    let owners = [];
+    let users = [];
     let projects = [];
     
     function hashedPasswordCreate(password, cb) {
@@ -47,30 +47,31 @@ function createDatabaseItems(mongooseConnection) {
         });
     }
     
-    function ownerCreate(name, contact, rating, password, cb) {
-        ownerDetail = { 
+    function userCreate(name, contact, password, investments, rating, cb) {
+        userDetail = { 
             name: name, 
             contact: contact,
+            password: password,
+            investments: investments,
             rating: rating,
-            password: password, 
         }
     
-        const owner = new Owner(ownerDetail);
+        const user = new User(userDetail);
     
-        owner.save(function (err) {
+        user.save(function (err) {
             if (err) {
                 cb(err, null);
                 return;
             }
     
-            // console.log(`New Owner: ${owner}`);
-            owners.push(owner);
-            cb(null, owner);
+            // console.log(`New User: ${user}`);
+            users.push(user);
+            cb(null, user);
         });
     }
     
     function projectCreate(name, sizeKw, totalCost, totalCostCurrency, status, estimatedAnnualReturnPercent,
-                location, owner, imageUrls, estimatedTotalCo2SavedTon, estimatedAnnualProductionKwh, 
+                location, user, imageUrls, estimatedTotalCo2SavedTon, estimatedAnnualProductionKwh, 
                 paymentSchedule, riskLevel, yearStartProduction, realAnnualProductionKwh, realAnnualPayments,
                 paymentsCurrency, realAnnualReturnPercent, realAnnualCo2SavedTon, cb) {
         projectDetail = { 
@@ -81,7 +82,7 @@ function createDatabaseItems(mongooseConnection) {
             status: status,    
             estimated_annual_return_percent: estimatedAnnualReturnPercent,
             location: location,
-            owner: owner,
+            owner: user,
             image_urls: imageUrls,
             estimated_total_co2_saved_ton: estimatedTotalCo2SavedTon,
             estimated_annual_production_kwh: estimatedAnnualProductionKwh,
@@ -143,22 +144,22 @@ function createDatabaseItems(mongooseConnection) {
         );
     }
     
-    function createOwners(cb) {    
+    function createUsers(cb) {    
         async.series([
             function (callback) {
-                ownerCreate('Goncalo G.', process.env.CONTACT_EMAIL, 0, hashedPasswords[0], callback);
+                userCreate('Goncalo G.', process.env.CONTACT_EMAIL, hashedPasswords[0], new Map(), 0, callback);
             },
             function (callback) {
-                ownerCreate('The Sun Exchange', 'test@gmail.com', 4.4, hashedPasswords[0], callback);
+                userCreate('The Sun Exchange', 'test@gmail.com', hashedPasswords[0], new Map(), 4.4, callback);
             },
             function (callback) {
-                ownerCreate('Trine', 'test2@gmail.com', 4.3, hashedPasswords[0], callback);
+                userCreate('Trine', 'test2@gmail.com', hashedPasswords[0], new Map(), 4.3, callback);
             },
             function (callback) {
-                ownerCreate('Iago V.', 'test3@gmail.com', 0, hashedPasswords[0], callback);
+                userCreate('Iago V.', 'test3@gmail.com', hashedPasswords[0], new Map(), 0, callback);
             },
             function (callback) {
-                ownerCreate('BioSun Ventures', 'test4@gmail.com', 4.9, hashedPasswords[0], callback);
+                userCreate('BioSun Ventures', 'test4@gmail.com', hashedPasswords[0], new Map(), 4.9, callback);
             },
         ],
         // Optional callback
@@ -177,7 +178,7 @@ function createDatabaseItems(mongooseConnection) {
                     'Installing',
                     12.45,
                     locations[2],
-                    owners[1],
+                    users[1],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.D48InHYw_LvxWixSZEb5vAHaFj%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.8DL6MfQV8m-WkFbNnB_8agHaE8%26pid%3DApi&f=1',
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.vGzQuXXNXgGtcfOeeqVTUQHaE7%26pid%3DApi&f=1'],
@@ -203,7 +204,7 @@ function createDatabaseItems(mongooseConnection) {
                     'Funding',
                     11,
                     locations[4],
-                    owners[0],
+                    users[0],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.PcHR3xFENYgo94rNnwSMCQHaEH%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ef3u05fYVUwBuPoQ-PnjnAHaE8%26pid%3DApi&f=1',
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.adxYV0gLHrDi1cs2vLCapgHaER%26pid%3DApi&f=1'],
@@ -229,7 +230,7 @@ function createDatabaseItems(mongooseConnection) {
                     'Planning',
                     6.2,
                     locations[1],
-                    owners[3],
+                    users[3],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.w6JuihUCHMPkOvJxPfW_gQHaEo%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.iFcxBIPr4ndL9vMAzC3bpwHaFu%26pid%3DApi&f=1'],
                     2,
@@ -254,7 +255,7 @@ function createDatabaseItems(mongooseConnection) {
                     'Producing',
                     6.1,
                     locations[0],
-                    owners[4],
+                    users[4],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Y1Ck3C9xrLV8X-BcM7HenQHaFm%26pid%3DApi&f=1',
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.-FJpiSrf9TN1VppMcCrPrgAAAA%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.p4H0byu2wiTI_h1t4A_5mQHaEK%26pid%3DApi&f=1'],
@@ -280,7 +281,7 @@ function createDatabaseItems(mongooseConnection) {
     async.series([
         createHashedPasswords,
         createLocations,
-        createOwners,
+        createUsers,
         createProjects,
     ],
     // Optional callback

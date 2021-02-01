@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const Project = require('../models/project');
 const Location = require('../models/location');
-const Owner = require('../models/owner');
+const User = require('../models/user');
 
 const london = new Location({
     city: 'London',
@@ -10,11 +10,12 @@ const london = new Location({
     test: 2,
 });
 
-const theSunExchange = new Owner({
+const theSunExchange = new User({
     name: 'The Sun Exchange',
     contact: 'the.sun.exchange@gmail.com',
-    rating: 4.2,
     password: '12345678',
+    investments: new Map(),
+    rating: 4.2,
     test: 2,
 });
 
@@ -85,7 +86,7 @@ describe('Project model', () => {
     });
 
     it('has owner', () => {
-        assert.instanceOf(project.owner, Owner, 'project\'s owner is instance of Owner');
+        assert.instanceOf(project.owner, User, 'project\'s owner is instance of User');
     });
 
     it('has image urls array', () => {
@@ -188,13 +189,13 @@ describe('Location model', () => {
     });
 });
 
-describe('Owner model', () => {
+describe('User model', () => {
     it('exists', () => {
-        assert.instanceOf(theSunExchange, Owner, 'theSunExchange is instance of Owner');
+        assert.instanceOf(theSunExchange, User, 'theSunExchange is instance of User');
     });
 
-    it('has 7 properties', () => {
-        assert.strictEqual(Object.keys(theSunExchange.schema.tree).length, 7, 'theSunExchange has 7 properties');
+    it('has 8 properties', () => {
+        assert.strictEqual(Object.keys(theSunExchange.schema.tree).length, 8, 'theSunExchange has 8 properties');
     });
 
     it('has name', () => {
@@ -206,12 +207,16 @@ describe('Owner model', () => {
                 'theSunExchange\'s contact is the.sun.exchange@gmail.com');
     });
 
-    it('has rating', () => {
-        assert.strictEqual(theSunExchange.rating, 4.2, 'theSunExchange\'s rating is 4.2');
-    });
-
     it('has password', () => {
         assert.strictEqual(theSunExchange.password, '12345678', 'theSunExchange\'s password is 12345678');
+    });
+
+    it('has investments', () => {
+        assert.deepEqual(theSunExchange.investments, new Map(), 'theSunExchange\'s investments is an empty Map');
+    });
+
+    it('has rating', () => {
+        assert.strictEqual(theSunExchange.rating, 4.2, 'theSunExchange\'s rating is 4.2');
     });
 
     it('doesn\'t have test property', () => {
@@ -222,7 +227,7 @@ describe('Owner model', () => {
 // Testing model property validators
 const projectEmpty = new Project();
 const locationEmpty = new Location();
-const ownerEmpty = new Owner();
+const userEmpty = new User();
 
 const projectMinValidation = new Project({
     size_kw: -1,
@@ -237,12 +242,12 @@ const projectMaxValidation = new Project({
     year_start_production: new Date().getFullYear() + 2,
 });
 
-const ownerMinValidation = new Owner({
+const userMinValidation = new User({
     rating: -1,
     password: '1234567',
 });
 
-const ownerMaxValidation = new Owner({
+const userMaxValidation = new User({
     rating: 5.1,
 });
 
@@ -424,46 +429,53 @@ describe('Location model require validators are set', () => {
     });
 });
 
-describe('Owner model require validators are set', () => {
+describe('User model require validators are set', () => {
     it('requires name', () => {
-        ownerEmpty.validate((err) => {
-            assert.exists(err.errors.name, 'owner model requires name');
+        userEmpty.validate((err) => {
+            assert.exists(err.errors.name, 'user model requires name');
         });
     });
 
     it('requires contact', () => {
-        ownerEmpty.validate((err) => {
-            assert.exists(err.errors.contact, 'owner model requires contact');
-        });
-    });
-
-    it('requires rating', () => {
-        ownerEmpty.validate((err) => {
-            assert.exists(err.errors.rating, 'owner model requires rating');
-        });
-    });
-
-    it('rating is greater than 0', () => {
-        ownerMinValidation.validate((err) => {
-            assert.exists(err.errors.rating, 'owner model\'s rating is greater than 0');
-        });
-    });
-
-    it('rating is less or equal to 5', () => {
-        ownerMaxValidation.validate((err) => {
-            assert.exists(err.errors.rating, 'owner model\'s rating is less or equal to 5');
+        userEmpty.validate((err) => {
+            assert.exists(err.errors.contact, 'user model requires contact');
         });
     });
 
     it('requires password', () => {
-        ownerEmpty.validate((err) => {
-            assert.exists(err.errors.password, 'owner model requires password');
+        userEmpty.validate((err) => {
+            assert.exists(err.errors.password, 'user model requires password');
         });
     });
 
     it('password has at least 8 characters', () => {
-        ownerMinValidation.validate((err) => {
-            assert.exists(err.errors.password, 'owner model\'s password has at least 8 characters');
+        userMinValidation.validate((err) => {
+            assert.exists(err.errors.password, 'user model\'s password has at least 8 characters');
+        });
+    });
+
+    it('requires investments', () => {
+        userEmpty.validate((err) => {
+            assert.exists(err.errors.investments, 'user model requires investments');
+        });
+    });
+
+    it('doesn\'t require rating', () => {
+        userEmpty.validate((err) => {
+            assert.notExists(err.errors.rating, 'user model requires rating');
+        });
+    });
+
+    it('rating is greater than 0', () => {
+        userMinValidation.validate((err) => {
+            assert.exists(err.errors.rating, 'user model\'s rating is greater than 0');
+        });
+    });
+
+    it('rating is less or equal to 5', () => {
+        userMaxValidation.validate((err) => {
+            assert.exists(err.errors.rating, 'user model\'s rating is less or equal to 5');
         });
     });
 });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
