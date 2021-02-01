@@ -29,8 +29,8 @@ export default function OwnerProject(props) {
                 }
 
                 console.log('Success:', data);
-                // Go to Owner Page
-                props.history.push(`/owner/${data.userId}/projects`);
+                // Go to User's Page
+                props.history.push(`/user/${data.userId}/projects`);
             })            
             .catch((error) => {
                 console.error('Error:', error);

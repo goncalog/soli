@@ -20,7 +20,7 @@ export default function Home(props) {
     }
 
     function onSellButtonClick() {
-        (props.loggedIn) ? history.push(`/owner/${props.userId}/projects`) : history.push('/owner/signup');
+        (props.loggedIn) ? history.push(`/user/${props.userId}/projects`) : history.push('/user/signup');
     }
     
     const driverCallToActionText = 'Let\'s EARN!';

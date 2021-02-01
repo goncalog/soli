@@ -57,12 +57,12 @@ function Navigation(props) {
                             {props.loggedIn ? (
                                 <Nav.Item 
                                     className={`${
-                                        props.location.pathname === "/owner/logout" ? "active" : "" 
+                                        props.location.pathname === "/user/logout" ? "active" : "" 
                                     }`}
                                 >
                                     <Link 
                                         className="nav-link" 
-                                        to="/owner/logout" 
+                                        to="/user/logout" 
                                         onClick={() => setExpanded(false)}
                                     >
                                         Logout
@@ -71,12 +71,12 @@ function Navigation(props) {
                             ) : (
                                 <Nav.Item 
                                     className={`${
-                                        props.location.pathname === "/owner/login" ? "active" : "" 
+                                        props.location.pathname === "/user/login" ? "active" : "" 
                                     }`}
                                 >
                                     <Link 
                                         className="nav-link" 
-                                        to="/owner/login" 
+                                        to="/user/login" 
                                         onClick={() => setExpanded(false)}
                                     >
                                         Login

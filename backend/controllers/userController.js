@@ -100,7 +100,7 @@ exports.checkAuth = (req, res, next) => {
 
 // GET request to get a user's list of projects
 exports.getUserProjects = (req, res, next) => {
-    Project.find({ user: { _id: req.params.id }  })
+    Project.find({ owner: { _id: req.params.id }  })
         .populate('location')
         .populate('user')
         .exec(function (err, projects) {

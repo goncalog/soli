@@ -15,7 +15,7 @@ export default function ProjectsContainer(props) {
                     <Link 
                         className="project-link" 
                         to={(props.match.params.id)
-                                ? `/owner/${props.match.params.id}/project/${project.id}` 
+                                ? `/user/${props.match.params.id}/project/${project.id}` 
                                 : `/project/${project.id}`} 
                         key={index}
                     >

@@ -6,7 +6,7 @@ import '../../css/OwnerProjects.css';
 
 export default function OwnerProjects(props) {
     function handleButtonClick() {
-        props.history.push(`/owner/${props.match.params.id}/project/create`);
+        props.history.push(`/user/${props.match.params.id}/project/create`);
     }
 
     let url = (process.env.NODE_ENV === 'production') 

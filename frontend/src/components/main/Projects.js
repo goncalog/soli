@@ -130,7 +130,7 @@ export default class Projects extends React.Component {
 
         return (
             <div className="projects">
-                {!this.props.fetchUrl.split('/').includes('owner') && (
+                {!this.props.fetchUrl.split('/').includes('user') && (
                     <Filters 
                     return={this.state.return}
                     location={this.state.location}
