@@ -52,6 +52,11 @@
     margin-bottom: 30px;
 }
 
+.invest .secondary-headline {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
 .hidden {
     display: none;
 }
@@ -78,12 +83,25 @@
     }
     
     .invest .key-features {
-        padding: 0 15% 50px 15%;
+        padding-right: 15%;
+        padding-left: 15%;
     }
     
     .invest .key-features .feature-name {
         font-size: 18px;
-    }    
+    }
+    
+    .invest .key-features .feature-value {
+        font-size: 14px;
+    }
+
+    .transaction {
+        margin: 0 15%;
+    }
+
+    .invest .main-headline {
+        font-size: 25px;
+    }
 }
 
 /* Responsive layout - when the screen is less than 600px wide (mobile) */
@@ -91,21 +109,32 @@
     .invest .title {
         font-size: 25px;
         margin: 0 5%;
+        color: red;
     }
     
     .invest .size {
         font-size: 22px;
     }
-
-    .invest .key-features {
-        padding: 0 0% 30px 0%;
-    }
     
     .invest .key-features .feature-name {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .invest .key-features .feature-value {
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+    .transaction {
+        margin: 0 10%;
+    }
+
+    .invest .main-headline {
+        font-size: 20px;
+    }
+
+    .invest input {
+        font-size: 35px;
+        width: 190px;
+        height: 100px;
     }
 }
