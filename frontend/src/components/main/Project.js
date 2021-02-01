@@ -159,14 +159,18 @@ export default class Project extends React.Component {
                 },
             }             
         }
-        
+
+        const ownerComponent = this.props.match.url.split('/').includes('user') 
+                ? '' 
+                : <Owner {...project.owner} />;
+
         return (
             <div className="project">
                 <Title title={project.title} />
                 <Size size={project.size} />
-                <Owner {...project.owner} />
+                {ownerComponent}
                 <Detail {...project.detail} />
-                <Owner {...project.owner} />
+                {ownerComponent}
             </div>
         )
     }
