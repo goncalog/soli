@@ -7,6 +7,7 @@ import SecondaryHeadline from '../support/SecondaryHeadline';
 import Input from '../support/Input';
 import CallToActionButton from '../support/CallToActionButton';
 import getSize from '../../utils/getSize';
+import formatNumber from '../../utils/formatNumber';
 import '../../css/Invest.css';
 
 export default function Invest(props) {
@@ -85,7 +86,7 @@ export default function Invest(props) {
                 </div>
 
                 <div className={hasInvested ? "congrats" : "congrats hidden"}>
-                    <SecondaryHeadline secondaryHeadline={`Congratulations, you just invested ${currency}${investmentAmount} in ${title}!`} />
+                    <SecondaryHeadline secondaryHeadline={`Congratulations, you've just invested ${currency}${formatNumber(investmentAmount)} in ${title}!`} />
                     <CallToActionButton callToActionText="Go to Dashboard" onButtonClick={handleDashboardButtonClick}/>
                 </div>                
             </div>
