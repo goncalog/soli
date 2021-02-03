@@ -49,10 +49,8 @@ export default function Dashboard(props) {
     }
     const callToActionText="Invest";
     let url = (process.env.NODE_ENV === 'production') 
-        // ? `/content${props.match.url}`
-        // : `${process.env.REACT_APP_SERVER_URL}/content${props.match.url}`;
-        ? `/content/projects`
-        : `${process.env.REACT_APP_SERVER_URL}/content/projects`;
+        ? `/content${props.match.url}`
+        : `${process.env.REACT_APP_SERVER_URL}/content${props.match.url}`;
 
     return (
         <div className="dashboard">

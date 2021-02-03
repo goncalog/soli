@@ -81,11 +81,11 @@ describe('Dashboard', () => {
         });
     });
 
-    test('has Grid with 4 h3 HTML elements', () => {
+    test('has Grid with 4 h2 HTML elements', () => {
         const shallowWrapper = dashboard().find(Grid).prop('content');
         expect(shallowWrapper.length).toEqual(4);
         shallowWrapper.forEach((node) => {
-            expect(node[1].type).toEqual('h3');
+            expect(node[1].type).toEqual('h2');
         });
     });
 

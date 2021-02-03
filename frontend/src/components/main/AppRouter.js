@@ -12,6 +12,7 @@ import OwnerProjects from './OwnerProjects';
 import OwnerProject from './OwnerProject';
 import Form from './Form';
 import Invest from './Invest';
+import Dashboard from './Dashboard';
 
 function AppRouter() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -93,6 +94,7 @@ function AppRouter() {
                     render={(props) => (<LogOut onAuth={handleAuthChange} {...props} />)}
                 >
                 </Route>
+                <Route path='/user/:id' exact component={withAuth(Dashboard)}></Route>
                 <Route path='/user/:id/projects' component={withAuth(OwnerProjects)}></Route>
                 <Route path='/user/:id/project/create' component={withAuth(Form)}></Route>
                 <Route path='/user/:id/project/:id/update' component={withAuth(Form)}></Route>

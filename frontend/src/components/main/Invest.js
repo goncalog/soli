@@ -42,7 +42,7 @@ export default function Invest(props) {
     }
 
     function handleDashboardButtonClick() {
-        props.history.push(`/dashboard`);
+        props.history.push(`/user/${props.userId}`);
     }
 
     useEffect(() => {

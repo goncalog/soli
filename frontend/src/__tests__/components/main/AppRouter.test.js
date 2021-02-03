@@ -30,9 +30,9 @@ test('renders the Switch component', () => {
     expect(wrapper.find(Switch).length).toBe(1);
 });
 
-test('renders 12 Route components', () => {
+test('renders 13 Route components', () => {
     const wrapper = shallow(<AppRouter />);
-    expect(wrapper.find(Route).length).toBe(12);
+    expect(wrapper.find(Route).length).toBe(13);
 });
 
 test('renders all Route components with correct paths', () => {
@@ -50,6 +50,7 @@ test('renders all Route components with correct paths', () => {
     expect(Object.keys(pathMap)).toContain('/user/signup');
     expect(Object.keys(pathMap)).toContain('/user/login');
     expect(Object.keys(pathMap)).toContain('/user/logout');
+    expect(Object.keys(pathMap)).toContain('/user/:id');
     expect(Object.keys(pathMap)).toContain('/user/:id/projects');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/create');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/:id');
