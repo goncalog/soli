@@ -31,7 +31,7 @@ export default function Invest(props) {
     }
 
     function handleDashboardButtonClick() {
-        alert('Dashboard');
+        props.history.push(`/dashboard`);
     }
 
     useEffect(() => {
