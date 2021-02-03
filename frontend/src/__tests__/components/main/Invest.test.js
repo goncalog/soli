@@ -30,7 +30,10 @@ describe('Invest', () => {
             match: {
                 params: {
                     id: 12345,
-                }
+                },
+            },
+            history: {
+                location: {},
             },
         }
         shallowInvest = undefined;

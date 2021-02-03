@@ -69,7 +69,12 @@ function AppRouter() {
                 </Route>
                 <Route path='/project/:id' exact component={Project}></Route>
                 <Route path='/contact' exact component={Contact}></Route>
-                <Route path='/project/:id/invest' exact component={Invest}></Route>
+                <Route 
+                    path='/project/:id/invest' 
+                    exact
+                    render={(props) => (<Invest loggedIn={loggedIn} userId={userId} {...props} />)} 
+                >
+                </Route>
                 <Route 
                     path='/user/signup'
                     exact

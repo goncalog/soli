@@ -13,7 +13,10 @@ import '../../css/Invest.css';
 export default function Invest(props) {
     const [title, setTitle] = useState('');
     const [size, setSize] = useState('');
-    const [investmentAmount, setInvestmentAmount] = useState('');
+    const [investmentAmount, setInvestmentAmount] = useState(props.history.location.state 
+            ? props.history.location.state.investmentAmount
+            : ''
+    );
     const [features, setFeatures] = useState([]);
     const [currency, setCurrency] = useState('');
     const [hasInvested, setHasInvested] = useState(false);
@@ -25,8 +28,16 @@ export default function Invest(props) {
     function handleInvestButtonClick() {
         if (investmentAmount < 0 || investmentAmount === '' || isNaN(Number(investmentAmount))) {
             alert('Please provide a valid amount.');
-        } else {
+        } else if (props.loggedIn) {
             setHasInvested(true);
+        } else {
+            props.history.push({
+                pathname: `/user/signup`,
+                state: { 
+                    projectId: props.match.params.id,
+                    investmentAmount: investmentAmount,
+                }, 
+            });
         }
     }
 

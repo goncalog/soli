@@ -61,6 +61,13 @@ exports.signUp = [
                             if (err) { return next(err); }
                             
                             // Successful
+                            // If user was trying to invest before Sign up, 
+                            // send also the project and investment amount
+                            if (req.body.projectId) {
+                                return res.json({ title: `${req.user.name} signed up`, userId: req.user.id, 
+                                        projectId: req.body.projectId, investmentAmount: req.body.investmentAmount 
+                                });
+                            }
                             return res.json({ title: `${req.user.name} signed up`, userId: req.user.id });
                         });                        
                     });
