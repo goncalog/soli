@@ -74,7 +74,7 @@ export default function Dashboard(props) {
             </div>
             <CallToActionButton callToActionText={callToActionText} onButtonClick={handleButtonClick}/>
             <ProjectsContainer projects={projects} {...props} />
-            {projects === [] && ( 
+            {projects.length !== 0 && ( 
                 <CallToActionButton callToActionText={callToActionText} onButtonClick={handleButtonClick}/>
             )}
         </div>
