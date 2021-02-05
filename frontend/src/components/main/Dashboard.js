@@ -3,7 +3,7 @@ import Image from '../support/Image';
 import Grid from '../support/Grid';
 import CallToActionButton from '../support/CallToActionButton';
 import ProjectsContainer from '../support/ProjectsContainer';
-import formatNumber from '../../utils/formatNumber';
+import getTotals from '../../utils/getTotals';
 import getProjects from '../../utils/getProjects';
 import '../../css/Dashboard.css';
 import userProfilePic from '../../media/user-icon.svg';
@@ -14,6 +14,7 @@ import receivedIcon from '../../media/payments-icon.svg';
 
 export default function Dashboard(props) {
     const [userName, setUserName] = useState(' ');
+    const [userTotals, setUserTotals] = useState([0, 0, 0, 0]);
     const [projects, setProjects] = useState([]);
 
     function handleButtonClick() {
@@ -33,31 +34,33 @@ export default function Dashboard(props) {
             .then((res) => {
                 setUserName(res.user.name);
                 setProjects(getProjects(res.projects));
+                // Assumes all investments are in £
+                setUserTotals(getTotals(res.user.investments, res.projects));
             });
     }, []); // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from props or state, so it never needs to re-run. This isn’t handled as a special case — it follows directly from how the dependencies array always works.
 
     const userLevel = 'Level 1';
     const totalsText = ['invested', 'produced', 'CO2 saved', 'received'];
-    const userTotals = {
+    const userTotalsGrid = {
         content: [
             [
                 <Image imagePath={investedIcon} />,
-                <h2>{`£${formatNumber(1000)}`}</h2>,
+                <h2>{`£${userTotals[0]}`}</h2>,
                 <p>{totalsText[0]}</p>,
             ],        
             [
                 <Image imagePath={producedIcon} />,
-                <h2>{`${formatNumber(100)} kWh`}</h2>,
+                <h2>{`${userTotals[1]} kWh`}</h2>,
                 <p>{totalsText[1]}</p>,
             ],
             [
                 <Image imagePath={co2SavedIcon} />,
-                <h2>{`${formatNumber(20)} tons`}</h2>,
+                <h2>{`${userTotals[2]} tons`}</h2>,
                 <p>{totalsText[2]}</p>,
             ],
             [
                 <Image imagePath={receivedIcon} />,
-                <h2>{`£${formatNumber(500)}`}</h2>,
+                <h2>{`£${userTotals[3]}`}</h2>,
                 <p>{totalsText[3]}</p>,
             ],
         ],
@@ -70,7 +73,7 @@ export default function Dashboard(props) {
                 <Image imagePath={userProfilePic} />
                 <h1>{userName}</h1>
                 <h4>{userLevel}</h4>
-                <Grid {...userTotals} />
+                <Grid {...userTotalsGrid} />
             </div>
             <CallToActionButton callToActionText={callToActionText} onButtonClick={handleButtonClick}/>
             <ProjectsContainer projects={projects} {...props} />
