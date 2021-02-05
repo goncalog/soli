@@ -3,7 +3,7 @@ import Dashboard from '../../../components/main/Dashboard';
 import Image from '../../../components/support/Image';
 import Grid from '../../../components/support/Grid';
 import CallToActionButton from '../../../components/support/CallToActionButton';
-import Projects from '../../../components/main/Projects';
+import ProjectsContainer from '../../../components/support/ProjectsContainer';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -110,9 +110,9 @@ describe('Dashboard', () => {
         });
     });
 
-   test('has one Projects component rendered with passed properties', () => {
-        const shallowWrapper = dashboard().find(Projects);
+   test('has one ProjectsContainer component rendered with passed properties', () => {
+        const shallowWrapper = dashboard().find(ProjectsContainer);
         expect(shallowWrapper.length).toEqual(1);
-        expect(Object.keys(shallowWrapper.props())).toContain('fetchUrl');
+        expect(Object.keys(shallowWrapper.props())).toContain('projects');
     });
 });
