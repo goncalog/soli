@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 10px;
-    padding: 40px 20% 20px 20%;
+    padding: 40px 15% 20px 15%;
 }
 
 .dashboard .user-profile .grid .image {
@@ -24,7 +24,60 @@
     line-height: 10px;
 }
 
+.dashboard .grid span {
+    font-size: 14px;
+    line-height: 0px;
+}
+
 .dashboard .projects-container {
     padding: 0;
     padding-top: 50px;
+}
+
+/* Responsive layout - when the screen is less than 1250px wide */
+@media screen and (max-width: 1250px) {
+    .dashboard .grid h2 {
+        font-size: 26px;
+    }
+
+    .dashboard .grid p {
+        font-size: 14px;
+    }
+
+    .dashboard .grid span {
+        font-size: 12px;
+    }
+}
+
+/* Responsive layout - when the screen is less than 1000px wide */
+@media screen and (max-width: 1000px) {
+    .dashboard .grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+        column-gap: 5px;
+        padding: 40px 20% 20px 20%;
+    }    
+}
+
+/* Responsive layout - when the screen is less than 800px wide (tablet portrait) */
+@media screen and (max-width: 800px) {
+    .dashboard .grid {
+        column-gap: 5px;
+        padding: 40px 15% 20px 15%;
+    }
+}
+
+/* Responsive layout - when the screen is less than 600px wide (mobile) */
+@media screen and (max-width: 600px) {
+    .dashboard h1 {
+        font-size: 32px;
+    }
+
+    .dashboard .grid {
+        padding: 40px 5% 20px 5%;
+    }
+
+    .dashboard .grid h2 {
+        font-size: 22px;
+    }
 }

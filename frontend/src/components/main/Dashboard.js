@@ -50,12 +50,12 @@ export default function Dashboard(props) {
             ],        
             [
                 <Image imagePath={producedIcon} />,
-                <h2>{`${userTotals[1]} kWh`}</h2>,
+                <h2>{`${userTotals[1]}`}<span className="units"> kWh</span></h2>,
                 <p>{totalsText[1]}</p>,
             ],
             [
                 <Image imagePath={co2SavedIcon} />,
-                <h2>{`${userTotals[2]} tons`}</h2>,
+                <h2>{`${userTotals[2]}`}<span className="units"> tons</span></h2>,
                 <p>{totalsText[2]}</p>,
             ],
             [
