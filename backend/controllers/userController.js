@@ -111,8 +111,15 @@ exports.getUser = (req, res, next) => {
         .exec(function (err, user) {
             if (err) { return next(err); }
 
-            // Successful, so send data
-            res.json({ title: `User with id ${req.params.id}`, user: user })
+            // Successful, so get invested projects data
+            Project.find({ _id: { $in: [...user.investments.keys()], } })
+                .populate('location')
+                .exec(function (err, projects) {
+                    if (err) { return next(err); }
+
+                    // Successful, so get invested projects data
+                    res.json({ title: `User with id ${req.params.id}`, user: user, projects: projects })
+                });
         });
 }
 

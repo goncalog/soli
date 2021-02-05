@@ -4,6 +4,7 @@ import Grid from '../support/Grid';
 import CallToActionButton from '../support/CallToActionButton';
 import ProjectsContainer from '../support/ProjectsContainer';
 import formatNumber from '../../utils/formatNumber';
+import getProjects from '../../utils/getProjects';
 import '../../css/Dashboard.css';
 import userProfilePic from '../../media/user-icon.svg';
 import investedIcon from '../../media/invested-icon.svg';
@@ -29,11 +30,11 @@ export default function Dashboard(props) {
 
         fetch(userUrl, { credentials: 'include' })
             .then((res) => res.json())
-            .then((res) => { 
+            .then((res) => {
                 setUserName(res.user.name);
-                setProjects(res.projects);
+                setProjects(getProjects(res.projects));
             });
-    });
+    }, []); // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from props or state, so it never needs to re-run. This isn’t handled as a special case — it follows directly from how the dependencies array always works.
 
     const userLevel = 'Level 1';
     const totalsText = ['invested', 'produced', 'CO2 saved', 'received'];
