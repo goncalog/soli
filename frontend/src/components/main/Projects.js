@@ -6,7 +6,7 @@ import applyFilters from '../../utils/applyFilters';
 import applySort from '../../utils/applySort';
 import sortString from '../../utils/sortString';
 import removeDuplicates from '../../utils/removeDuplicates';
-import getSize from '../../utils/getSize';
+import getProjects from '../../utils/getProjects';
 
 export default class Projects extends React.Component {
     constructor(props) {
@@ -104,29 +104,7 @@ export default class Projects extends React.Component {
     }
 
     render() {
-        const projects = this.state.filteredProjects.map((item) => {
-            let project = {
-                imageUrls: item.image_urls,
-                title: item.name,
-                size: getSize(item),
-                features: [
-                    { 
-                        name: 'Status',
-                        value: item.status,
-                    },
-                    { 
-                        name: 'Est. Return',
-                        value: `${item.estimated_annual_return_percent}%`,
-                    },
-                    { 
-                        name: 'Location',
-                        value: item.location.country,
-                    },
-                ],
-                id: item._id,                
-            };
-            return project;
-        });
+        const projects = getProjects(this.state.filteredProjects);
 
         return (
             <div className="projects">
