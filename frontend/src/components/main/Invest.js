@@ -28,8 +28,41 @@ export default function Invest(props) {
     function handleInvestButtonClick() {
         if (investmentAmount < 0 || investmentAmount === '' || isNaN(Number(investmentAmount))) {
             alert('Please provide a valid amount.');
+
         } else if (props.loggedIn) {
-            setHasInvested(true);
+            // Send data to backend
+            let url = (process.env.NODE_ENV === 'production') 
+            ? `/content/user/${props.userId}${props.match.url}`
+            : `${process.env.REACT_APP_SERVER_URL}/content/user/${props.userId}${props.match.url}`;
+        
+            let data = {
+                investmentAmount: investmentAmount,
+                // Not sending the user because the backend (Passport) already has this info      
+            };
+
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                credentials: 'include',
+            })
+                .then(async response => {
+                    const data = await response.json();
+                    if (!response.ok) {
+                        const error = (data && data.message) || response.statusText;
+                        return Promise.reject(error);
+                    }
+
+                    console.log('Success:', data);
+                    setHasInvested(true);
+                })            
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert(`Error: ${error}`);
+                });
+
         } else {
             props.history.push({
                 pathname: `/user/signup`,
