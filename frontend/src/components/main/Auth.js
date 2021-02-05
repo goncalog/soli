@@ -97,7 +97,7 @@ export default class Auth extends React.Component {
                     });
                 } else {
                     // Go to User's Page
-                    this.props.history.push(`/user/${data.userId}/projects`);
+                    this.props.history.push(`/user/${data.userId}`);
                 }
             })            
             .catch((error) => {
