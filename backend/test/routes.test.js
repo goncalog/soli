@@ -130,6 +130,14 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
+    it('has route to invest in project', () => {
+        return request(app)
+            .delete('/content/user/xpto/project/12345/invest')
+            .expect('Content-type', /json/)
+            .expect({ message: 'Unauthorized: User not logged in' })
+            .expect(401)
+    });
+
     it('all locations route works', () => {
         return request(app)
             .get('/content/locations')
