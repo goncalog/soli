@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from '../support/Image';
 import Grid from '../support/Grid';
 import CallToActionButton from '../support/CallToActionButton';
@@ -11,16 +11,26 @@ import producedIcon from '../../media/electricity-icon.svg';
 import co2SavedIcon from '../../media/globe-icon.svg';
 import receivedIcon from '../../media/payments-icon.svg';
 
-export default function Dashboard(props) {    
+export default function Dashboard(props) {
+    const [userName, setUserName] = useState(' ');
+
     function handleButtonClick() {
         props.history.push(`/projects`);
     }
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // GET User data from db
+        let userUrl = (process.env.NODE_ENV === 'production') 
+                ? `/content/user/${props.match.params.id}`
+                : `${process.env.REACT_APP_SERVER_URL}/content/user/${props.match.params.id}`;
+
+        fetch(userUrl, { credentials: 'include' })
+            .then((res) => res.json())
+            .then((res) => { setUserName(res.user.name) });
     });
 
-    const userName = 'Goncalo G.';
     const userLevel = 'Level 1';
     const totalsText = ['invested', 'produced', 'CO2 saved', 'received'];
     const userTotals = {
