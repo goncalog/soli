@@ -105,6 +105,17 @@ exports.checkAuth = (req, res, next) => {
     res.json({ title: `User is logged in`, userId: req.user._id });
 }
 
+// GET request to get a user's data
+exports.getUser = (req, res, next) => {
+    User.findById(req.params.id)
+        .exec(function (err, user) {
+            if (err) { return next(err); }
+
+            // Successful, so send data
+            res.json({ title: `User with id ${req.params.id}`, user: user })
+        });
+}
+
 // GET request to get a user's list of projects
 exports.getUserProjects = (req, res, next) => {
     Project.find({ owner: { _id: req.params.id }  })
