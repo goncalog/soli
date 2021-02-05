@@ -179,6 +179,29 @@ exports.deleteProject = (req, res, next) => {
     });
 }
 
+// PUT request to invest in project
+exports.putInvestProject = (req, res, next) => {
+    // Update User investments
+    User.findById(req.user._id)
+        .exec(function (err, user) {
+            if (err) { return next(err); }
+
+            const project = req.params.id;
+            user.investments.set(
+                project, 
+                user.investments.get(project) 
+                    ? user.investments.get(project) + parseInt(req.body.investmentAmount)
+                    : parseInt(req.body.investmentAmount)
+            );
+
+            User.findByIdAndUpdate(user._id, user, (err) => {
+                if (err) { return next(err); }
+
+                res.json({ title: `Updated investments of User with id ${user._id}` });
+            });
+        });    
+}
+
 // POST request to contact user
 exports.postContactUser = (req, res, next) => {
     const nodemailer = require('nodemailer');
