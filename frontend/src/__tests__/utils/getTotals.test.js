@@ -1,0 +1,81 @@
+import getTotals from '../../utils/getTotals';
+import formatNumber from '../../utils/formatNumber';
+
+const investments = {
+    '1234567890': 3000,
+    '0987654321': 300,
+    '12345678900987654321': 2275,
+}
+
+const london = {
+    city: 'London',
+    country: 'UK',
+    continent: 'Europe',
+};
+
+const imageUrls = ['https://placeholder.com/image111', 'https://placeholder.com/image222']; 
+const realAnnualProduction = [98000, 132000];
+const realAnnualPayments = [10000, 13500];
+const realAnnualReturn = [10, 13.5];
+const realAnnualCo2Saved = [73, 107];
+
+const projects = [
+    {
+        _id: '1234567890',
+        name: 'Star Plaza',
+        size_kw: 360,
+        total_cost: 100000,
+        total_cost_currency: '£',
+        status: 'Funding',    
+        estimated_annual_return_percent: 12.45,
+        location: london,
+        owner: '12345678901234567890',
+        image_urls: imageUrls,
+        estimated_total_co2_saved_ton: 1200,
+        estimated_annual_production_kwh: 125000,
+        payment_schedule: 'Monthly',
+        risk_level: 'Medium',
+        year_start_production: 2021,
+        real_annual_production_kwh: realAnnualProduction,    
+        real_annual_payments: realAnnualPayments,
+        payments_currency: '£',
+        real_annual_return_percent: realAnnualReturn,    
+        real_annual_co2_saved_ton: realAnnualCo2Saved,    
+    },
+    {
+        _id: '123456789',
+        name: 'Star Shade',
+        size_kw: 3600,
+        total_cost: 500000,
+        total_cost_currency: '$',
+        status: 'Producing',    
+        estimated_annual_return_percent: 10.45,
+        location: london,
+        owner: '1234567890',
+        image_urls: imageUrls,
+        estimated_total_co2_saved_ton: 100,
+        estimated_annual_production_kwh: 125,
+        payment_schedule: 'Quarterly',
+        risk_level: 'High',
+        year_start_production: 2019,
+        real_annual_production_kwh: realAnnualProduction,    
+        real_annual_payments: realAnnualPayments,
+        payments_currency: '$',
+        real_annual_return_percent: realAnnualReturn,    
+        real_annual_co2_saved_ton: realAnnualCo2Saved,    
+    },
+
+];
+
+const results =  [
+    formatNumber(5575),
+    formatNumber(0), 
+    formatNumber(0), 
+    formatNumber(0), 
+];
+
+describe('getTotals', () => {
+    it('returns totals correctly', () => {
+        expect(getTotals(investments, projects)).toEqual(results);
+    });
+});
