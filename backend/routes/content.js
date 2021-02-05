@@ -50,6 +50,9 @@ router.put('/user/:id/project/:id/update', withAuth, userController.putUpdatePro
 // DELETE request to delete project
 router.delete('/user/:id/project/:id/delete', withAuth, userController.deleteProject);
 
+// PUT request to invest in project
+router.put('/user/:id/project/:id/invest', withAuth, userController.putInvestProject);
+
 // POST request to contact user
 router.post('/user/:id/contact', userController.postContactUser);
 
