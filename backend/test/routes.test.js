@@ -132,7 +132,7 @@ describe('Routes testing', function () {
 
     it('has route to invest in project', () => {
         return request(app)
-            .delete('/content/user/xpto/project/12345/invest')
+            .put('/content/user/xpto/project/12345/invest')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)
