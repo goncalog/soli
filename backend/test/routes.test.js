@@ -202,6 +202,14 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
+    it('has route for getting a user\'s data', () => {
+        return request(app)
+            .get('/content/user/5f80744b1a698848220d9e1e')
+            .expect('Content-type', /json/)
+            .expect({ message: 'Unauthorized: User not logged in' })
+            .expect(401)
+    });
+
     it('route for getting a user\'s list of projects for sale works', () => {
         return request(app)
             .get('/content/user/5f80744b1a698848220d9e1e/projects')
