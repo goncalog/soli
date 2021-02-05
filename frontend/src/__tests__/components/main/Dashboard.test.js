@@ -45,8 +45,8 @@ describe('Dashboard', () => {
         window.scrollTo = jsdomScrollTo; // restore the jsdom scrollTo
     });
 
-    test('has 4 children', () => {
-        expect(dashboard().children().length).toEqual(4);
+    test('has 3 children', () => {
+        expect(dashboard().children().length).toEqual(3);
     });
 
     test('has 1 Image components rendered with passed properties', () => {
@@ -100,9 +100,9 @@ describe('Dashboard', () => {
         });
     });
 
-    test('has 2 CallToActionButton components rendered with passed properties', () => {
+    test('has one CallToActionButton component rendered with passed properties', () => {
         const shallowWrapper = dashboard().find(CallToActionButton);
-        expect(shallowWrapper.length).toEqual(2);
+        expect(shallowWrapper.length).toEqual(1);
 
         shallowWrapper.forEach((node) => {
             expect(Object.keys(node.props())).toContain('callToActionText');
