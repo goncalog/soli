@@ -32,6 +32,9 @@ router.post('/user/logout', userController.logOut);
 // GET request to check log in status
 router.get('/user/checkAuth', withAuth, userController.checkAuth);
 
+// GET request to get a user's data
+router.get('/user/:id', withAuth, userController.getUser);
+
 // GET request to get a user's list of projects for sale
 router.get('/user/:id/projects', userController.getUserProjects);
 
