@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from '../support/Image';
 import Grid from '../support/Grid';
 import CallToActionButton from '../support/CallToActionButton';
-import Projects from './Projects';
+import ProjectsContainer from '../support/ProjectsContainer';
 import formatNumber from '../../utils/formatNumber';
 import '../../css/Dashboard.css';
 import userProfilePic from '../../media/user-icon.svg';
@@ -13,6 +13,7 @@ import receivedIcon from '../../media/payments-icon.svg';
 
 export default function Dashboard(props) {
     const [userName, setUserName] = useState(' ');
+    const [projects, setProjects] = useState([]);
 
     function handleButtonClick() {
         props.history.push(`/projects`);
@@ -28,7 +29,10 @@ export default function Dashboard(props) {
 
         fetch(userUrl, { credentials: 'include' })
             .then((res) => res.json())
-            .then((res) => { setUserName(res.user.name) });
+            .then((res) => { 
+                setUserName(res.user.name);
+                setProjects(res.projects);
+            });
     });
 
     const userLevel = 'Level 1';
@@ -58,9 +62,6 @@ export default function Dashboard(props) {
         ],
     }
     const callToActionText="Invest";
-    let url = (process.env.NODE_ENV === 'production') 
-        ? `/content${props.match.url}`
-        : `${process.env.REACT_APP_SERVER_URL}/content${props.match.url}`;
 
     return (
         <div className="dashboard">
@@ -71,7 +72,7 @@ export default function Dashboard(props) {
                 <Grid {...userTotals} />
             </div>
             <CallToActionButton callToActionText={callToActionText} onButtonClick={handleButtonClick}/>
-            <Projects fetchUrl={url} {...props} />
+            <ProjectsContainer projects={projects} {...props} />
             <CallToActionButton callToActionText={callToActionText} onButtonClick={handleButtonClick}/>
         </div>
     );
