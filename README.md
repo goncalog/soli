@@ -1,6 +1,6 @@
 # Soli
 
-Soli is a solar energy investment platform where roof owners can rent their roofs to those who want to invest and own solar panels - find more at [getsoli.herokuapp.com/](https://getsoli.herokuapp.com/)
+Soli is a solar energy investment platform where roof owners can rent their roofs to those who want to invest in and own solar panels - find more at [getsoli.herokuapp.com/](https://getsoli.herokuapp.com/)
 
 ## Screenshots
 <img src='https://user-images.githubusercontent.com/5341829/105068464-e0431480-5a78-11eb-84bb-f50db6340763.png' alt='screens'>
