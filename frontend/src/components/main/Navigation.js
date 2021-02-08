@@ -44,15 +44,21 @@ function Navigation(props) {
                                 </Link>
                             </Nav.Item>
 
-                            <Nav.Item
-                                className={`${
-                                    props.location.pathname === "/contact" ? "active" : "" 
-                                }`}
-                            >
-                                <Link className="nav-link" to="/contact" onClick={() => setExpanded(false)}>
-                                    Contact
-                                </Link>
-                            </Nav.Item>
+                            {(props.loggedIn) && (
+                                <Nav.Item
+                                    className={`${
+                                        props.location.pathname === `/user/${props.userId}/projects` ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link 
+                                        className="nav-link" 
+                                        to={`/user/${props.userId}/projects`} 
+                                        onClick={() => setExpanded(false)}
+                                    >
+                                        My Projects
+                                    </Link>
+                                </Nav.Item>
+                            )}
                             
                             {props.loggedIn ? (
                                 <Nav.Item 
