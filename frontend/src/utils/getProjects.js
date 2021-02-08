@@ -1,6 +1,6 @@
 import getSize from './getSize';
 
-export default function getProjects(rawProjects) {
+export default function getProjects(rawProjects, investments) {
     return rawProjects.map((item) => {
         return {
             imageUrls: item.image_urls,
@@ -20,7 +20,8 @@ export default function getProjects(rawProjects) {
                     value: item.location.country,
                 },
             ],
-            id: item._id,                
+            id: item._id,
+            investmentAmount: investments ? investments[item._id] : undefined,     
         };
     });
 }
