@@ -15,7 +15,7 @@ const realAnnualCo2Saved = [73, 107];
 
 const rawProjects = [
     {
-        _id: '1234567890',
+        _id: '1234567890abc',
         name: 'Star Plaza',
         size_kw: 360,
         total_cost: 100000,
@@ -37,7 +37,7 @@ const rawProjects = [
         real_annual_co2_saved_ton: realAnnualCo2Saved,    
     },
     {
-        _id: '123456789',
+        _id: '123456789abc',
         name: 'Star Shade',
         size_kw: 3600,
         total_cost: 500000,
@@ -61,6 +61,12 @@ const rawProjects = [
 
 ];
 
+const investments = {
+    '1234567890abc': 3000,
+    '123456789abc': 1000,
+    '12345678abc': 2000,
+};
+
 const projects =  [
     {
         imageUrls: rawProjects[0].image_urls,
@@ -80,7 +86,8 @@ const projects =  [
                 value: rawProjects[0].location.country,
             },
         ],
-        id: rawProjects[0]._id,                
+        id: rawProjects[0]._id,    
+        investmentAmount: undefined,
     },
     {
         imageUrls: rawProjects[1].image_urls,
@@ -100,12 +107,59 @@ const projects =  [
                 value: rawProjects[1].location.country,
             },
         ],
-        id: rawProjects[1]._id,                
+        id: rawProjects[1]._id,
+        investmentAmount: undefined,                
+    },
+];
+
+const projectsWithInvestments =  [
+    {
+        imageUrls: rawProjects[0].image_urls,
+        title: rawProjects[0].name,
+        size: getSize(rawProjects[0]),
+        features: [
+            { 
+                name: 'Status',
+                value: rawProjects[0].status,
+            },
+            { 
+                name: 'Est. Return',
+                value: `${rawProjects[0].estimated_annual_return_percent}%`,
+            },
+            { 
+                name: 'Location',
+                value: rawProjects[0].location.country,
+            },
+        ],
+        id: rawProjects[0]._id,
+        investmentAmount: 3000,              
+    },
+    {
+        imageUrls: rawProjects[1].image_urls,
+        title: rawProjects[1].name,
+        size: getSize(rawProjects[1]),
+        features: [
+            { 
+                name: 'Status',
+                value: rawProjects[1].status,
+            },
+            { 
+                name: 'Est. Return',
+                value: `${rawProjects[1].estimated_annual_return_percent}%`,
+            },
+            { 
+                name: 'Location',
+                value: rawProjects[1].location.country,
+            },
+        ],
+        id: rawProjects[1]._id,
+        investmentAmount: 1000,
     },
 ];
 
 describe('getProjects', () => {
     it('returns projects correctly', () => {
         expect(getProjects(rawProjects)).toEqual(projects);
+        expect(getProjects(rawProjects, investments)).toEqual(projectsWithInvestments);
     });
 });
