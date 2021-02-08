@@ -61,6 +61,13 @@ exports.signUp = [
                             if (err) { return next(err); }
                             
                             // Successful
+                            // If user was trying to invest before Sign up, 
+                            // send also the project and investment amount
+                            if (req.body.projectId) {
+                                return res.json({ title: `${req.user.name} signed up`, userId: req.user.id, 
+                                        projectId: req.body.projectId, investmentAmount: req.body.investmentAmount 
+                                });
+                            }
                             return res.json({ title: `${req.user.name} signed up`, userId: req.user.id });
                         });                        
                     });
@@ -96,6 +103,24 @@ exports.logOut = (req, res, next) => {
 // GET request to check log in status
 exports.checkAuth = (req, res, next) => {
     res.json({ title: `User is logged in`, userId: req.user._id });
+}
+
+// GET request to get a user's data
+exports.getUser = (req, res, next) => {
+    User.findById(req.params.id)
+        .exec(function (err, user) {
+            if (err) { return next(err); }
+
+            // Successful, so get invested projects data
+            Project.find({ _id: { $in: [...user.investments.keys()], } })
+                .populate('location')
+                .exec(function (err, projects) {
+                    if (err) { return next(err); }
+
+                    // Successful, so get invested projects data
+                    res.json({ title: `User with id ${req.params.id}`, user: user, projects: projects })
+                });
+        });
 }
 
 // GET request to get a user's list of projects
@@ -159,6 +184,29 @@ exports.deleteProject = (req, res, next) => {
 
         res.json({ title: `Deleted Project with id ${req.params.id}`, userId: req.user._id });
     });
+}
+
+// PUT request to invest in project
+exports.putInvestProject = (req, res, next) => {
+    // Update User investments
+    User.findById(req.user._id)
+        .exec(function (err, user) {
+            if (err) { return next(err); }
+
+            const project = req.params.id;
+            user.investments.set(
+                project, 
+                user.investments.get(project) 
+                    ? user.investments.get(project) + parseInt(req.body.investmentAmount)
+                    : parseInt(req.body.investmentAmount)
+            );
+
+            User.findByIdAndUpdate(user._id, user, (err) => {
+                if (err) { return next(err); }
+
+                res.json({ title: `Updated investments of User with id ${user._id}` });
+            });
+        });    
 }
 
 // POST request to contact user

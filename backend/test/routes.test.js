@@ -130,6 +130,14 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
+    it('has route to invest in project', () => {
+        return request(app)
+            .put('/content/user/xpto/project/12345/invest')
+            .expect('Content-type', /json/)
+            .expect({ message: 'Unauthorized: User not logged in' })
+            .expect(401)
+    });
+
     it('all locations route works', () => {
         return request(app)
             .get('/content/locations')
@@ -197,6 +205,14 @@ describe('Routes testing', function () {
     it('route to check the log in auth check works', () => {
         return request(app)
             .get('/content/user/checkAuth')
+            .expect('Content-type', /json/)
+            .expect({ message: 'Unauthorized: User not logged in' })
+            .expect(401)
+    });
+
+    it('has route for getting a user\'s data', () => {
+        return request(app)
+            .get('/content/user/5f80744b1a698848220d9e1e')
             .expect('Content-type', /json/)
             .expect({ message: 'Unauthorized: User not logged in' })
             .expect(401)

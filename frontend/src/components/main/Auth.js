@@ -55,6 +55,9 @@ export default class Auth extends React.Component {
                 name: `${this.state.firstName} ${this.state.lastName}`,
                 contact: this.state.email,
                 password: this.state.password,
+                // If user was trying to invest before Sign up send also the project and investment amount
+                projectId: this.props.history.location.state ? this.props.history.location.state.projectId : null,
+                investmentAmount: this.props.history.location.state ? this.props.history.location.state.investmentAmount : null,
             };
         } else {
             // Login
@@ -83,8 +86,19 @@ export default class Auth extends React.Component {
                 console.log('Success:', data);
                 // Inform AppRouter that login status changed
                 this.props.onAuth(data.userId);
-                // Go to User's Page
-                this.props.history.push(`/user/${data.userId}/projects`);
+                // If user was trying to invest before Sign up,
+                // send the user to the project investment page
+                if (data.projectId) {
+                    this.props.history.push({
+                        pathname: `/project/${data.projectId}/invest`,
+                        state: { 
+                            investmentAmount: data.investmentAmount,
+                        },
+                    });
+                } else {
+                    // Go to User's Page
+                    this.props.history.push(`/user/${data.userId}`);
+                }
             })            
             .catch((error) => {
                 console.error('Error:', error);

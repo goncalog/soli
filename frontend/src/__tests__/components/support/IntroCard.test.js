@@ -4,6 +4,7 @@ import Image from '../../../components/support/Image';
 import Title from '../../../components/support/Title';
 import Price from '../../../components/support/Size';
 import KeyFeatures from '../../../components/support/KeyFeatures';
+import Grid from '../../../components/support/Grid';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -41,12 +42,13 @@ describe('IntroCard', () => {
                     value: 'Text to test value property #3',
                 },
             ],
+            investmentAmount: undefined,
         }
         shallowIntroCard = undefined;
     });
 
-    test('has 4 children', () => {
-        expect(introCard().children().length).toEqual(4);
+    test('has 5 children', () => {
+        expect(introCard().children().length).toEqual(5);
     });
 
     test('has one Image component rendered with passed property', () => {
@@ -67,9 +69,15 @@ describe('IntroCard', () => {
         expect(shallowWrapper.prop('size')).toBe(props.size);
     });
 
-    test('has one KeyFeatures components rendered with passed properties', () => {
+    test('has one KeyFeatures component rendered with passed properties', () => {
         const shallowWrapper = introCard().find(KeyFeatures);
         expect(shallowWrapper.length).toEqual(1);
         expect(shallowWrapper.prop('features')).toBe(props.features);
+    });
+
+    test('has one Grid component rendered with passed properties', () => {
+        const shallowWrapper = introCard().find(Grid);
+        expect(shallowWrapper.length).toEqual(1);
+        expect(Object.keys(shallowWrapper.props())).toContain('content');
     });
 });

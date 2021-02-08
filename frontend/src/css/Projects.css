@@ -125,10 +125,6 @@
         grid-auto-rows: 400px;
         gap: 20px 8%;
     }
-    
-    .intro-card {
-        grid-template-rows: 15fr 2fr 2fr 6fr;
-    }
 }
 
 /* Responsive layout - when the screen is less than 1000px wide */
@@ -156,7 +152,7 @@
     }
 
     .size {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .feature-name {

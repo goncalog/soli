@@ -32,6 +32,9 @@ router.post('/user/logout', userController.logOut);
 // GET request to check log in status
 router.get('/user/checkAuth', withAuth, userController.checkAuth);
 
+// GET request to get a user's data
+router.get('/user/:id', withAuth, userController.getUser);
+
 // GET request to get a user's list of projects for sale
 router.get('/user/:id/projects', userController.getUserProjects);
 
@@ -46,6 +49,9 @@ router.put('/user/:id/project/:id/update', withAuth, userController.putUpdatePro
 
 // DELETE request to delete project
 router.delete('/user/:id/project/:id/delete', withAuth, userController.deleteProject);
+
+// PUT request to invest in project
+router.put('/user/:id/project/:id/invest', withAuth, userController.putInvestProject);
 
 // POST request to contact user
 router.post('/user/:id/contact', userController.postContactUser);

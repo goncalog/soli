@@ -3,7 +3,6 @@ import Navigation from '../../../components/main/Navigation';
 import AppRouter from '../../../components/main/AppRouter';
 import Project from '../../../components/main/Project';
 import Contact from '../../../components/main/Contact';
-import Invest from '../../../components/main/Invest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -31,9 +30,9 @@ test('renders the Switch component', () => {
     expect(wrapper.find(Switch).length).toBe(1);
 });
 
-test('renders 12 Route components', () => {
+test('renders 13 Route components', () => {
     const wrapper = shallow(<AppRouter />);
-    expect(wrapper.find(Route).length).toBe(12);
+    expect(wrapper.find(Route).length).toBe(13);
 });
 
 test('renders all Route components with correct paths', () => {
@@ -47,10 +46,11 @@ test('renders all Route components with correct paths', () => {
     expect(Object.keys(pathMap)).toContain('/projects');
     expect(pathMap['/project/:id']).toBe(Project);
     expect(pathMap['/contact']).toBe(Contact);
-    expect(pathMap['/project/:id/invest']).toBe(Invest);
+    expect(Object.keys(pathMap)).toContain('/project/:id/invest');
     expect(Object.keys(pathMap)).toContain('/user/signup');
     expect(Object.keys(pathMap)).toContain('/user/login');
     expect(Object.keys(pathMap)).toContain('/user/logout');
+    expect(Object.keys(pathMap)).toContain('/user/:id');
     expect(Object.keys(pathMap)).toContain('/user/:id/projects');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/create');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/:id');

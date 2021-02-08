@@ -9,8 +9,6 @@ exports.index = (req, res, next) => {
 exports.getProjects = (req, res, next) => {
     Project.find({})
         .populate('location')
-        .populate('make')
-        .populate('model')
         .populate('owner')
         .exec(function (err, projects) {
             if (err) { return next(err); }
@@ -24,8 +22,6 @@ exports.getProjects = (req, res, next) => {
 exports.getUniqueProject = (req, res, next) => {
     Project.findById(req.params.id)
         .populate('location')
-        .populate('make')
-        .populate('model')
         .populate('owner')
         .exec(function (err, project) {
             if (err) { return next(err); }

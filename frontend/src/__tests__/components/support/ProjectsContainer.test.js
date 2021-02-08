@@ -41,7 +41,8 @@ describe('ProjectsContainer', () => {
                             value: 300,
                         },
                     ],
-                    id: '12',    
+                    id: '12',
+                    investmentAmount: undefined, 
                 },
                 {
                     imageUrls: ['/path/to/projectTwo/image1', '/path/to/projectTwo/image2'],
@@ -61,7 +62,8 @@ describe('ProjectsContainer', () => {
                             value: 600,
                         },
                     ],    
-                    id: '34',    
+                    id: '34',
+                    investmentAmount: undefined,
                 },
                 {
                     imageUrls: ['/path/to/projectThree/image1', '/path/to/projectThree/image2'],
@@ -81,7 +83,8 @@ describe('ProjectsContainer', () => {
                             value: 900,
                         },
                     ],
-                    id: '56',    
+                    id: '56',
+                    investmentAmount: 5000, 
                 },
                 {
                     imageUrls: ['/path/to/four/image1', '/path/to/four/image2'],
@@ -101,7 +104,8 @@ describe('ProjectsContainer', () => {
                             value: 1200,
                         },
                     ],
-                    id: '78',    
+                    id: '78',
+                    investmentAmount: 1000,
                 },
             ],
             match: {
@@ -139,6 +143,7 @@ describe('ProjectsContainer', () => {
                 expect(feature.name).toBe(props.projects[i].features[j].name);
                 expect(feature.value).toBe(props.projects[i].features[j].value.toString());
             });
+            expect(project.prop('investmentAmount')).toBe(props.projects[i].investmentAmount);
             expect(project.key()).toBe(i.toString());
         });
     });
