@@ -40,7 +40,7 @@ function Navigation(props) {
                                 <Link 
                                     className="nav-link" to="/projects" onClick={() => setExpanded(false)}
                                 >
-                                    Projects
+                                    Invest
                                 </Link>
                             </Nav.Item>
 
