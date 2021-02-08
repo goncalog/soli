@@ -33,7 +33,7 @@ export default function Dashboard(props) {
             .then((res) => res.json())
             .then((res) => {
                 setUserName(res.user.name);
-                setProjects(getProjects(res.projects));
+                setProjects(getProjects(res.projects, res.user.investments));
                 // Assumes all investments are in £
                 setUserTotals(getTotals(res.user.investments, res.projects));
             });
