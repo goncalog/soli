@@ -21,16 +21,33 @@ function Navigation(props) {
                     />
                     <Navbar.Collapse id="navbarResponsive">
                         <Nav className="ml-auto">
+                        {props.loggedIn ? (
                             <Nav.Item
-                                className={`${
-                                    props.location.pathname === "/" ? "active" : "" 
-                                }`}
-                            >
-                                <Link className="nav-link" to="/" onClick={() => setExpanded(false)}>
-                                    Home
-                                    <span className="sr-only">(current)</span>
-                                </Link>
+                                    className={`${
+                                        props.location.pathname === `/user/${props.userId}` ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link 
+                                        className="nav-link" 
+                                        to={`/user/${props.userId}`} 
+                                        onClick={() => setExpanded(false)}
+                                    >
+                                        Dashboard
+                                        <span className="sr-only">(current)</span>
+                                    </Link>
                             </Nav.Item>
+                            ) : (
+                                <Nav.Item
+                                    className={`${
+                                        props.location.pathname === "/" ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link className="nav-link" to="/" onClick={() => setExpanded(false)}>
+                                        Home
+                                        <span className="sr-only">(current)</span>
+                                    </Link>
+                            </Nav.Item>
+                            )}
 
                             <Nav.Item 
                                 className={`${
@@ -40,19 +57,25 @@ function Navigation(props) {
                                 <Link 
                                     className="nav-link" to="/projects" onClick={() => setExpanded(false)}
                                 >
-                                    Projects
+                                    Invest
                                 </Link>
                             </Nav.Item>
 
-                            <Nav.Item
-                                className={`${
-                                    props.location.pathname === "/contact" ? "active" : "" 
-                                }`}
-                            >
-                                <Link className="nav-link" to="/contact" onClick={() => setExpanded(false)}>
-                                    Contact
-                                </Link>
-                            </Nav.Item>
+                            {(props.loggedIn) && (
+                                <Nav.Item
+                                    className={`${
+                                        props.location.pathname === `/user/${props.userId}/projects` ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link 
+                                        className="nav-link" 
+                                        to={`/user/${props.userId}/projects`} 
+                                        onClick={() => setExpanded(false)}
+                                    >
+                                        My Projects
+                                    </Link>
+                                </Nav.Item>
+                            )}
                             
                             {props.loggedIn ? (
                                 <Nav.Item 
@@ -69,19 +92,35 @@ function Navigation(props) {
                                     </Link>
                                 </Nav.Item>
                             ) : (
-                                <Nav.Item 
-                                    className={`${
-                                        props.location.pathname === "/user/login" ? "active" : "" 
-                                    }`}
-                                >
-                                    <Link 
-                                        className="nav-link" 
-                                        to="/user/login" 
-                                        onClick={() => setExpanded(false)}
+                                [
+                                    <Nav.Item 
+                                        className={`${
+                                            props.location.pathname === "/user/login" ? "active" : "" 
+                                        }`}
                                     >
-                                        Login
-                                    </Link>
-                                </Nav.Item>
+                                        <Link 
+                                            className="nav-link" 
+                                            to="/user/login" 
+                                            onClick={() => setExpanded(false)}
+                                        >
+                                            Login
+                                        </Link>
+                                    </Nav.Item>,
+
+                                    <Nav.Item 
+                                        className={`${
+                                            props.location.pathname === "/user/signup" ? "active" : "" 
+                                        }`}
+                                    >
+                                        <Link 
+                                            className="nav-link" 
+                                            to="/user/signup" 
+                                            onClick={() => setExpanded(false)}
+                                        >
+                                            Signup
+                                        </Link>
+                                    </Nav.Item>
+                                ]
                             )}
                         </Nav>
                     </Navbar.Collapse>

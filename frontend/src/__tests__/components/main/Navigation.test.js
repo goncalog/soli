@@ -25,18 +25,11 @@ it('renders Home link correctly', () => {
     expect(homeLink.getAttribute('href')).toBe('/');
 });
 
-it('renders the Drivers link correctly', () => {
+it('renders the Invest link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const projectsLink = getByText(/Projects/);
+    const projectsLink = getByText(/Invest/);
     expect(projectsLink).toBeInTheDocument();
     expect(projectsLink.getAttribute('href')).toBe('/projects');
-});
-
-it('renders the Contact link correctly', () => {
-    const { getByText } = render(<Router><Navigation /></Router>);
-    const contactLink = getByText(/Contact/);
-    expect(contactLink).toBeInTheDocument();
-    expect(contactLink.getAttribute('href')).toBe('/contact');
 });
 
 it('renders Log in link correctly', () => {
@@ -44,6 +37,13 @@ it('renders Log in link correctly', () => {
     const contactLink = getByText(/Login/);
     expect(contactLink).toBeInTheDocument();
     expect(contactLink.getAttribute('href')).toBe('/user/login');
+});
+
+it('renders Sign up link correctly', () => {
+    const { getByText } = render(<Router><Navigation /></Router>);
+    const contactLink = getByText(/Signup/);
+    expect(contactLink).toBeInTheDocument();
+    expect(contactLink.getAttribute('href')).toBe('/user/signup');
 });
 
 it('renders the logo correctly', () => {
