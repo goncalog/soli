@@ -24,6 +24,7 @@ export default function ProjectsContainer(props) {
                             title={project.title} 
                             size={project.size} 
                             features={features}
+                            investmentAmount={project.investmentAmount}
                             key={index} 
                         />
                     </Link> 
