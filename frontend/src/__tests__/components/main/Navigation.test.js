@@ -25,9 +25,9 @@ it('renders Home link correctly', () => {
     expect(homeLink.getAttribute('href')).toBe('/');
 });
 
-it('renders the Drivers link correctly', () => {
+it('renders the Invest link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
-    const projectsLink = getByText(/Projects/);
+    const projectsLink = getByText(/Invest/);
     expect(projectsLink).toBeInTheDocument();
     expect(projectsLink.getAttribute('href')).toBe('/projects');
 });
