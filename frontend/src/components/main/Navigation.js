@@ -21,16 +21,33 @@ function Navigation(props) {
                     />
                     <Navbar.Collapse id="navbarResponsive">
                         <Nav className="ml-auto">
+                        {props.loggedIn ? (
                             <Nav.Item
-                                className={`${
-                                    props.location.pathname === "/" ? "active" : "" 
-                                }`}
-                            >
-                                <Link className="nav-link" to="/" onClick={() => setExpanded(false)}>
-                                    Home
-                                    <span className="sr-only">(current)</span>
-                                </Link>
+                                    className={`${
+                                        props.location.pathname === `/user/${props.userId}` ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link 
+                                        className="nav-link" 
+                                        to={`/user/${props.userId}`} 
+                                        onClick={() => setExpanded(false)}
+                                    >
+                                        Dashboard
+                                        <span className="sr-only">(current)</span>
+                                    </Link>
                             </Nav.Item>
+                            ) : (
+                                <Nav.Item
+                                    className={`${
+                                        props.location.pathname === "/" ? "active" : "" 
+                                    }`}
+                                >
+                                    <Link className="nav-link" to="/" onClick={() => setExpanded(false)}>
+                                        Home
+                                        <span className="sr-only">(current)</span>
+                                    </Link>
+                            </Nav.Item>
+                            )}
 
                             <Nav.Item 
                                 className={`${
