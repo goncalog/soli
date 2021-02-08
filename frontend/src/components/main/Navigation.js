@@ -75,7 +75,7 @@ function Navigation(props) {
                                     </Link>
                                 </Nav.Item>
                             ) : (
-                                <div>
+                                [
                                     <Nav.Item 
                                         className={`${
                                             props.location.pathname === "/user/login" ? "active" : "" 
@@ -88,7 +88,7 @@ function Navigation(props) {
                                         >
                                             Login
                                         </Link>
-                                    </Nav.Item>
+                                    </Nav.Item>,
 
                                     <Nav.Item 
                                         className={`${
@@ -103,7 +103,7 @@ function Navigation(props) {
                                             Signup
                                         </Link>
                                     </Nav.Item>
-                                </div>
+                                ]
                             )}
                         </Nav>
                     </Navbar.Collapse>
