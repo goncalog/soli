@@ -46,6 +46,13 @@ it('renders Log in link correctly', () => {
     expect(contactLink.getAttribute('href')).toBe('/user/login');
 });
 
+it('renders Sign up link correctly', () => {
+    const { getByText } = render(<Router><Navigation /></Router>);
+    const contactLink = getByText(/Signup/);
+    expect(contactLink).toBeInTheDocument();
+    expect(contactLink.getAttribute('href')).toBe('/user/signup');
+});
+
 it('renders the logo correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
     const titleLink = getByText(/Soli/);
