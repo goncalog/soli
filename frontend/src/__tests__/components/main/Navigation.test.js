@@ -32,13 +32,6 @@ it('renders the Invest link correctly', () => {
     expect(projectsLink.getAttribute('href')).toBe('/projects');
 });
 
-it('renders the Contact link correctly', () => {
-    const { getByText } = render(<Router><Navigation /></Router>);
-    const contactLink = getByText(/Contact/);
-    expect(contactLink).toBeInTheDocument();
-    expect(contactLink.getAttribute('href')).toBe('/contact');
-});
-
 it('renders Log in link correctly', () => {
     const { getByText } = render(<Router><Navigation /></Router>);
     const contactLink = getByText(/Login/);
