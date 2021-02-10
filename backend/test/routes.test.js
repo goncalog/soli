@@ -210,17 +210,12 @@ describe('Routes testing', function () {
             .expect(401)
     });
 
-    it('route for getting a user\'s list of projects for sale works', () => {
+    it('route for getting a user\'s list of projects available for investment', () => {
         return request(app)
             .get('/content/user/5f80744b1a698848220d9e1e/projects')
             .expect('Content-type', /json/)
-            // The ids from users created at test time isn't accessible, so it returns
-            // an empty projects array
-            .expect({ 
-                title: 'List of Projects from user with id 5f80744b1a698848220d9e1e', 
-                projects: [],
-            })
-            .expect(200)
+            .expect({ "message": "Unauthorized: User not logged in" })
+            .expect(401)
     });
 
     it('route for sending message to user works', () => {
