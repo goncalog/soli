@@ -8,7 +8,12 @@ export default function BenefitsContainer(props) {
             <div className="benefits">
                 {props.benefits.map((benefit, index) => {
                     return (
-                        <Benefit benefitTitle={benefit.title} benefitText={benefit.text} key={index} />
+                        <Benefit 
+                            imagePath={benefit.imagePath} 
+                            benefitTitle={benefit.title} 
+                            benefitText={benefit.text}                             
+                            key={index}    
+                        />
                     );
                 })}
             </div>
