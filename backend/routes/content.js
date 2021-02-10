@@ -11,9 +11,6 @@ router.get('/', projectsController.index);
 // GET request for list of all projects
 router.get('/projects', projectsController.getProjects);
 
-// GET request for data to create new project
-router.get('/project/create', projectsController.getCreateProject);
-
 // GET request for unique project
 router.get('/project/:id', projectsController.getUniqueProject);
 

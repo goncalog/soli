@@ -98,14 +98,6 @@ describe('Routes testing', function () {
             }
     });
 
-    it('route to get data to create new project works', () => {
-        return request(app)
-            .get('/content/project/create')
-            .expect('Content-type', /json/)
-            .expect({ title: 'Data to create new Project' })
-            .expect(200)
-    });
-
     it('route to get data to update project works', () => {
         return request(app)
             .get('/content/user/xpto/project/12345/update')

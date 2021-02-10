@@ -31,11 +31,6 @@ exports.getUniqueProject = (req, res, next) => {
         });
 }
 
-// GET request for data to create new project
-exports.getCreateProject = (req, res, next) => {
-    res.json({ title: 'Data to create new Project' });
-}
-
 // Placeholder code for testing POST routes.
 const testArray = [];
 
