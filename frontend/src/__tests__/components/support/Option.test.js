@@ -48,7 +48,7 @@ describe('Option', () => {
         const shallowWrapper = option().find('label');
         expect(shallowWrapper.length).toEqual(2);
         shallowWrapper.forEach((node, index) => {
-            expect(node.prop('for')).toBe((props.options[index]._id));
+            expect(node.prop('htmlFor')).toBe((props.options[index]._id));
             expect(node.text()).toBe(props.options[index].name);
         });
     });
