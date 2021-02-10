@@ -10,7 +10,7 @@ export default function CheckBox(props) {
             {props.options.map((item, key) => {
                 return (
                     <div key={item._id}>                            
-                        <label for={item._id}>
+                        <label htmlFor={item._id}>
                             <input 
                                 type="checkbox" 
                                 key={item._id} 
