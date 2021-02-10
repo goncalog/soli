@@ -30,7 +30,7 @@
     position: absolute;
     padding-top: 5px;
     background-color: white;
-    min-width: 160px;
+    min-width: 190px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     font-size: 14px;
@@ -47,7 +47,7 @@
 
 .min-max input {
     margin: 0 5px 5px 5px;
-    max-width: 160px;
+    max-width: 190px;
 }
 
 .projects-container {
@@ -168,12 +168,17 @@
     }
 
     .dropdown-content {
-        min-width: 120px;
+        min-width: 125px;
         font-size: 10px;
     }
 
     .min-max input {
-       max-width: 110px;
+       max-width: 125px;
+    }
+
+    .option {
+        min-width: 155px;
+        font-size: 10px;
     }
     
     .projects-container {
