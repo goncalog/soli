@@ -72,7 +72,7 @@ export default class Projects extends React.Component {
         window.scrollTo(0, 0);
 
         // Upload database data
-        fetch(this.props.fetchUrl)
+        fetch(this.props.fetchUrl, { credentials: 'include' })
             .then(res => res.json())
             .then((res) => { this.setState({ projects: res.projects, filteredProjects: applySort(res.projects, this.state.sort) }) })
 
