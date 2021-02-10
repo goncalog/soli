@@ -7,8 +7,11 @@ import SecondaryHeadline from '../support/SecondaryHeadline';
 import CallToActionButton from '../support/CallToActionButton';
 import Grid from '../support/Grid';
 import OrderedList from '../support/OrderedList';
+import Image from '../support/Image';
 import backgroundHeadlineContainer from '../../media/headline-background.jpg';
 import backgroundOwnerContainer from '../../media/owner-container-background.jpg';
+import roofIcon from '../../media/house-icon.svg';
+import solarPanelIcon from '../../media/solar-panel-icon.svg';
 import savingsIcon from '../../media/payments-icon.svg';
 import returnsIcon from '../../media/invested-icon.svg';
 import convenienceIcon from '../../media/beach-icon.svg';
@@ -41,6 +44,7 @@ export default function Home(props) {
     const howitworksProps = {
         content: [
             [
+                <Image imagePath={roofIcon} />,
                 <MainHeadline mainHeadline="Roof Owners" />,
                 <OrderedList listItems={
                     [
@@ -52,6 +56,7 @@ export default function Home(props) {
                 <SecondaryHeadline secondaryHeadline="Ideal for roof owners who&#39;d like to benefit from cheaper and more sustainable electricity but don&#39;t want to make the full upfront investment in solar panels" />,
             ],        
             [
+                <Image imagePath={solarPanelIcon} />,
                 <MainHeadline mainHeadline="Solar Panel Owners" />,
                 <OrderedList listItems={
                     [
