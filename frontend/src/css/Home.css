@@ -42,15 +42,26 @@
     font-size: 25px;
 }
 
-.howitworks-container .grid .secondary-headline {
-    text-align: left;
-    padding-top: 30px;
-    font-size: 15px;
-    line-height: 22.5px;
+.howitworks-container .grid .ordered-list-item {
+    display: flex;
 }
 
 .howitworks-container .grid .ordered-list {
     text-align: left;
+}
+
+.howitworks-container .grid .secondary-headline {
+    text-align: left;
+    padding-top: 20px;
+    font-size: 15px;
+    line-height: 22.5px;
+}
+
+.howitworks-container .grid .ordered-list .image {
+    height: 30px;
+    padding-right: 4px;
+    position: relative;
+    top: -3px;
 }
 
 .benefits-container {
