@@ -159,6 +159,10 @@
         font-size: 18px;
     }
 
+    .howitworks-container .grid .ordered-list .image {
+        height: 25px;
+    }
+
     .grid ol {
         font-size: 14px;
     }
