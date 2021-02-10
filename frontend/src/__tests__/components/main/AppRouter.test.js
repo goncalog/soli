@@ -3,6 +3,7 @@ import Navigation from '../../../components/main/Navigation';
 import AppRouter from '../../../components/main/AppRouter';
 import Project from '../../../components/main/Project';
 import Contact from '../../../components/main/Contact';
+import Footer from '../../../components/main/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -11,11 +12,11 @@ configure({ adapter: new Adapter() });
 test('renders the Router component', () => {
     const wrapper = shallow(<AppRouter />);
     expect(wrapper.find(Router).length).toBe(1);
-  });
+});
 
-it('renders two children', () => {
+test('renders 3 children', () => {
     const wrapper = shallow(<AppRouter />);
-    expect(React.Children.count(wrapper.children())).toEqual(2);
+    expect(React.Children.count(wrapper.children())).toEqual(3);
 });
 
 test('renders the Navigation component', () => {
@@ -55,5 +56,12 @@ test('renders all Route components with correct paths', () => {
     expect(Object.keys(pathMap)).toContain('/user/:id/project/create');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/:id');
     expect(Object.keys(pathMap)).toContain('/user/:id/project/:id/update');
+});
+
+test('renders the Footer component', () => {
+    const wrapper = shallow(<AppRouter />);
+    expect(wrapper.find(Footer).length).toBe(1);
+    expect(Object.keys(wrapper.find(Footer).props())).toContain('loggedIn');
+    expect(Object.keys(wrapper.find(Footer).props())).toContain('userId');
 });
   
