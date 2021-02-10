@@ -21,18 +21,20 @@ export default class Projects extends React.Component {
                 property: 'status', 
                 title: 'Status', 
                 options: [
-                    { name: 'Planning' }, 
-                    { name: 'Funding' }, 
-                    { name: 'Installing' },
-                    { name: 'Producing' },
+                    { name: 'Planning', _id: '0000' }, 
+                    { name: 'Funding', _id: '0001' }, 
+                    { name: 'Installing', _id: '0010' },
+                    { name: 'Producing', _id: '0011'},
                 ], 
             },
             sort: { 
                 property: 'sort', 
                 title: 'Sort', 
                 options: [
-                    { name: 'Highest Return', checked: true }, { name: 'Smallest Size' }, 
-                    { name: 'Largest Size' }, { name: 'Highest CO2 Savings' },
+                    { name: 'Highest Return', checked: true, _id: '0100' }, 
+                    { name: 'Smallest Size', _id: '0101' }, 
+                    { name: 'Largest Size', _id: '0110' }, 
+                    { name: 'Highest CO2 Savings', _id: '0111' },
                 ], 
             },
             filterVisibility: { 
