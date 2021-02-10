@@ -15,6 +15,9 @@ import solarPanelIcon from '../../media/solar-panel-icon.svg';
 import savingsIcon from '../../media/payments-icon.svg';
 import returnsIcon from '../../media/invested-icon.svg';
 import convenienceIcon from '../../media/beach-icon.svg';
+import oneIcon from '../../media/one-icon.svg';
+import twoIcon from '../../media/two-icon.svg';
+import threeIcon from '../../media/three-icon.svg';
 import '../../css/Home.css';
 import { useHistory } from 'react-router-dom';
 
@@ -41,6 +44,7 @@ export default function Home(props) {
         onButtonClick: handleButtonClick,
     }
 
+    const icons = [oneIcon, twoIcon, threeIcon];
     const howitworksProps = {
         content: [
             [
@@ -51,7 +55,8 @@ export default function Home(props) {
                         'List your roof',
                         'Find people interested in buying solar panels to be installed on your roof',
                         `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
-                    ]}  
+                    ]}
+                    icons={icons}
                 />,
                 <SecondaryHeadline secondaryHeadline="Ideal for roof owners who&#39;d like to benefit from cheaper and more sustainable electricity but don&#39;t want to make the full upfront investment in solar panels" />,
             ],        
@@ -63,7 +68,8 @@ export default function Home(props) {
                         'Find a roof where you can install solar panels',
                         'Buy the solar panels - we\'ll install them for you',
                         `Start earning a ${solarPanelsReturn} annual return on your solar panels - you'll be paid by the roof owner for the electricity produced`,
-                    ]}  
+                    ]}
+                    icons={icons}
                 />,
                 <SecondaryHeadline secondaryHeadline="Perfect for those who don&#39;t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings" />,
             ],
