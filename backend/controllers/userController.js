@@ -127,7 +127,7 @@ exports.getUser = (req, res, next) => {
 exports.getUserProjects = (req, res, next) => {
     Project.find({ owner: { _id: req.params.id }  })
         .populate('location')
-        .populate('user')
+        .populate('owner')
         .exec(function (err, projects) {
             if (err) { return next(err); }
 
@@ -159,7 +159,7 @@ exports.postCreateProject = [
 exports.getUpdateProject = (req, res, next) => {
     Project.findById(req.params.id)
         .populate('location')
-        .populate('user')
+        .populate('owner')
         .exec(function (err, project) {
             if (err) { return next(err); }
 
