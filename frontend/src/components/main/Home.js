@@ -9,7 +9,9 @@ import Grid from '../support/Grid';
 import OrderedList from '../support/OrderedList';
 import backgroundHeadlineContainer from '../../media/headline-background.jpg';
 import backgroundOwnerContainer from '../../media/owner-container-background.jpg';
-import icon from '../../media/globe-icon.svg';
+import savingsIcon from '../../media/payments-icon.svg';
+import returnsIcon from '../../media/invested-icon.svg';
+import convenienceIcon from '../../media/beach-icon.svg';
 import '../../css/Home.css';
 import { useHistory } from 'react-router-dom';
 
@@ -66,17 +68,17 @@ export default function Home(props) {
     const benefitsProps = {
         benefits: [
             { 
-                imagePath: icon,
+                imagePath: savingsIcon,
                 title: 'Huge Savings',
                 text: `Get a ${electricityDiscount} discount on your electricity price`,
             },
             { 
-                imagePath: icon,
+                imagePath: returnsIcon,
                 title: 'Great Returns',
                 text: `Earn a ${solarPanelsReturn} annual return on solar panels`,
             },
             { 
-                imagePath: icon,
+                imagePath: convenienceIcon,
                 title: 'Max Convenience',
                 text: 'We take care of everything - just enjoy and relax while you profit from the energy produced',
             },
