@@ -1,3 +1,17 @@
 .footer {
     text-align: center;
 }
+
+.footer .links-container {
+    padding: 15px 0;
+}
+
+.footer-link {
+    padding: 0 7px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
