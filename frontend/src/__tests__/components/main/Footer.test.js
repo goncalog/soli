@@ -18,6 +18,20 @@ it('renders Contact link correctly', () => {
     expect(link.getAttribute('href')).toBe('/contact');
 });
 
+it('renders Login link correctly', () => {
+    const { getByText } = render(<Router><Footer /></Router>);
+    const link = getByText(/Login/);
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute('href')).toBe('/user/login');
+});
+
+it('renders Signup link correctly', () => {
+    const { getByText } = render(<Router><Footer /></Router>);
+    const link = getByText(/Signup/);
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute('href')).toBe('/user/signup');
+});
+
 it('renders paragraph correctly', () => {
     const date = new Date();
     const year = date.getFullYear();
