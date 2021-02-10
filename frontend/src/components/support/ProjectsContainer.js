@@ -14,7 +14,7 @@ export default function ProjectsContainer(props) {
                 return (
                     <Link 
                         className="project-link" 
-                        to={(props.match.params.id)
+                        to={(props.match.url === `/user/${props.match.params.id}/projects`) // User is in OwnerProjects page
                                 ? `/user/${props.match.params.id}/project/${project.id}` 
                                 : `/project/${project.id}`} 
                         key={index}
