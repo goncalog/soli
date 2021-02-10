@@ -13,6 +13,7 @@ import OwnerProject from './OwnerProject';
 import Form from './Form';
 import Invest from './Invest';
 import Dashboard from './Dashboard';
+import Footer from './Footer';
 
 function AppRouter() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -100,6 +101,7 @@ function AppRouter() {
                 <Route path='/user/:id/project/:id/update' component={withAuth(Form)}></Route>
                 <Route path='/user/:id/project/:id' component={withAuth(OwnerProject)}></Route>
             </Switch>
+            <Footer loggedIn={loggedIn} userId={userId}/>
         </Router>
     );
 }
