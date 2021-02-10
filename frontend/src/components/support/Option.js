@@ -9,11 +9,11 @@ export default function Option(props) {
         <div className="option">
             {props.options.map((item, key) => {
                 return (
-                    <div key={key}>                            
-                        <label for={key}>
+                    <div key={item._id}>                            
+                        <label for={item._id}>
                             <input 
                                 type="radio" 
-                                key={key} 
+                                key={item._id} 
                                 id={key}
                                 value={item._id} 
                                 checked={item.checked}
