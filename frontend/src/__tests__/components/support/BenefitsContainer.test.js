@@ -25,14 +25,17 @@ describe('BenefitContainer', () => {
         props = {
             benefits: [
                 { 
+                    imagePath: 'Text to test image path property #1',
                     title: 'Text to test benefit title property #1',
                     text: 'Text to test benefit text property #1',
                 },
                 { 
+                    imagePath: 'Text to test image path property #2',
                     title: 'Text to test benefit title property #2',
                     text: 'Text to test benefit text property #2',
                 },
                 { 
+                    imagePath: 'Text to test image path property #3',
                     title: 'Text to test benefit title property #3',
                     text: 'Text to test benefit text property #3',
                 },
@@ -52,6 +55,7 @@ describe('BenefitContainer', () => {
         expect(shallowWrapper.length).toEqual(3);
 
         shallowWrapper.forEach((benefit, i) => {
+            expect(benefit.prop('imagePath')).toBe(props.benefits[i].imagePath);
             expect(benefit.prop('benefitTitle')).toBe(props.benefits[i].title);
             expect(benefit.prop('benefitText')).toBe(props.benefits[i].text);
         });
