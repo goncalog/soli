@@ -24,23 +24,33 @@
 }
 
 .howitworks-container .grid {
-    text-align: left;
-    padding: 40px 0;
+    text-align: center;
+    padding: 20px 0 40px 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 160px;
 }
 
-.grid .main-headline {
-    text-align: center;
+.howitworks-container .grid .image {
+    height: 60px;
+}
+
+.howitworks-container .grid .main-headline {
+    padding-top: 10px;
     padding-bottom: 12px;
     font-weight: 600;
     font-size: 25px;
 }
 
-.grid .secondary-headline {
+.howitworks-container .grid .secondary-headline {
+    text-align: left;
+    padding-top: 30px;
     font-size: 15px;
     line-height: 22.5px;
+}
+
+.howitworks-container .grid .ordered-list {
+    text-align: left;
 }
 
 .benefits-container {
