@@ -21,7 +21,6 @@ describe('CheckBox', () => {
     // if it calls checkBox, a new CheckBox will be created with the current props.
     beforeEach(() => {
         props = {
-            // option: '21123231',
             options: [{ name: "Test 1", _id: '21123231' }, { name: "Test 2", _id: '435254243' }],
             onChange: mockFunction,
         }
@@ -36,7 +35,7 @@ describe('CheckBox', () => {
         const shallowWrapper = checkBox().find('input');
         expect(shallowWrapper.length).toEqual(2);
         shallowWrapper.forEach((node, index) => {
-            expect(node.key()).toBe((index).toString());
+            expect(node.key()).toBe((props.options[index]._id));
             expect(node.prop('id')).toBe((index));
             expect(node.prop('value')).toBe(props.options[index]._id);
             expect(node.prop('type')).toBe('checkbox');
@@ -49,7 +48,7 @@ describe('CheckBox', () => {
         const shallowWrapper = checkBox().find('label');
         expect(shallowWrapper.length).toEqual(2);
         shallowWrapper.forEach((node, index) => {
-            expect(node.prop('for')).toBe((index));
+            expect(node.prop('for')).toBe((props.options[index]._id));
             expect(node.text()).toBe(props.options[index].name);
         });
     });
