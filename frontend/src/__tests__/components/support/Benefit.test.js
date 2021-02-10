@@ -1,5 +1,6 @@
 import React from 'react';
 import Benefit from '../../../components/support/Benefit';
+import Image from '../../../components/support/Image';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -20,15 +21,23 @@ describe('Benefit', () => {
     // if it calls benefit, a new Benefit will be created with the current props
     beforeEach(() => {
         props = {
+            imagePath: 'Text to test imagePath property',
             benefitTitle: 'Text to test benefitTitle property',
             benefitText: 'Text to test benefitText property',
         }
         shallowBenefit = undefined;
     });
 
-    test('has two children', () => {
-        expect(benefit().children().length).toEqual(2);
+    test('has 3 children', () => {
+        expect(benefit().children().length).toEqual(3);
     });
+
+    test('has one Image component with passed property', () => {
+        const shallowWrapper = benefit().find(Image);
+        expect(shallowWrapper.length).toEqual(1);
+        expect(shallowWrapper.prop('imagePath')).toBe(props.imagePath);
+    });
+
 
     test('has one h5 HTML with some text', () => {
         const shallowWrapper = benefit().find('h5');
