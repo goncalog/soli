@@ -123,7 +123,7 @@ exports.getUser = (req, res, next) => {
         });
 }
 
-// GET request to get a user's list of projects
+// GET request to get a user's list of projects available for investment
 exports.getUserProjects = (req, res, next) => {
     Project.find({ owner: { _id: req.params.id }  })
         .populate('location')
