@@ -223,31 +223,6 @@ function createDatabaseItems(mongooseConnection) {
             },
             function (callback) {
                 projectCreate(
-                    'Iago\'s Castle',
-                    4.8,
-                    6500,
-                    '£',
-                    'Planning',
-                    6.2,
-                    locations[1],
-                    users[3],
-                    ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.w6JuihUCHMPkOvJxPfW_gQHaEo%26pid%3DApi&f=1', 
-                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.iFcxBIPr4ndL9vMAzC3bpwHaFu%26pid%3DApi&f=1'],
-                    2,
-                    4500,
-                    'Quarterly',
-                    'Low',
-                    2021,
-                    [],
-                    [],
-                    '£',
-                    [],
-                    [],
-                    callback
-                );
-            },
-            function (callback) {
-                projectCreate(
                     'UK Sun Fund',
                     525000,
                     40000000,
