@@ -319,12 +319,14 @@ export default class Form extends React.Component {
                     text={this.state.totalCost}
                     onTextChange={this.handleTextChange}
                 />
-                <Input 
+                <Select 
                     className="total-cost-currency"
                     property="totalCostCurrency"
                     placeholder="Total cost currency" 
-                    text={this.state.totalCostCurrency}
                     onTextChange={this.handleTextChange}
+                    option={this.state.totalCostCurrency}
+                    // _id is what is saved to the db
+                    options={[{ name: '£', _id: '£' }]}                
                 />
                 <Select 
                     className="status"
@@ -447,12 +449,14 @@ export default class Form extends React.Component {
                     </p>
                 </div>
                 
-                <Input 
+                <Select 
                     className="payments-currency"
                     property="paymentsCurrency"
                     placeholder="Payments currency" 
-                    text={this.state.paymentsCurrency}
                     onTextChange={this.handleTextChange}
+                    option={this.state.paymentsCurrency}
+                    // _id is what is saved to the db
+                    options={[{ name: '£', _id: '£' }]}
                 />
 
                 <div className="real-annual-returns-container add">
