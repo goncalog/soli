@@ -25,7 +25,7 @@
 
 .howitworks-container .grid {
     text-align: center;
-    padding: 20px 0 40px 0;
+    padding: 20px 0 20px 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 160px;
@@ -42,17 +42,20 @@
     font-size: 25px;
 }
 
+.howitworks-container .grid ol {
+    text-align: left;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
 .howitworks-container .grid .ordered-list-item {
     display: flex;
 }
 
-.howitworks-container .grid .ordered-list {
-    text-align: left;
-}
-
 .howitworks-container .grid .secondary-headline {
     text-align: left;
-    padding-top: 20px;
+    padding-top: 0px;
+    padding-bottom: 20px;
     font-size: 15px;
     line-height: 22.5px;
 }
@@ -248,7 +251,7 @@
     }
 
     .howitworks-container .grid {
-        padding: 30px 0;
+        padding: 30px 0 20px 0;
         grid-template-columns: 1fr;
         row-gap: 25px;
         column-gap: 0px;
