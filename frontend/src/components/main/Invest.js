@@ -13,6 +13,7 @@ import '../../css/Invest.css';
 export default function Invest(props) {
     const [title, setTitle] = useState('');
     const [size, setSize] = useState('');
+    const [totalInvestment, setTotalInvestment] = useState('');
     const [investmentAmount, setInvestmentAmount] = useState(props.history.location.state 
             ? props.history.location.state.investmentAmount
             : ''
@@ -26,7 +27,8 @@ export default function Invest(props) {
     }
 
     function handleInvestButtonClick() {
-        if (investmentAmount < 0 || investmentAmount === '' || isNaN(Number(investmentAmount))) {
+        if (investmentAmount < 0 || investmentAmount === '' || isNaN(Number(investmentAmount)) 
+                || investmentAmount > totalInvestment) {
             alert('Please provide a valid amount.');
 
         } else if (props.loggedIn) {
@@ -92,6 +94,7 @@ export default function Invest(props) {
             .then((res) => { 
                 setTitle(res.project.name); 
                 setSize(getSize(res.project));
+                setTotalInvestment(res.project.total_cost);
                 setFeatures([
                     { 
                         name: 'Status',
