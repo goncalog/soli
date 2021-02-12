@@ -10,6 +10,8 @@ describe('formatNumber', () => {
         expect(formatNumber(123456)).toEqual('123,456');
         expect(formatNumber(1000000)).toEqual('1,000,000');
         expect(formatNumber(1234567)).toEqual('1,234,567');
+        expect(formatNumber(1000000000)).toEqual('1,000,000,000');
+        expect(formatNumber(1234567890)).toEqual('1,234,567,890');
     });
 
     it('returns number in correct format (2)', () => {
@@ -21,5 +23,7 @@ describe('formatNumber', () => {
         expect(formatNumber('123456')).toEqual('123,456');
         expect(formatNumber('1000000')).toEqual('1,000,000');
         expect(formatNumber('1234567')).toEqual('1,234,567');
+        expect(formatNumber('1000000000')).toEqual('1,000,000,000');
+        expect(formatNumber('1234567890')).toEqual('1,234,567,890');
     });
 });
