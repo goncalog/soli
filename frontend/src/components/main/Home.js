@@ -33,8 +33,8 @@ export default function Home(props) {
     }
     
     const driverCallToActionText = 'Let\'s EARN!';
-    const electricityDiscount = '10-25%';
-    const solarPanelsReturn = '5-12%';
+    const electricityDiscount = '10-30%';
+    const solarPanelsReturn = '5-16%';
 
     const headlineProps = {
         backgroundImagePath: backgroundHeadlineContainer,
