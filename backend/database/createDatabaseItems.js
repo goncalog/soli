@@ -127,9 +127,6 @@ function createDatabaseItems(mongooseConnection) {
                 locationCreate('London', 'UK', 'Europe', callback);
             },
             function (callback) {
-                locationCreate('Ostend', 'Belgium', 'Europe', callback);
-            },
-            function (callback) {
                 locationCreate('Mokopane', 'South Africa', 'Africa', callback);
             },
             function (callback) {
@@ -137,6 +134,15 @@ function createDatabaseItems(mongooseConnection) {
             },
             function (callback) {
                 locationCreate('Faro', 'Portugal', 'Europe', callback);
+            },
+            function (callback) {
+                locationCreate('Marondera', 'Zimbabwe', 'Africa', callback);
+            },
+            function (callback) {
+                locationCreate('Guernsey', 'UK', 'Europe', callback);
+            },
+            function (callback) {
+                locationCreate('New York', 'US', 'North America', callback);
             },
         ],
         // Optional callback
@@ -150,16 +156,25 @@ function createDatabaseItems(mongooseConnection) {
                 userCreate('Goncalo G.', process.env.CONTACT_EMAIL, hashedPasswords[0], new Map(), 0, callback);
             },
             function (callback) {
-                userCreate('The Sun Exchange', 'test@gmail.com', hashedPasswords[0], new Map(), 4.4, callback);
+                userCreate('The Sun Exchange', 'test@gmail.com', hashedPasswords[0], new Map(), 4.0, callback); // https://www.mamma.com/us/thesunexchange-com
             },
             function (callback) {
-                userCreate('Trine', 'test2@gmail.com', hashedPasswords[0], new Map(), 4.3, callback);
+                userCreate('Trine', 'test2@gmail.com', hashedPasswords[0], new Map(), 3.9, callback); // https://uk.trustpilot.com/review/trine.com
             },
             function (callback) {
-                userCreate('Iago V.', 'test3@gmail.com', hashedPasswords[0], new Map(), 0, callback);
+                userCreate('NextEnergy Solar Fund', 'test3@gmail.com', hashedPasswords[0], new Map(), 5.0, callback);
             },
             function (callback) {
-                userCreate('BioSun Ventures', 'test4@gmail.com', hashedPasswords[0], new Map(), 4.9, callback);
+                userCreate('Repowering London', 'test4@gmail.com', hashedPasswords[0], new Map(), 4.4, callback); // https://uk.trustpilot.com/review/repowering.org.uk
+            },
+            function (callback) {
+                userCreate('Bluefield Solar Income Fund', 'test5@gmail.com', hashedPasswords[0], new Map(), 5.0, callback);
+            },
+            function (callback) {
+                userCreate('Foresight Solar Fund', 'test6@gmail.com', hashedPasswords[0], new Map(), 5.0, callback);
+            },
+            function (callback) {
+                userCreate('US Solar Fund', 'test7@gmail.com', hashedPasswords[0], new Map(), 5.0, callback);
             },
         ],
         // Optional callback
@@ -173,77 +188,181 @@ function createDatabaseItems(mongooseConnection) {
                 projectCreate(
                     'Spar Plaza',
                     360.8,
-                    354000,
+                    256500,
                     '£',
                     'Installing',
                     12.45,
-                    locations[2],
+                    locations[1],
                     users[1],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.D48InHYw_LvxWixSZEb5vAHaFj%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.8DL6MfQV8m-WkFbNnB_8agHaE8%26pid%3DApi&f=1',
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.vGzQuXXNXgGtcfOeeqVTUQHaE7%26pid%3DApi&f=1'],
-                    10384,
-                    574424,
+                    10400,
+                    574800,
                     'Monthly',
                     'Medium',
                     2021,
-                    [475000, 612000],
-                    [42000, 57050],
+                    [],
+                    [],
                     '£',
-                    [9.8, 14.2],
-                    [425, 562],
+                    [],
+                    [],
                     callback
                 );
             },
             function (callback) {
                 projectCreate(
-                    'Faro Airport',
-                    325,
-                    550000,
+                    'Nhimbe Fresh',
+                    510,
+                    1050000,
                     '£',
                     'Funding',
-                    11,
+                    16.7,
                     locations[4],
-                    users[0],
-                    ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.PcHR3xFENYgo94rNnwSMCQHaEH%26pid%3DApi&f=1', 
-                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ef3u05fYVUwBuPoQ-PnjnAHaE8%26pid%3DApi&f=1',
-                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.adxYV0gLHrDi1cs2vLCapgHaER%26pid%3DApi&f=1'],
-                    3300,
-                    625000,
+                    users[1],
+                    ['https://nhimbefresh.com/wp-content/uploads/2018/11/Nhimbe_Homepage_05.jpg', 
+                            'https://nhimbefresh.com/wp-content/uploads/2018/11/Nhimbe_Homepage_06.jpg',
+                            'https://nhimbefresh.com/wp-content/uploads/2018/11/Nhimbe_Fresh_History_03.jpg'],
+                    24490,
+                    1174000,
                     'Monthly',
-                    'Low',
+                    'Very High',
                     2021,
-                    [425000, 712000],
-                    [83000, 112500],
+                    [],
+                    [],
                     '£',
-                    [8.1, 12.2],
-                    [125, 162],
+                    [],
+                    [],
                     callback
                 );
             },
             function (callback) {
                 projectCreate(
-                    'UK Sun Fund',
-                    525000,
-                    40000000,
+                    'North Kensington Community Energy',
+                    224,
+                    190000,
                     '£',
                     'Producing',
-                    6.1,
-                    locations[0],
+                    3,
+                    locations[5],
                     users[4],
+                    ['https://www.repowering.org.uk/wp-content/uploads/elementor/thumbs/NKCE_Dalgarno_800w-ox5ggqosjoe14r7iq82mjsgfl1brstlbbaz1ltl0kq.jpg',
+                            'https://www.repowering.org.uk/wp-content/uploads/2020/10/NKCE_Gallery_13.jpg', 
+                            'https://www.repowering.org.uk/wp-content/uploads/2020/10/NKCE_Gallery_11.jpg'],
+                    1000,
+                    78000,
+                    'Annually',
+                    'Very Low',
+                    2019,
+                    [58530],
+                    [4711],
+                    '£',
+                    [2],
+                    [15],
+                    callback
+                );
+            },
+            function (callback) {
+                projectCreate(
+                    'NextEnergy',
+                    763000,
+                    994000000,
+                    '£',
+                    'Producing',
+                    6.9,
+                    locations[0],
+                    users[3],
                     ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Y1Ck3C9xrLV8X-BcM7HenQHaFm%26pid%3DApi&f=1',
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.-FJpiSrf9TN1VppMcCrPrgAAAA%26pid%3DApi&f=1', 
                             'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.p4H0byu2wiTI_h1t4A_5mQHaEK%26pid%3DApi&f=1'],
-                    52000,
-                    4500000,
+                    375000,
+                    1100000000,
                     'Quarterly',
                     'Very Low',
-                    2012,
-                    [3500000, 3650000, 3850000, 3900000, 4000000, 4250500, 4600000, 4105000],
-                    [18000000, 22000000, 25000000, 28000000, 32000000, 33000000, 37000000, 30000000],
+                    2014,
+                    [],
+                    [],
                     '£',
-                    [5, 6, 6.1, 6, 6.2, 5.8, 8, 6],
-                    [1700, 1725, 1950, 2000, 2100, 2200, 2500, 2000],
+                    [0, 0, 6.4, 5.72, 5.8, 5.65, 6.78],
+                    [],
+                    callback
+                );
+            },
+            function (callback) {
+                projectCreate(
+                    'Bluefield',
+                    610000,
+                    624000000,
+                    '£',
+                    'Producing',
+                    6.0,
+                    locations[5],
+                    users[5],
+                    ['https://bluefieldsif.com/wp-content/uploads/2020/08/Alt-West-Raynham-Image-1024x576.jpg',
+                            'https://bluefieldsif.com/wp-content/uploads/2020/08/elms-1024x683.jpg', 
+                            'https://bluefieldsif.com/wp-content/uploads/2020/08/court_farm-1024x576.jpg'],
+                    3137000,
+                    638670000,
+                    'Quarterly',
+                    'Medium',
+                    2013,
+                    [],
+                    [],
+                    '£',
+                    [],
+                    [],
+                    callback
+                );
+            },
+            function (callback) {
+                projectCreate(
+                    'Foresight',
+                    895000,
+                    1072000000,
+                    '£',
+                    'Producing',
+                    6.75,
+                    locations[0],
+                    users[6],
+                    ['https://fsfl.foresightgroup.eu/media/4abnu41x/wymeswold.jpg',
+                            'https://fsfl.foresightgroup.eu/media/nj0f0fqa/castle-eaton.jpg', 
+                            'https://fsfl.foresightgroup.eu/media/hgjd2qau/hunters-race.jpg'],
+                    19900000,
+                    700000000,
+                    'Quarterly',
+                    'Low',
+                    2014,
+                    [],
+                    [],
+                    '£',
+                    [],
+                    [],
+                    callback
+                );
+            },
+            function (callback) {
+                projectCreate(
+                    'US Solar',
+                    443000,
+                    140500000,
+                    '£',
+                    'Producing',
+                    5.1,
+                    locations[6],
+                    users[7],
+                    ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.j4iQMN1HiDaDI74ZbP-M3AHaE9%26pid%3DApi&f=1',
+                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fnxEP_z2IbIiWD-ei4N8VgHaEv%26pid%3DApi&f=1', 
+                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.mNYg9pNpvl0xEx8Oruux0QHaCd%26pid%3DApi&f=1'],
+                    15750000,
+                    373000000,
+                    'Quarterly',
+                    'Low',
+                    2019,
+                    [],
+                    [],
+                    '£',
+                    [2],
+                    [132000],
                     callback
                 );
             },
