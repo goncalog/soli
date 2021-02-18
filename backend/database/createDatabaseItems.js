@@ -253,7 +253,7 @@ function createDatabaseItems(mongooseConnection) {
                     78000,
                     'Annually',
                     'Very Low',
-                    2019,
+                    2020,
                     [58530],
                     [4711],
                     '£',
