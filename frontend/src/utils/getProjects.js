@@ -21,7 +21,9 @@ export default function getProjects(rawProjects, investments) {
                 },
             ],
             id: item._id,
-            investmentAmount: investments ? investments[item._id] : undefined,     
+            investmentAmount: investments 
+                    ? Object.values(investments[item._id]).reduce((sum, amount) => sum + amount, 0) 
+                    : undefined,     
         };
     });
 }
