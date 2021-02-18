@@ -54,7 +54,7 @@ describe('Routes testing', function () {
         }
 
         function hasProjects(res) {
-            if (!(Object.keys(res.body.projects).length === 4)) {
+            if (!(Object.keys(res.body.projects).length === 7)) {
                 throw new Error("Doesn\'t have all the db projects");
             }
         }
