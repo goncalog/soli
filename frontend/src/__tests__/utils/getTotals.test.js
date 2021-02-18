@@ -2,9 +2,9 @@ import getTotals from '../../utils/getTotals';
 import formatNumber from '../../utils/formatNumber';
 
 const investments = {
-    '1234567890': 3000,
-    '0987654321': 300,
-    '12345678900987654321': 2275,
+    '1234567890': { 2021: 3000 },
+    '0987654321': { 2020: 300 },
+    '12345678900987654321': { 2019: 2000, 2020: 275 },
 }
 
 const london = {
