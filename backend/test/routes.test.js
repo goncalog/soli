@@ -146,7 +146,7 @@ describe('Routes testing', function () {
         }
 
         function hasLocations(res) {
-            if (!(Object.keys(res.body.locations).length === 5)) {
+            if (!(Object.keys(res.body.locations).length === 7)) {
                 throw new Error("Doesn\'t have all the db locations");
             }
         }
