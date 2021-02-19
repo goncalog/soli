@@ -31,7 +31,7 @@
 
 .dashboard .projects-container {
     padding: 0;
-    grid-auto-rows: 500px;
+    grid-auto-rows: 520px;
     padding-top: 50px;
 }
 
@@ -52,8 +52,13 @@
     padding: 0;
 }
 
+.dashboard .intro-card .grid .image-container {
+    height: 25px;
+}
+
 .dashboard .intro-card .grid .image {
     height: 25px;
+    width: 25px;
 }
 
 .dashboard .intro-card .grid h2 {
@@ -93,10 +98,6 @@
         padding: 40px 20% 20px 20%;
     }
 
-    /* .dashboard .projects-container {
-        grid-auto-rows: 500px;
-    } */
-
     .dashboard .intro-card .grid {
         padding: 0;
         row-gap: 0;
@@ -105,6 +106,10 @@
 
 /* Responsive layout - when the screen is less than 800px wide (tablet portrait) */
 @media screen and (max-width: 800px) {
+    .dashboard .projects-container {
+        grid-auto-rows: 490px;
+    }
+
     .dashboard .grid {
         column-gap: 5px;
         padding: 40px 15% 20px 15%;
