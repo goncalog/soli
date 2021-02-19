@@ -20,10 +20,10 @@ const theSunExchange = new User({
 });
 
 const imageUrls = ['https://placeholder.com/image111', 'https://placeholder.com/image222']; 
-const realAnnualProduction = [98000, 132000];
-const realAnnualPayments = [10000, 13500];
-const realAnnualReturn = [10, 13.5];
-const realAnnualCo2Saved = [73, 107];
+const realAnnualProduction = { 2019: 98000, 2020: 132000 };
+const realAnnualPayments = { 2019: 10000, 2020: 13500 };
+const realAnnualReturn = { 2019: 10, 2020: 13.5 };
+const realAnnualCo2Saved = { 2019: 73, 2020: 107 };
 
 const project = new Project({
     name: 'Star Plaza',
@@ -119,20 +119,20 @@ describe('Project model', () => {
     });
 
     it('has real_annual_production_kwh', () => {
-        assert.instanceOf(project.real_annual_production_kwh, Array, 'project\'s real_annual_production_kwh is an Array');
-        assert.strictEqual(project.real_annual_production_kwh.length, 2, 'project\'s real_annual_production_kwh has 2 items');
-        project.real_annual_production_kwh.forEach((item, index) => {
-            assert.strictEqual(item, realAnnualProduction[index], 
-                    'project\'s real_annual_production_kwh is an array with 98000 and 132000');
+        assert.instanceOf(project.real_annual_production_kwh, Object, 'project\'s real_annual_production_kwh is an Object');
+        assert.strictEqual(Object.keys(project.real_annual_production_kwh).length, 2, 'project\'s real_annual_production_kwh has 2 items');
+        Object.values(project.real_annual_production_kwh).forEach((item, index) => {
+            assert.strictEqual(item, [98000, 132000][index], 
+                    'project\'s real_annual_production_kwh is an object with 98000 and 132000');
         });
     });
 
     it('has real_annual_payments', () => {
-        assert.instanceOf(project.real_annual_payments, Array, 'project\'s real_annual_payments is an Array');
-        assert.strictEqual(project.real_annual_payments.length, 2, 'project\'s real_annual_payments has 2 items');
-        project.real_annual_payments.forEach((item, index) => {
-            assert.strictEqual(item, realAnnualPayments[index], 
-                    'project\'s real_annual_payments is an array with 10000 and 13500');
+        assert.instanceOf(project.real_annual_payments, Object, 'project\'s real_annual_payments is an Object');
+        assert.strictEqual(Object.keys(project.real_annual_payments).length, 2, 'project\'s real_annual_payments has 2 items');
+        Object.values(project.real_annual_payments).forEach((item, index) => {
+            assert.strictEqual(item, [10000, 13500][index], 
+                    'project\'s real_annual_payments is an object with 10000 and 13500');
         });
     });
 
@@ -141,20 +141,20 @@ describe('Project model', () => {
     });
 
     it('has real_annual_return_percent', () => {
-        assert.instanceOf(project.real_annual_return_percent, Array, 'project\'s real_annual_return_percent is an Array');
-        assert.strictEqual(project.real_annual_return_percent.length, 2, 'project\'s real_annual_return_percent has 2 items');
-        project.real_annual_return_percent.forEach((item, index) => {
-            assert.strictEqual(item, realAnnualReturn[index], 
-                    'project\'s real_annual_return_percent is an array with 10 and 13.5');
+        assert.instanceOf(project.real_annual_return_percent, Object, 'project\'s real_annual_return_percent is an Object');
+        assert.strictEqual(Object.keys(project.real_annual_return_percent).length, 2, 'project\'s real_annual_return_percent has 2 items');
+        Object.values(project.real_annual_return_percent).forEach((item, index) => {
+            assert.strictEqual(item, [10, 13.5][index], 
+                    'project\'s real_annual_return_percent is an object with 10 and 13.5');
         });
     });
 
     it('has real_annual_co2_saved_ton', () => {
-        assert.instanceOf(project.real_annual_co2_saved_ton, Array, 'project\'s real_annual_co2_saved_ton is an Array');
-        assert.strictEqual(project.real_annual_co2_saved_ton.length, 2, 'project\'s real_annual_co2_saved_ton has 2 items');
-        project.real_annual_co2_saved_ton.forEach((item, index) => {
-            assert.strictEqual(item, realAnnualCo2Saved[index], 
-                    'project\'s real_annual_co2_saved_ton is an array with 73 and 107');
+        assert.instanceOf(project.real_annual_co2_saved_ton, Object, 'project\'s real_annual_co2_saved_ton is an Object');
+        assert.strictEqual(Object.keys(project.real_annual_co2_saved_ton).length, 2, 'project\'s real_annual_co2_saved_ton has 2 items');
+        Object.values(project.real_annual_co2_saved_ton).forEach((item, index) => {
+            assert.strictEqual(item, [73, 107][index], 
+                    'project\'s real_annual_co2_saved_ton is an object with 73 and 107');
         });
     });
 
