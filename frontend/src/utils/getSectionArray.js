@@ -1,17 +1,17 @@
 import formatNumber from './formatNumber';
 
-export default function getSectionArray(sectionArray, startYear, unit) {
-    return sectionArray.map((item, index) => {
+export default function getSectionArray(sectionArray, unit) {
+    return Object.keys(sectionArray).map((year) => {
 
         if (unit === '%') {
-            return { name: startYear + index, value: `${item}${unit}` };
+            return { name: year, value: `${sectionArray[year]}${unit}` };
         
         } else if (unit === 'tons' || unit === 'kWh') {
-            return { name: startYear + index, value: `${formatNumber(item)} ${unit}` };
+            return { name: year, value: `${formatNumber(sectionArray[year])} ${unit}` };
         
         } else {
             // Currency (for payments section)
-            return { name: startYear + index, value: `${unit}${formatNumber(item)}` };
+            return { name: year, value: `${unit}${formatNumber(sectionArray[year])}` };
         } 
     });
 }

@@ -194,12 +194,19 @@ exports.putInvestProject = (req, res, next) => {
             if (err) { return next(err); }
 
             const project = req.params.id;
-            user.investments.set(
-                project, 
-                user.investments.get(project) 
-                    ? user.investments.get(project) + parseInt(req.body.investmentAmount)
-                    : parseInt(req.body.investmentAmount)
-            );
+            const year = new Date().getFullYear();
+
+            let projectData = {}; 
+            if (!user.investments.get(project)) {
+                projectData = { [year]: parseInt(req.body.investmentAmount)};
+            } else {
+                projectData = user.investments.get(project);
+                !projectData[year] 
+                    ? projectData[year] = parseInt(req.body.investmentAmount)
+                    : projectData[year] += parseInt(req.body.investmentAmount);
+            }
+            
+            user.investments.set(project, projectData);
 
             User.findByIdAndUpdate(user._id, user, (err) => {
                 if (err) { return next(err); }

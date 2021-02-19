@@ -62,9 +62,9 @@ const rawProjects = [
 ];
 
 const investments = {
-    '1234567890abc': 3000,
-    '123456789abc': 1000,
-    '12345678abc': 2000,
+    '1234567890abc': { 2021: 3000 },
+    '123456789abc': { 2019: 2000, 2020: 275 },
+    '12345678abc': { 2020: 300 },
 };
 
 const projects =  [
@@ -153,7 +153,7 @@ const projectsWithInvestments =  [
             },
         ],
         id: rawProjects[1]._id,
-        investmentAmount: 1000,
+        investmentAmount: 2275,
     },
 ];
 

@@ -5,6 +5,7 @@ import Select from '../support/Select';
 import CallToActionButton from '../support/CallToActionButton';
 import sortString from '../../utils/sortString';
 import removeDuplicates from '../../utils/removeDuplicates';
+import getAnnuals from '../../utils/getAnnuals';
 import '../../css/Form.css';
 
 export default class Form extends React.Component {
@@ -207,12 +208,13 @@ export default class Form extends React.Component {
             paymentSchedule: this.state.paymentSchedule,
             riskLevel: this.state.riskLevel,
             yearStartProduction: this.state.yearStartProduction,
-            realAnnualProductions: this.state.realAnnualProductions,
-            realAnnualPayments: this.state.realAnnualPayments,          
+            realAnnualProductions: getAnnuals(this.state.realAnnualProductions, this.state.yearStartProduction),
+            realAnnualPayments: getAnnuals(this.state.realAnnualPayments, this.state.yearStartProduction),          
             paymentsCurrency: this.state.paymentsCurrency,          
-            realAnnualReturns: this.state.realAnnualReturns,          
-            realAnnualCo2Savings: this.state.realAnnualCo2Savings,          
+            realAnnualReturns: getAnnuals(this.state.realAnnualReturns, this.state.yearStartProduction),          
+            realAnnualCo2Savings: getAnnuals(this.state.realAnnualCo2Savings, this.state.yearStartProduction),          
         };
+        console.log(data);
 
         fetch(url, {
             method: this.props.match.url.slice(-6) === 'update' ? 'PUT' : 'POST',
@@ -279,11 +281,11 @@ export default class Form extends React.Component {
                         paymentSchedule: res.payment_schedule,
                         riskLevel: res.risk_level,
                         yearStartProduction: res.year_start_production,
-                        realAnnualProductions: res.real_annual_production_kwh,
-                        realAnnualPayments: res.real_annual_payments,          
+                        realAnnualProductions: Object.values(res.real_annual_production_kwh),
+                        realAnnualPayments: Object.values(res.real_annual_payments),          
                         paymentsCurrency: res.payments_currency,          
-                        realAnnualReturns: res.real_annual_return_percent,          
-                        realAnnualCo2Savings: res.real_annual_co2_saved_ton,                        
+                        realAnnualReturns: Object.values(res.real_annual_return_percent),          
+                        realAnnualCo2Savings: Object.values(res.real_annual_co2_saved_ton),                        
                     }); 
                 });
         }
