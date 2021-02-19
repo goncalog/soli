@@ -1,4 +1,5 @@
 import formatNumber from './formatNumber';
+import getTotal from './getTotal';
 
 export default function getTotals(investments, projects) {
     // Assumes all investments are in £
@@ -8,8 +9,8 @@ export default function getTotals(investments, projects) {
         }, 0);
     }, 0);
 
-    const totalProduced = 0;
-    const totalCO2Saved = 0;
+    const totalProduced = getTotal(investments, projects, 'real_annual_production_kwh');
+    const totalCO2Saved = getTotal(investments, projects, 'real_annual_co2_saved_ton');;
     const totalReceived = 0;
 
     return [
