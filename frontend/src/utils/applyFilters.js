@@ -1,10 +1,10 @@
 export default function applyFilters(state) {
-    let filteredLocations = state.location.options.slice().filter((location) => location.checked).map((location) => location._id);
+    let filteredLocations = state.location.options.slice().filter((location) => location.checked).map((location) => location.country);
     if (filteredLocations.length === 0) {
-        filteredLocations = state.location.options.slice().map((location) => location._id);
+        filteredLocations = state.location.options.slice().map((location) => location.country);
     }
 
-    let filteredProjects = state.projects.slice().filter((project) => filteredLocations.includes(project.location._id));
+    let filteredProjects = state.projects.slice().filter((project) => filteredLocations.includes(project.location.country));
 
     if (state.return.min !== "") {
         filteredProjects = filteredProjects.filter((project) => (project.estimated_annual_return_percent >= parseInt(state.return.min)));
