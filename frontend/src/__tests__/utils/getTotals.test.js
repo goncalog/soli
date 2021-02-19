@@ -1,4 +1,5 @@
 import getTotals from '../../utils/getTotals';
+import getTotal from '../../utils/getTotal';
 import formatNumber from '../../utils/formatNumber';
 
 const investments = {
@@ -14,10 +15,10 @@ const london = {
 };
 
 const imageUrls = ['https://placeholder.com/image111', 'https://placeholder.com/image222']; 
-const realAnnualProduction = [98000, 132000];
-const realAnnualPayments = [10000, 13500];
-const realAnnualReturn = [10, 13.5];
-const realAnnualCo2Saved = [73, 107];
+const realAnnualProduction = { 2019: 98000, 2020: 132000 };
+const realAnnualPayments = { 2019: 10000, 2020: 13500 };
+const realAnnualReturn = { 2019: 10, 2020: 13.5 };
+const realAnnualCo2Saved = { 2019: 73, 2020: 107 };
 
 const projects = [
     {
@@ -36,18 +37,40 @@ const projects = [
         payment_schedule: 'Monthly',
         risk_level: 'Medium',
         year_start_production: 2021,
-        real_annual_production_kwh: realAnnualProduction,    
-        real_annual_payments: realAnnualPayments,
+        real_annual_production_kwh: {},    
+        real_annual_payments: {},
         payments_currency: '£',
-        real_annual_return_percent: realAnnualReturn,    
-        real_annual_co2_saved_ton: realAnnualCo2Saved,    
+        real_annual_return_percent: {},    
+        real_annual_co2_saved_ton: {},    
     },
     {
-        _id: '123456789',
+        _id: '0987654321',
+        name: 'Star Square',
+        size_kw: 360,
+        total_cost: 100000,
+        total_cost_currency: '£',
+        status: 'Funding',    
+        estimated_annual_return_percent: 12.45,
+        location: london,
+        owner: '12345678901234567890',
+        image_urls: imageUrls,
+        estimated_total_co2_saved_ton: 1200,
+        estimated_annual_production_kwh: 125000,
+        payment_schedule: 'Monthly',
+        risk_level: 'Medium',
+        year_start_production: 2021,
+        real_annual_production_kwh: {},    
+        real_annual_payments: {},
+        payments_currency: '£',
+        real_annual_return_percent: {},    
+        real_annual_co2_saved_ton: {},    
+    },
+    {
+        _id: '12345678900987654321',
         name: 'Star Shade',
         size_kw: 3600,
         total_cost: 500000,
-        total_cost_currency: '$',
+        total_cost_currency: '£',
         status: 'Producing',    
         estimated_annual_return_percent: 10.45,
         location: london,
@@ -60,7 +83,7 @@ const projects = [
         year_start_production: 2019,
         real_annual_production_kwh: realAnnualProduction,    
         real_annual_payments: realAnnualPayments,
-        payments_currency: '$',
+        payments_currency: '£',
         real_annual_return_percent: realAnnualReturn,    
         real_annual_co2_saved_ton: realAnnualCo2Saved,    
     },
@@ -69,8 +92,8 @@ const projects = [
 
 const results =  [
     formatNumber(5575),
-    formatNumber(0), 
-    formatNumber(0), 
+    formatNumber(getTotal(investments, projects, 'real_annual_production_kwh')), 
+    formatNumber(getTotal(investments, projects, 'real_annual_co2_saved_ton')), 
     formatNumber(0), 
 ];
 
