@@ -130,27 +130,23 @@ export default class Project extends React.Component {
                         {
                             name: 'Production',
                             expandButtonText: (this.state.sectionsVisibility[0]) ? '-' : '+',
-                            features: getSectionArray(this.state.project.real_annual_production_kwh, 
-                                this.state.project.year_start_production, 'kWh'),    
+                            features: getSectionArray(this.state.project.real_annual_production_kwh, 'kWh'),    
                         },
                         {
                             name: 'Payments',
                             expandButtonText: (this.state.sectionsVisibility[1]) ? '-' : '+',
                             features: getSectionArray(this.state.project.real_annual_payments, 
-                                this.state.project.year_start_production, 
                                 this.state.project.payments_currency),    
                         },
                         {
                             name: 'Annual Return',
                             expandButtonText: (this.state.sectionsVisibility[2]) ? '-' : '+',
-                            features: getSectionArray(this.state.project.real_annual_return_percent, 
-                                this.state.project.year_start_production, '%'),    
+                            features: getSectionArray(this.state.project.real_annual_return_percent, '%'),    
                         },
                         {
                             name: 'CO2 Saved',
                             expandButtonText: (this.state.sectionsVisibility[3]) ? '-' : '+',
-                            features: getSectionArray(this.state.project.real_annual_co2_saved_ton, 
-                                this.state.project.year_start_production, 'tons'), 
+                            features: getSectionArray(this.state.project.real_annual_co2_saved_ton, 'tons'), 
                         },
                         
                     ],
