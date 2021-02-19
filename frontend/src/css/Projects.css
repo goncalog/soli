@@ -82,20 +82,28 @@
     box-shadow: 0px 0px 2px 4px rgb(209, 209, 209);
 }
 
-.intro-card .image-container .image {
-    max-width: 100%;
+.intro-card .image-container {
+    width: 100%;
+    height: 200px;
     border-radius: 5px 5px 0 0;
-    max-height: 230px;
+    overflow: hidden;
 }
 
-.title {
+.intro-card .image-container .image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;  
+}
+
+.intro-card .title {
     font-weight: 900;
     padding: 0 5%;
 }
 
-.size {
+.intro-card .size {
     color:rgb(52, 215, 137);
     font-weight: 600;
+    padding: 0 5%;
 }
 
 .key-features {
@@ -122,8 +130,15 @@
 /* Responsive layout - when the screen is less than 1250px wide */
 @media screen and (max-width: 1250px) {
     .projects-container {
-        grid-auto-rows: 400px;
         gap: 20px 8%;
+    }
+
+    .intro-card .title {
+        font-size: 18px;
+    }
+    
+    .intro-card .size {
+        font-size: 14px;
     }
 }
 
@@ -143,20 +158,24 @@
         gap: 20px 10%;
     }
 
+    .intro-card .image-container {
+        height: 180px;
+    }
+    
     .intro-card .image-container .image {
-        max-height: 210px;
+        height: 180px;
     }
 
-    .title {
+    .intro-card .title {
         font-size: 16px;
-    }
-
-    .size {
-        font-size: 14px;
     }
 
     .feature-name {
         font-size: 13px;
+    }
+
+    .feature-value {
+        font-size: 12px;
     }
 }
 
