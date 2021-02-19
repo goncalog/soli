@@ -1,7 +1,7 @@
 import getTotal from '../../utils/getTotal';
 
 const investments = {
-    '1234567890': { 2021: 10000 },
+    '1234567890': { 2017: 1000, 2018: 5000, 2021: 10000 },
     '0987654321': { 2021: 110 },
     '12345678900987654321': { 2020: 100 },
 }
@@ -16,11 +16,39 @@ const projects = [
         status: 'Producing',    
         payment_schedule: 'Quarterly',
         year_start_production: 2015,
-        real_annual_production_kwh: [23000000, 225000000, 394000000, 451000000, 693000000, 712000000],    
-        real_annual_payments: [10946000, 17372000, 20681000, 34800000, 38100000, 39700000],
+        real_annual_production_kwh: { 
+            2015: 23000000, 
+            2016: 225000000, 
+            2017: 394000000, 
+            2018: 451000000, 
+            2019: 693000000, 
+            2020: 712000000 
+        },    
+        real_annual_payments: {
+            2015: 10946000, 
+            2016: 17372000, 
+            2017: 20681000, 
+            2018: 34800000, 
+            2019: 38100000, 
+            2020: 39700000
+        },
         payments_currency: '£',
-        real_annual_return_percent: [5.1, 6.4, 5.72, 5.8, 5.65, 6.78],    
-        real_annual_co2_saved_ton: [11615, 104179, 156560, 158600, 299000, 307500],    
+        real_annual_return_percent: {
+            2015: 5.1, 
+            2016: 6.4, 
+            2017: 5.72, 
+            2018: 5.8, 
+            2019: 5.65, 
+            2020: 6.78
+        },    
+        real_annual_co2_saved_ton: {
+            2015: 11615, 
+            2016: 104179, 
+            2017: 156560, 
+            2018: 158600, 
+            2019: 299000, 
+            2020: 307500
+        },    
     },
     {
         _id: '0987654321',
@@ -31,11 +59,11 @@ const projects = [
         status: 'Funding',    
         payment_schedule: 'Monthly',
         year_start_production: 2021,
-        real_annual_production_kwh: [],    
-        real_annual_payments: [],
+        real_annual_production_kwh: {},    
+        real_annual_payments: {},
         payments_currency: '£',
-        real_annual_return_percent: [],    
-        real_annual_co2_saved_ton: [],    
+        real_annual_return_percent: {},    
+        real_annual_co2_saved_ton: {},    
     },
     {
         _id: '12345678900987654321',
@@ -46,17 +74,17 @@ const projects = [
         status: 'Producing',    
         payment_schedule: 'Annually',
         year_start_production: 2020,
-        real_annual_production_kwh: [58530],    
-        real_annual_payments: [4711],
+        real_annual_production_kwh: { 2020: 58530 },    
+        real_annual_payments: { 2020: 4711 },
         payments_currency: '£',
-        real_annual_return_percent: [2],    
-        real_annual_co2_saved_ton: [15],    
+        real_annual_return_percent: { 2020: 2 },    
+        real_annual_co2_saved_ton: { 2020: 15 },    
     },
 ];
 
 describe('getTotal', () => {
     it('returns totals correctly', () => {
-        expect(getTotal(investments, projects, 'real_annual_production_kwh')).toEqual(30.8);
-        expect(getTotal(investments, projects, 'real_annual_co2_saved_ton')).toEqual(0.01);
+        expect(getTotal(investments, projects, 'real_annual_production_kwh')).toEqual(11630);
+        expect(getTotal(investments, projects, 'real_annual_co2_saved_ton')).toEqual(4.78);
     });
 });
