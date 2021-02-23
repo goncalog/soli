@@ -13,6 +13,15 @@ const projects = [
         size_kw: 360,
         total_cost: 994000000,
         total_cost_currency: '£',
+        historical_total_cost: { 
+            2015: 249000000, 
+            2016: 272000000, 
+            2017: 504000000, 
+            2018: 639000000, 
+            2019: 683000000, 
+            2020: 593000000,
+            2021: 593000000,
+        },
         status: 'Producing',    
         payment_schedule: 'Quarterly',
         year_start_production: 2015,
@@ -56,6 +65,7 @@ const projects = [
         size_kw: 360,
         total_cost: 256500,
         total_cost_currency: '£',
+        historical_total_cost: { 2021: 256500, },
         status: 'Funding',    
         payment_schedule: 'Monthly',
         year_start_production: 2021,
@@ -71,7 +81,8 @@ const projects = [
         size_kw: 224,
         total_cost: 190000,
         total_cost_currency: '£',
-        status: 'Producing',    
+        historical_total_cost: { 2020: 87000, 2021: 190000, },
+        status: 'Producing',
         payment_schedule: 'Annually',
         year_start_production: 2020,
         real_annual_production_kwh: { 2020: 58530 },    
@@ -84,7 +95,8 @@ const projects = [
 
 describe('getTotal', () => {
     it('returns totals correctly', () => {
-        expect(getTotal(investments, projects, 'real_annual_production_kwh')).toEqual(11630);
-        expect(getTotal(investments, projects, 'real_annual_co2_saved_ton')).toEqual(4.78);
+        expect(getTotal(investments, projects, 'real_annual_production_kwh')).toEqual(18376);
+        expect(getTotal(investments, projects, 'real_annual_co2_saved_ton')).toEqual(7.56);
+        expect(getTotal(investments, projects, 'real_annual_payments')).toEqual(1110);
     });
 });
