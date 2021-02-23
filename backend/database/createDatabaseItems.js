@@ -246,7 +246,7 @@ function createDatabaseItems(mongooseConnection) {
                     224,
                     190000,
                     '£',
-                    { 2020:87000, 2021: 190000, },
+                    { 2020: 87000, 2021: 190000, },
                     'Producing',
                     3,
                     locations[5],
