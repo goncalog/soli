@@ -27,6 +27,7 @@ const projects = [
         size_kw: 360,
         total_cost: 100000,
         total_cost_currency: '£',
+        historical_total_cost: { 2021: 100000, },
         status: 'Funding',    
         estimated_annual_return_percent: 12.45,
         location: london,
@@ -49,6 +50,7 @@ const projects = [
         size_kw: 360,
         total_cost: 100000,
         total_cost_currency: '£',
+        historical_total_cost: { 2021: 100000, },
         status: 'Funding',    
         estimated_annual_return_percent: 12.45,
         location: london,
@@ -71,7 +73,8 @@ const projects = [
         size_kw: 3600,
         total_cost: 500000,
         total_cost_currency: '£',
-        status: 'Producing',    
+        historical_total_cost: { 2019: 100000, 2020: 250000, 2021: 500000, },
+        status: 'Producing',
         estimated_annual_return_percent: 10.45,
         location: london,
         owner: '1234567890',
@@ -94,7 +97,7 @@ const results =  [
     formatNumber(5575),
     formatNumber(getTotal(investments, projects, 'real_annual_production_kwh')), 
     formatNumber(getTotal(investments, projects, 'real_annual_co2_saved_ton')), 
-    formatNumber(0), 
+    formatNumber(getTotal(investments, projects, 'real_annual_payments')), 
 ];
 
 describe('getTotals', () => {

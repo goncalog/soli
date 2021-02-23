@@ -20,6 +20,7 @@ const theSunExchange = new User({
 });
 
 const imageUrls = ['https://placeholder.com/image111', 'https://placeholder.com/image222']; 
+const historicalTotalCost = { 2019: 90000, 2020: 95000, 2021: 100000 };
 const realAnnualProduction = { 2019: 98000, 2020: 132000 };
 const realAnnualPayments = { 2019: 10000, 2020: 13500 };
 const realAnnualReturn = { 2019: 10, 2020: 13.5 };
@@ -30,6 +31,7 @@ const project = new Project({
     size_kw: 360,
     total_cost: 100000,
     total_cost_currency: '£',
+    historical_total_cost : historicalTotalCost,
     status: 'Funding',    
     estimated_annual_return_percent: 12.45,
     location: london,
@@ -53,8 +55,8 @@ describe('Project model', () => {
         assert.instanceOf(project, Project, 'project is instance of Project');
     });
 
-    it('has 23 properties', () => {
-        assert.strictEqual(Object.keys(project.schema.tree).length, 23, 'project has 23 properties');
+    it('has 24 properties', () => {
+        assert.strictEqual(Object.keys(project.schema.tree).length, 24, 'project has 24 properties');
     });
 
     it('has name', () => {
@@ -71,6 +73,15 @@ describe('Project model', () => {
 
     it('has total cost currency', () => {
         assert.strictEqual(project.total_cost_currency, '£', 'project\'s total cost currency is £');
+    });
+
+    it('has historical_total_cost', () => {
+        assert.instanceOf(project.historical_total_cost, Object, 'project\'s historical_total_cost is an Object');
+        assert.strictEqual(Object.keys(project.historical_total_cost).length, 3, 'project\'s historical_total_cost has 3 items');
+        Object.values(project.historical_total_cost).forEach((item, index) => {
+            assert.strictEqual(item, [90000, 95000, 100000][index], 
+                    'project\'s historical_total_cost is an object with 90000, 95000 and 100000');
+        });
     });
 
     it('has status', () => {
@@ -285,6 +296,12 @@ describe('Project model validators are set', () => {
     it('requires total_cost_currency', () => {
         projectEmpty.validate((err) => {
             assert.exists(err.errors.total_cost_currency, 'project\'s total_cost_currency is required');
+        });
+    });
+
+    it('requires historical_total_cost', () => {
+        projectEmpty.validate((err) => {
+            assert.exists(err.errors.historical_total_cost, 'project\'s historical_total_cost is required');
         });
     });
 

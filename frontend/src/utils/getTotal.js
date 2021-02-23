@@ -4,7 +4,7 @@ export default function getTotal(investments, projects, prop) {
         let subTotal = 0; 
         for (let i = project.year_start_production; i <= new Date().getFullYear(); i++) {
             subTotal += (investments[project._id][i]) ? investments[project._id][i] : 0;
-            const userAnnualShare = subTotal / project.total_cost;
+            const userAnnualShare = subTotal / project.historical_total_cost[i];
             annualAmounts[i] = (project[prop][i]) ? userAnnualShare * project[prop][i] : 0;
         }
 

@@ -4,6 +4,7 @@ const getData = (obj) => {
         size_kw: obj.body.size,
         total_cost: obj.body.totalCost,
         total_cost_currency: obj.body.totalCostCurrency,
+        historical_total_cost: obj.body.historicalTotalCost,
         status: obj.body.status,    
         estimated_annual_return_percent: obj.body.estimatedAnnualReturn,
         location: obj.body.location,

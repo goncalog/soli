@@ -198,6 +198,7 @@ export default class Form extends React.Component {
             size: this.state.size,
             totalCost: this.state.totalCost,
             totalCostCurrency: this.state.totalCostCurrency,
+            historicalTotalCost: { [new Date().getFullYear()]: this.state.totalCost },
             status: this.state.status,
             estimatedAnnualReturn: this.state.estimatedAnnualReturn,
             location: this.state.location,
@@ -214,7 +215,6 @@ export default class Form extends React.Component {
             realAnnualReturns: getAnnuals(this.state.realAnnualReturns, this.state.yearStartProduction),          
             realAnnualCo2Savings: getAnnuals(this.state.realAnnualCo2Savings, this.state.yearStartProduction),          
         };
-        console.log(data);
 
         fetch(url, {
             method: this.props.match.url.slice(-6) === 'update' ? 'PUT' : 'POST',
