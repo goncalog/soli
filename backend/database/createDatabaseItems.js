@@ -70,15 +70,17 @@ function createDatabaseItems(mongooseConnection) {
         });
     }
     
-    function projectCreate(name, sizeKw, totalCost, totalCostCurrency, status, estimatedAnnualReturnPercent,
-                location, user, imageUrls, estimatedTotalCo2SavedTon, estimatedAnnualProductionKwh, 
-                paymentSchedule, riskLevel, yearStartProduction, realAnnualProductionKwh, realAnnualPayments,
-                paymentsCurrency, realAnnualReturnPercent, realAnnualCo2SavedTon, cb) {
+    function projectCreate(name, sizeKw, totalCost, totalCostCurrency, historicalTotalCost, status, 
+                estimatedAnnualReturnPercent, location, user, imageUrls, estimatedTotalCo2SavedTon, 
+                estimatedAnnualProductionKwh, paymentSchedule, riskLevel, yearStartProduction, 
+                realAnnualProductionKwh, realAnnualPayments, paymentsCurrency, realAnnualReturnPercent, 
+                realAnnualCo2SavedTon, cb) {
         projectDetail = { 
             name: name,
             size_kw: sizeKw,
             total_cost: totalCost,
             total_cost_currency: totalCostCurrency,
+            historical_total_cost: historicalTotalCost,
             status: status,    
             estimated_annual_return_percent: estimatedAnnualReturnPercent,
             location: location,
@@ -190,6 +192,7 @@ function createDatabaseItems(mongooseConnection) {
                     360.8,
                     256500,
                     '£',
+                    { 2021: 256500, },
                     'Installing',
                     12.45,
                     locations[1],
@@ -216,6 +219,7 @@ function createDatabaseItems(mongooseConnection) {
                     510,
                     1050000,
                     '£',
+                    { 2021: 1050000, },
                     'Funding',
                     16.7,
                     locations[4],
@@ -242,6 +246,7 @@ function createDatabaseItems(mongooseConnection) {
                     224,
                     190000,
                     '£',
+                    { 2020:87000, 2021: 190000, },
                     'Producing',
                     3,
                     locations[5],
@@ -254,11 +259,11 @@ function createDatabaseItems(mongooseConnection) {
                     'Annually',
                     'Very Low',
                     2020,
-                    { 2020: 58530 },
-                    { 2020: 4711 },
+                    { 2020: 58530, },
+                    { 2020: 4711, },
                     '£',
-                    { 2020: 2 },
-                    { 2020: 15 },
+                    { 2020: 2, },
+                    { 2020: 15, },
                     callback
                 );
             },
@@ -268,6 +273,15 @@ function createDatabaseItems(mongooseConnection) {
                     763000,
                     994000000,
                     '£',
+                    { 
+                        2015: 249000000, 
+                        2016: 272000000, 
+                        2017: 504000000, 
+                        2018: 639000000, 
+                        2019: 683000000, 
+                        2020: 593000000,
+                        2021: 593000000,
+                    },
                     'Producing',
                     6.9,
                     locations[0],
@@ -294,7 +308,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 20681000, 
                         2018: 34800000, 
                         2019: 38100000, 
-                        2020: 39700000
+                        2020: 39700000,
                     },
                     '£',
                     {
@@ -303,7 +317,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 5.72, 
                         2018: 5.8, 
                         2019: 5.65, 
-                        2020: 6.78
+                        2020: 6.78,
                     }, 
                     {
                         2015: 11615, 
@@ -311,7 +325,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 156560, 
                         2018: 158600, 
                         2019: 299000, 
-                        2020: 307500
+                        2020: 307500,
                     },
                     callback
                 );
@@ -322,6 +336,16 @@ function createDatabaseItems(mongooseConnection) {
                     610000,
                     624000000,
                     '£',
+                    { 
+                        2014: 147000000, 
+                        2015: 306000000, 
+                        2016: 309000000, 
+                        2017: 425000000, 
+                        2018: 448000000, 
+                        2019: 505000000, 
+                        2020: 498000000,
+                        2021: 495000000, 
+                    },
                     'Producing',
                     6.0,
                     locations[5],
@@ -341,7 +365,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 400000000, 
                         2018: 420000000, 
                         2019: 480200000, 
-                        2020: 487600000 
+                        2020: 487600000, 
                     },
                     { 
                         2014: 5700000, 
@@ -350,7 +374,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 24800000, 
                         2018: 27500000, 
                         2019: 30700000, 
-                        2020: 29300000 
+                        2020: 29300000,
                     },
                     '£',
                     { 
@@ -360,7 +384,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 6.3, 
                         2018: 6.1, 
                         2019: 6.1, 
-                        2020: 5.9 
+                        2020: 5.9,
                     },
                     { 
                         2014: 12516, 
@@ -369,7 +393,7 @@ function createDatabaseItems(mongooseConnection) {
                         2017: 167753, 
                         2018: 153723, 
                         2019: 134881, 
-                        2020: 125534 
+                        2020: 125534,
                     },
                     callback
                 );
@@ -380,6 +404,15 @@ function createDatabaseItems(mongooseConnection) {
                     895000,
                     1072000000,
                     '£',
+                    { 
+                        2014: 216800000, 
+                        2015: 281800000, 
+                        2016: 354900000, 
+                        2017: 486000000, 
+                        2018: 592900000, 
+                        2019: 765600000,
+                        2020: 616000000,
+                    },
                     'Producing',
                     6.75,
                     locations[0],
@@ -398,7 +431,7 @@ function createDatabaseItems(mongooseConnection) {
                         2016: 319000000, 
                         2017: 426000000, 
                         2018: 691500000, 
-                        2019: 964000000 
+                        2019: 964000000,
                     },
                     { 
                         2014: 4500000, 
@@ -406,7 +439,7 @@ function createDatabaseItems(mongooseConnection) {
                         2016: 18700000, 
                         2017: 20100000, 
                         2018: 31300000, 
-                        2019: 36000000 
+                        2019: 36000000,
                     },
                     '£',
                     { 
@@ -415,7 +448,7 @@ function createDatabaseItems(mongooseConnection) {
                         2016: 5.9, 
                         2017: 5.9, 
                         2018: 6.1, 
-                        2019: 5.3 
+                        2019: 5.3,
                     },
                     { 
                         2014: 0, 
@@ -423,7 +456,7 @@ function createDatabaseItems(mongooseConnection) {
                         2016: 190125, 
                         2017: 253434, 
                         2018: 533802, 
-                        2019: 550383 
+                        2019: 550383, 
                     },
                     callback
                 );
@@ -434,6 +467,10 @@ function createDatabaseItems(mongooseConnection) {
                     443000,
                     140500000,
                     '£',
+                    { 
+                        2019: 149000000, 
+                        2020: 214000000, 
+                    },
                     'Producing',
                     5.1,
                     locations[6],
@@ -446,11 +483,11 @@ function createDatabaseItems(mongooseConnection) {
                     'Quarterly',
                     'Low',
                     2019,
-                    { 2019: 44000000 }, // 4000 homes * 11000 kWh per home per year 
-                    { 2019: 590000 },
+                    { 2019: 44000000, }, // 4000 homes * 11000 kWh per home per year 
+                    { 2019: 590000, },
                     '£',
-                    { 2019: 0.4 },
-                    { 2019: 38000 },
+                    { 2019: 0.4, },
+                    { 2019: 38000, },
                     callback
                 );
             },
