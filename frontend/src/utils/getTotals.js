@@ -10,8 +10,8 @@ export default function getTotals(investments, projects) {
     }, 0);
 
     const totalProduced = getTotal(investments, projects, 'real_annual_production_kwh');
-    const totalCO2Saved = getTotal(investments, projects, 'real_annual_co2_saved_ton');;
-    const totalReceived = 0;
+    const totalCO2Saved = getTotal(investments, projects, 'real_annual_co2_saved_ton');
+    const totalReceived = getTotal(investments, projects, 'real_annual_payments');
 
     return [
         formatNumber(totalInvested), 
