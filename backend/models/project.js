@@ -7,6 +7,7 @@ const ProjectSchema = new Schema(
         size_kw: { type: Number, required: true, min: 0 },
         total_cost: { type: Number, required: true, min: 0 },
         total_cost_currency: { type: String, required: true },
+        historical_total_cost: { type: Object, required: true, }, // Market cap/equity value in case of traded Projects
         status: { type: String, required: true },    
         estimated_annual_return_percent: { type: Number, required: true, min: 0 },
         location: { type: Schema.Types.ObjectId, ref: 'Location', required: true },
