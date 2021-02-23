@@ -61,7 +61,7 @@ describe('Routes testing', function () {
 
         function isProject(res) {
             for (let key in res.body.projects) {
-                if (!(Object.keys(res.body.projects[key]).length === 21)) {
+                if (!(Object.keys(res.body.projects[key]).length === 22)) {
                     throw new Error("Not an instance of Project");
                 }
             }
@@ -92,7 +92,7 @@ describe('Routes testing', function () {
             }
     
             function isProject(res) {
-                if (!(Object.keys(res.body.project).length === 21)) {
+                if (!(Object.keys(res.body.project).length === 22)) {
                     throw new Error("Not an instance of Project");
                 }
             }
