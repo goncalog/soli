@@ -81,7 +81,7 @@ const projects = [
         size_kw: 224,
         total_cost: 190000,
         total_cost_currency: '£',
-        historical_total_cost: { 2020: 87000, 2021: 190000, },
+        historical_total_cost: { 2020: '87000', 2021: '190000', },
         status: 'Producing',
         payment_schedule: 'Annually',
         year_start_production: 2020,
