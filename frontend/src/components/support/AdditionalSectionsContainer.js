@@ -16,13 +16,15 @@ export default class AdditionalSectionsContainer extends React.Component {
             <div className="sections-container">
                 {this.props.sections.map((section, i) => {
                     return (
-                        <AdditionalSection 
-                            key={i}
-                            section={i}
-                            sectionVisibility={this.props.sectionsVisibility[i]}
-                            {...section}
-                            onChangeSectionVisibility={this.handleChangeSectionsVisibility}    
-                        />
+                        (section.features.length !== 0) && (
+                            <AdditionalSection 
+                                key={i}
+                                section={i}
+                                sectionVisibility={this.props.sectionsVisibility[i]}
+                                {...section}
+                                onChangeSectionVisibility={this.handleChangeSectionsVisibility}    
+                            />
+                        )
                     );
                 })}
             </div>
