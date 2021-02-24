@@ -80,6 +80,11 @@ describe('AdditionalSectionsContainer', () => {
                         },
                     ],    
                 },
+                {
+                    name: 'Text to test name property #5',
+                    expandButtonText: 'Text to test expandButtonText property #5',
+                    features: [],    
+                },
 
             ],
             onChangeSectionsVisibility: mockFunction,
