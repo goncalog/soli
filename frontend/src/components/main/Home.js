@@ -77,14 +77,14 @@ export default function Home(props) {
     const benefitsProps = {
         benefits: [
             { 
-                imagePath: savingsIcon,
-                title: 'Huge Savings',
-                text: `Get a ${electricityDiscount} discount on your electricity price`,
-            },
-            { 
                 imagePath: returnsIcon,
                 title: 'Great Returns',
-                text: `Earn a ${solarPanelsReturn} annual return on solar panels`,
+                text: `Solar investors earn a ${solarPanelsReturn} annual return`,
+            },
+            { 
+                imagePath: savingsIcon,
+                title: 'Huge Savings',
+                text: `Solar projects save thousands on energy bills`,
             },
             { 
                 imagePath: convenienceIcon,
