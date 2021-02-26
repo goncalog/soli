@@ -48,30 +48,28 @@ export default function Home(props) {
     const howitworksProps = {
         content: [
             [
-                <Image imagePath={roofIcon} />,
-                <MainHeadline mainHeadline="Roof Owners" />,
-                <OrderedList listItems={
-                    [
-                        'List your roof',
-                        'Find people interested in buying solar panels to be installed on your roof',
-                        `Use the electricity produced by the solar panels at a ${electricityDiscount} discount vs. your current provider`,
-                    ]}
-                    icons={icons}
-                />,
-                <SecondaryHeadline secondaryHeadline="Ideal for roof owners who&#39;d like to benefit from cheaper and more sustainable electricity but don&#39;t want to make the full upfront investment in solar panels" />,
-            ],        
-            [
                 <Image imagePath={solarPanelIcon} />,
-                <MainHeadline mainHeadline="Solar Panel Owners" />,
+                <MainHeadline mainHeadline="Solar Investors" />,
                 <OrderedList listItems={
                     [
-                        'Find a roof where you can install solar panels',
-                        'Buy the solar panels - we\'ll install them for you',
-                        `Start earning a ${solarPanelsReturn} annual return on your solar panels - you'll be paid by the roof owner for the electricity produced`,
+                        'Choose a solar panel installation project to fund from our carefully selected list - including schools, hospitals, office buildings and factories',
+                        'Invest from £5',
+                        `Earn a ${solarPanelsReturn} annual return while offsetting your carbon footprint - you'll get paid for the solar energy produced`,
                     ]}
                     icons={icons}
                 />,
-                <SecondaryHeadline secondaryHeadline="Perfect for those who don&#39;t own a roof but still want to buy solar panels in order to produce electricity and get a better return from their savings" />,
+            ],
+            [
+                <Image imagePath={roofIcon} />,
+                <MainHeadline mainHeadline="Solar Projects" />,
+                <OrderedList listItems={
+                    [
+                        'List your solar panel installation project',
+                        'Get your project fully funded by solar investors',
+                        `Get a ${electricityDiscount} discount vs. your current energy provider by using the electricity produced by the solar panels`,
+                    ]}
+                    icons={icons}
+                />,
             ],
         ],
     }
