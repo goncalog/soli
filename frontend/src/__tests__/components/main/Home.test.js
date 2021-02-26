@@ -93,10 +93,10 @@ describe('Home', () => {
         const shallowWrapper = home().find(OwnerContainer);
         expect(shallowWrapper.length).toEqual(1);
         expect(shallowWrapper.prop('backgroundImagePath')).toBe('owner-container-background.jpg');
-        expect(shallowWrapper.prop('mainHeadline')).toBe('Monetise your roof');
+        expect(shallowWrapper.prop('mainHeadline')).toBe('Save on energy bills');
         expect(shallowWrapper.prop('secondaryHeadline'))
-                .toBe('Find solar panel owners interested in using your roof to produce energy');
-        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s EARN!');
+                .toBe('Would you like funding for your solar panel installation project?');
+        expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s GO!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
 });
