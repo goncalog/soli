@@ -39,7 +39,7 @@ export default function Home(props) {
     const headlineProps = {
         backgroundImagePath: backgroundHeadlineContainer,
         mainHeadline: 'Make money from solar panels',
-        secondaryHeadline: 'Whether you own a roof or not',
+        secondaryHeadline: 'And offset your carbon footprint',
         callToActionText: driverCallToActionText,
         onButtonClick: handleButtonClick,
     }
