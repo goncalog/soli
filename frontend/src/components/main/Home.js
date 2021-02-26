@@ -66,7 +66,7 @@ export default function Home(props) {
                     [
                         'List your solar panel installation project',
                         'Get your project fully funded by solar investors',
-                        `Get a ${electricityDiscount} discount vs. your current energy provider by using the electricity produced by the solar panels`,
+                        `Benefit from a ${electricityDiscount} discount vs. your current energy provider by using the electricity produced by the solar panels`,
                     ]}
                     icons={icons}
                 />,
