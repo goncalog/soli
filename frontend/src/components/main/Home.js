@@ -3,7 +3,6 @@ import HeadlineContainer from '../support/HeadlineContainer';
 import BenefitsContainer from '../support/BenefitsContainer';
 import OwnerContainer from '../support/OwnerContainer';
 import MainHeadline from '../support/MainHeadline';
-import SecondaryHeadline from '../support/SecondaryHeadline';
 import CallToActionButton from '../support/CallToActionButton';
 import Grid from '../support/Grid';
 import OrderedList from '../support/OrderedList';
@@ -99,7 +98,6 @@ export default function Home(props) {
     const ownerProps = {
         backgroundImagePath: backgroundOwnerContainer,
         mainHeadline: 'Save on energy bills',
-        secondaryHeadline: 'Find solar panel owners interested in using your roof to produce energy',
         secondaryHeadline: 'Would you like funding for your solar panel installation project?',
         callToActionText: 'Let\'s GO!',
         onButtonClick: onSellButtonClick,
