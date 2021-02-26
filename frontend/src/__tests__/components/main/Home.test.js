@@ -40,7 +40,7 @@ describe('Home', () => {
         expect(shallowWrapper.prop('backgroundImagePath')).toBe('headline-background.jpg');
         expect(shallowWrapper.prop('mainHeadline')).toBe('Make money from solar panels');
         expect(shallowWrapper.prop('secondaryHeadline'))
-                .toBe('Whether you own a roof or not');
+                .toBe('And offset your carbon footprint');
         expect(shallowWrapper.prop('callToActionText')).toBe('Let\'s EARN!');
         expect(Object.keys(shallowWrapper.props())).toContain('onButtonClick');
     });
