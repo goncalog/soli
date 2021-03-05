@@ -8,13 +8,15 @@ import getProjects from '../../utils/getProjects';
 import '../../css/Dashboard.css';
 import userProfilePic from '../../media/user-icon.svg';
 import investedIcon from '../../media/invested-icon.svg';
+import capacityIcon from '../../media/solar-panel-icon.svg';
 import producedIcon from '../../media/electricity-icon.svg';
 import co2SavedIcon from '../../media/globe-icon.svg';
 import receivedIcon from '../../media/payments-icon.svg';
+import returnIcon from '../../media/chart-icon.svg';
 
 export default function Dashboard(props) {
     const [userName, setUserName] = useState(' ');
-    const [userTotals, setUserTotals] = useState([0, 0, 0, 0]);
+    const [userTotals, setUserTotals] = useState([0, 0, 0, 0, 0, 0]);
     const [projects, setProjects] = useState([]);
 
     function handleButtonClick() {
@@ -40,28 +42,38 @@ export default function Dashboard(props) {
     }, []); // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from props or state, so it never needs to re-run. This isn’t handled as a special case — it follows directly from how the dependencies array always works.
 
     const userLevel = 'Level 1';
-    const totalsText = ['invested', 'produced', 'CO2 saved', 'received'];
+    const totalsText = ['invested', 'capacity', 'produced', 'CO2 saved', 'received', 'return'];
     const userTotalsGrid = {
         content: [
             [
                 <Image imagePath={investedIcon} />,
                 <h2>{`£${userTotals[0]}`}</h2>,
                 <p>{totalsText[0]}</p>,
+            ],
+            [
+                <Image imagePath={capacityIcon} />,
+                <h2>{`${userTotals[1]}`}<span className="units"> kWp</span></h2>,
+                <p>{totalsText[1]}</p>,
             ],        
             [
                 <Image imagePath={producedIcon} />,
-                <h2>{`${userTotals[1]}`}<span className="units"> kWh</span></h2>,
-                <p>{totalsText[1]}</p>,
-            ],
-            [
-                <Image imagePath={co2SavedIcon} />,
-                <h2>{`${userTotals[2]}`}<span className="units"> tons</span></h2>,
+                <h2>{`${userTotals[2]}`}<span className="units"> kWh</span></h2>,
                 <p>{totalsText[2]}</p>,
             ],
             [
-                <Image imagePath={receivedIcon} />,
-                <h2>{`£${userTotals[3]}`}</h2>,
+                <Image imagePath={co2SavedIcon} />,
+                <h2>{`${userTotals[3]}`}<span className="units"> tons</span></h2>,
                 <p>{totalsText[3]}</p>,
+            ],
+            [
+                <Image imagePath={receivedIcon} />,
+                <h2>{`£${userTotals[4]}`}</h2>,
+                <p>{totalsText[4]}</p>,
+            ],
+            [
+                <Image imagePath={returnIcon} />,
+                <h2>{`${userTotals[5]}`}<span className="units">%</span></h2>,
+                <p>{totalsText[5]}</p>,
             ],
         ],
     }

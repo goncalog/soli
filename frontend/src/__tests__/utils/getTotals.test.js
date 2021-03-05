@@ -95,9 +95,11 @@ const projects = [
 
 const results =  [
     formatNumber(5575),
+    formatNumber(28),
     formatNumber(getTotal(investments, projects, 'real_annual_production_kwh')), 
     formatNumber(getTotal(investments, projects, 'real_annual_co2_saved_ton')), 
-    formatNumber(getTotal(investments, projects, 'real_annual_payments')), 
+    formatNumber(getTotal(investments, projects, 'real_annual_payments')),
+    formatNumber(0),
 ];
 
 describe('getTotals', () => {

@@ -1,3 +1,5 @@
+import formatTotal from "./formatTotal";
+
 export default function getTotal(investments, projects, prop) {
     const total = projects.reduce((sum, project) => {
         let annualAmounts = {};
@@ -11,5 +13,5 @@ export default function getTotal(investments, projects, prop) {
         return sum + Object.values(annualAmounts).reduce((sum, amount) => sum + amount, 0);
     }, 0);
 
-    return (total < 10) ? Math.round(total * 100) / 100 : Math.round(total);
+    return formatTotal(total);
 }
