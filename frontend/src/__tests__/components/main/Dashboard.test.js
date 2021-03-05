@@ -69,31 +69,31 @@ describe('Dashboard', () => {
         const shallowWrapper = dashboard().find(Grid);
         expect(shallowWrapper.length).toEqual(1);
         expect(Object.keys(shallowWrapper.props())).toContain('content');
-        expect(shallowWrapper.prop('content').length).toEqual(4);
+        expect(shallowWrapper.prop('content').length).toEqual(6);
 
     });
 
-    test('has Grid with 4 Image components', () => {
+    test('has Grid with 6 Image components', () => {
         const shallowWrapper = dashboard().find(Grid).prop('content');
-        expect(shallowWrapper.length).toEqual(4);
+        expect(shallowWrapper.length).toEqual(6);
         shallowWrapper.forEach((node) => {
             expect(node[0].type).toEqual(Image);
         });
     });
 
-    test('has Grid with 4 h2 HTML elements', () => {
+    test('has Grid with 6 h2 HTML elements', () => {
         const shallowWrapper = dashboard().find(Grid).prop('content');
-        expect(shallowWrapper.length).toEqual(4);
+        expect(shallowWrapper.length).toEqual(6);
         shallowWrapper.forEach((node) => {
             expect(node[1].type).toEqual('h2');
         });
     });
 
-    test('has Grid with 4 p HTML elements rendered with correct text', () => {
+    test('has Grid with 6 p HTML elements rendered with correct text', () => {
         const shallowWrapper = dashboard().find(Grid).prop('content');
-        expect(shallowWrapper.length).toEqual(4);
+        expect(shallowWrapper.length).toEqual(6);
 
-        const text = ['invested', 'produced', 'CO2 saved', 'received'];
+        const text = ['invested', 'capacity', 'produced', 'CO2 saved', 'received', 'return'];
         shallowWrapper.forEach((node, i) => {
             expect(node[2].type).toEqual('p');
             expect(node[2].props.children).toBe(text[i]);
